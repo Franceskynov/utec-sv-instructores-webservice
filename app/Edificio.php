@@ -17,6 +17,7 @@ class Edificio extends Model
         'direccion',
         'abreviacion',
         'descripcion',
-        'pisos'
+        'pisos',
+        'is_enabled'
     ];
 }

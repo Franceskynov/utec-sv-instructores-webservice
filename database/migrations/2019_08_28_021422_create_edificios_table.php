@@ -20,6 +20,7 @@ class CreateEdificiosTable extends Migration
             $table->string('abreviacion');
             $table->string('descripcion');
             $table->integer('pisos');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

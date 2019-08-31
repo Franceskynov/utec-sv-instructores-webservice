@@ -18,25 +18,18 @@ class EdificioController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
 
         if ( $edificios =  Edificio::get()) {
-            $this->response = [
-                Constants::ERROR    => false,
-                Constants::MESSAGE  => Constants::MESSAGE_SUCCESS,
-                Constants::DATA     => $edificios
-            ];
+
+            $this->response = $this->successResponse($edificios);
 
         } else {
 
-            $this->response = [
-                Constants::ERROR    => true,
-                Constants::MESSAGE  => Constants::MESSAGE_INVALID_RESPONSE,
-                Constants::DATA     => []
-            ];
+            $this->response = $this->invalidResponse;
         }
 
         return \Response::json($this->response);
@@ -57,7 +50,7 @@ class EdificioController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -71,21 +64,15 @@ class EdificioController extends Controller
 
         if ($validator->fails())
         {
-            $this->response = [
-                Constants::ERROR    => true,
-                Constants::MESSAGE  => Constants::MESSAGE_INVALID_CREATION,
-                Constants::DATA     => []
-            ];
+            $this->response = $this->invalidCreation;
 
         } else {
 
             Edificio::create($request->all());
-            $this->response = [
-                Constants::ERROR    => false,
-                Constants::MESSAGE  => Constants::MESSAGE_SUCCESS_CREATION,
-                Constants::DATA     => []
-            ];
+
+            $this->response = $this->successCreation;
         }
+
         return \Response::json($this->response);
     }
 
@@ -93,24 +80,17 @@ class EdificioController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
         if ( $edificios =  Edificio::find($id)) {
-            $this->response = [
-                Constants::ERROR    => false,
-                Constants::MESSAGE  => Constants::MESSAGE_SUCCESS,
-                Constants::DATA     => $edificios
-            ];
+
+            $this->response = $this->successResponse($edificios);
 
         } else {
 
-            $this->response = [
-                Constants::ERROR    => true,
-                Constants::MESSAGE  => Constants::MESSAGE_INVALID_RESPONSE,
-                Constants::DATA     => []
-            ];
+            $this->response = $this->invalidResponse;
         }
 
         return \Response::json($this->response);
@@ -120,7 +100,7 @@ class EdificioController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function edit($id)
     {
@@ -132,21 +112,73 @@ class EdificioController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if($edificio =  Edificio::find($id))
+        {
+
+            $validator = \Validator::make($request->all(), [
+                'nombre'      => 'required',
+                'direccion'   => 'required',
+                'abreviacion' => 'required',
+                'descripcion' => 'required',
+                'pisos'       => 'required'
+            ]);
+
+            if ($validator->fails())
+            {
+                $this->response = $this->invalidChecking;
+
+            } else {
+
+                if($edificio->update($request->all()))
+                {
+                    $this->response = $this->successResponse($edificio);
+
+                } else {
+
+                    $this->response = $this->invalidUpdate;
+                }
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
+        if($edificio = Edificio::find($id))
+        {
+           if ($edificio->is_enabled)
+           {
+               $edificio->update([
+                   'is_enabled' => ($edificio->is_enabled == 1) ? 0 : 0
+               ]);
 
+               $this->response = $this->successDeletion;
+
+           } else {
+
+               $this->response = $this->previouslyDeleted;
+           }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 }
