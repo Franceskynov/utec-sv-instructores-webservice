@@ -147,6 +147,6 @@ class EdificioController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
