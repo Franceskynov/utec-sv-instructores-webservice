@@ -53,7 +53,7 @@ class Controller extends BaseController
      */
     protected $invalidCreation = [
         Constants::ERROR    => true,
-        Constants::MESSAGE  => Constants::MESSAGE_INVALID_CREATION . Constants::MESSAGE_INVALID_RESPONSE,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_CREATION . '; ' . Constants::MESSAGE_INVALID_CHECKING,
         Constants::DATA     => []
     ];
 

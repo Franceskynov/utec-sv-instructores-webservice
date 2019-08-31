@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Edificio;
 use App\Utils\Constants;
-
+use App\Utils\CustomValidators;
 class EdificioController extends Controller
 {
     /**
@@ -54,13 +54,7 @@ class EdificioController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'nombre'      => 'required',
-            'direccion'   => 'required',
-            'abreviacion' => 'required',
-            'descripcion' => 'required',
-            'pisos'       => 'required'
-        ]);
+        $validator = CustomValidators::EdificioValidator($request);
 
         if ($validator->fails())
         {
@@ -118,14 +112,7 @@ class EdificioController extends Controller
     {
         if($edificio =  Edificio::find($id))
         {
-
-            $validator = \Validator::make($request->all(), [
-                'nombre'      => 'required',
-                'direccion'   => 'required',
-                'abreviacion' => 'required',
-                'descripcion' => 'required',
-                'pisos'       => 'required'
-            ]);
+            $validator = CustomValidators::EdificioValidator($request);
 
             if ($validator->fails())
             {

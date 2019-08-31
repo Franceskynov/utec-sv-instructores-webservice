@@ -1,5 +1,10 @@
 <?php
-
+    /*
+   |--------------------------------------------------------------------------
+   | Copyright (C) (2019) (Franceskynov) (franceskynov@gmail.com)
+   |--------------------------------------------------------------------------
+   |
+   */
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
