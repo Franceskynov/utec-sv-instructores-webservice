@@ -12,7 +12,6 @@ class EdificiosTableSeeder extends Seeder
     public function run()
     {
         Edificio::create([
-            'id'          => 1,
             'nombre'      => 'Jorge Luis Borges',
             'direccion'   => '1.ª calle Poniente, 1137',
             'abreviacion' => 'JL',
@@ -21,7 +20,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 2,
             'nombre'      => 'Francisco Morazán',
             'direccion'   => 'Calle Arce, 1026',
             'abreviacion' => 'FM',
@@ -30,7 +28,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 3,
             'nombre'      => 'Benito Juárez',
             'direccion'   => 'Calle Arce, 1114',
             'abreviacion' => 'BJ',
@@ -39,7 +36,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 4,
             'nombre'      => 'Giuseppe Garibaldi',
             'direccion'   => '1.ª calle Poniente y 19.ª avenida Norte',
             'abreviacion' => 'GG',
@@ -48,7 +44,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 5,
             'nombre'      => 'Simón Bolívar',
             'direccion'   => 'Calle Arce, 1020',
             'abreviacion' => 'SB',
@@ -57,7 +52,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 6,
             'nombre'      => 'Thomas Jefferson',
             'direccion'   => 'Calle Arce y 17.ª avenida Sur',
             'abreviacion' => 'TJ',
@@ -66,7 +60,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 7,
             'nombre'      => 'Claudia Lars',
             'direccion'   => '1.ª calle Poniente y 17.ª avenida Norte',
             'abreviacion' => 'CL',
@@ -75,7 +68,6 @@ class EdificiosTableSeeder extends Seeder
         ]);
 
         Edificio::create([
-            'id'          => 8,
             'nombre'      => 'Federico García Lorca ',
             'direccion'   => 'Calle Arce y 17.ª avenida Sur',
             'abreviacion' => 'FGL',
