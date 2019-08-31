@@ -1,5 +1,12 @@
 # utec-sv-instructores-webservice
 
+## For Unix environments
+- Copy the environment template file.
+
+`
+copy .env.example .env
+`
+
 ## For Windowns environment
 
 - Copy the environment template file.
