@@ -84,11 +84,32 @@ class Controller extends BaseController
         Constants::DATA     => []
     ];
 
+    /**
+     * @var array
+     */
     protected $invalidChecking = [
         Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_CHECKING,
         Constants::DATA     => []
     ];
+
+    /**
+     * @var array
+     */
+    protected $invalidCarnet = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_CARNET,
+        Constants::DATA     => null
+    ];
+
+    protected function soapResponse($data)
+    {
+        return [
+            Constants::ERROR    => false,
+            Constants::MESSAGE  => Constants::MESSAGE_SUCCESS,
+            Constants::DATA     =>  json_decode($data)
+        ];
+    }
 
     /**
      * @param $data

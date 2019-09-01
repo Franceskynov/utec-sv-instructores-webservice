@@ -39,19 +39,11 @@ class ServicioAlumnos extends Controller
             $carnet = CarnetUtils::getCarnet($request);
             $client = new \SoapClient(Constants::ENDPOINT, Constants::PARAMS);
             $pensum = $client->Pensum([Constants::CARNET => $carnet])->PensumResult;
-
-            $this->response = [
-                Constants::ERROR    => false,
-                Constants::MESSAGE  => Constants::MESSAGE_SUCCESS,
-                Constants::DATA     =>  json_decode($pensum)
-            ];
+            $this->response = $this->soapResponse($pensum);
 
         } else {
-            $this->response = [
-                Constants::ERROR    => true,
-                Constants::MESSAGE  => Constants::MESSAGE_INVALID_CARNET,
-                Constants::DATA     => null
-            ];
+
+            $this->response = $this->invalidCarnet;
         }
 
         return \Response::json($this->response);
@@ -69,19 +61,11 @@ class ServicioAlumnos extends Controller
             $carnet = CarnetUtils::getCarnet($request);
             $client = new \SoapClient(Constants::ENDPOINT, Constants::PARAMS);
             $notas  = $client->Notas([Constants::CARNET => $carnet])->NotasResult;
-
-            $this->response = [
-                Constants::ERROR    => false,
-                Constants::MESSAGE  => Constants::MESSAGE_SUCCESS,
-                Constants::DATA     =>  json_decode($notas)
-            ];
+            $this->response = $this->soapResponse($notas);
 
         } else {
-            $this->response = [
-                Constants::ERROR    => true,
-                Constants::MESSAGE  => Constants::MESSAGE_INVALID_CARNET,
-                Constants::DATA     => null
-            ];
+
+            $this->response = $this->invalidCarnet;
         }
 
         return \Response::json($this->response);
@@ -99,19 +83,11 @@ class ServicioAlumnos extends Controller
             $carnet = CarnetUtils::getCarnet($request);
             $client = new \SoapClient(Constants::ENDPOINT, Constants::PARAMS);
             $notas  = $client->Expediente([Constants::CARNET => $carnet])->ExpedienteResult;
-
-            $this->response = [
-                Constants::ERROR    => false,
-                Constants::MESSAGE  => Constants::MESSAGE_SUCCESS,
-                Constants::DATA     =>  json_decode($notas)
-            ];
+            $this->response = $this->soapResponse($notas);
 
         } else {
-            $this->response = [
-                Constants::ERROR    => true,
-                Constants::MESSAGE  => Constants::MESSAGE_INVALID_CARNET,
-                Constants::DATA     => null
-            ];
+
+            $this->response = $this->invalidCarnet;
         }
 
         return \Response::json($this->response);
