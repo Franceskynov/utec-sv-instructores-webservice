@@ -17,6 +17,7 @@ class CreateMateriasTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

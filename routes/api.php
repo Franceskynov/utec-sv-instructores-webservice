@@ -24,3 +24,4 @@ Route::get('/nota', 'Soap\ServicioAlumnos@notas');
 Route::get('/expediente', 'Soap\ServicioAlumnos@expediente');
 
 Route::resource('/edificio', 'Api\EdificioController');
+Route::resource('/horario', 'Api\HorarioController');

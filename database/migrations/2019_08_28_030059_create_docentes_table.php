@@ -18,6 +18,7 @@ class CreateDocentesTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('Especialidad');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

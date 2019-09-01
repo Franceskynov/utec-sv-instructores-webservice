@@ -26,4 +26,14 @@ class CustomValidators
           'pisos'       => 'required'
       ]);
     }
+
+    static function HorarioValidator($request)
+    {
+        return \Validator::make($request->all(), [
+            'dia'        => 'required',
+            'nombre_dia' => 'required',
+            'inicio'     => 'required',
+            'fin'        => 'required'
+        ]);
+    }
 }

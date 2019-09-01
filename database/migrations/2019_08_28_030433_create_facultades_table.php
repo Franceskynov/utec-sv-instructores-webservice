@@ -18,6 +18,7 @@ class CreateFacultadesTable extends Migration
             $table->string('nombre');
             $table->string('abreviacion');
             $table->string('descripcion');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

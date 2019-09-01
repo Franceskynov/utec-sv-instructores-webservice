@@ -18,6 +18,7 @@ class CreateAulasTable extends Migration
             $table->string('codigo');
             $table->integer('edificio_id')->unsigned();
             $table->foreign('edificio_id')->references('id')->on('edificios');
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }
