@@ -12,5 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Instructor extends Model
 {
-    //
+    protected $fillable = [
+        'nombre',
+        'carnet',
+        'carrera',
+        'cum',
+        'notas'
+    ];
 }

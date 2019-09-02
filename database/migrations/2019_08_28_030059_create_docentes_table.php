@@ -18,6 +18,8 @@ class CreateDocentesTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('Especialidad');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
