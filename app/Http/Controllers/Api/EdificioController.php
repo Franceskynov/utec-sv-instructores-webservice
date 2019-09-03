@@ -10,9 +10,10 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Edificio;
 use App\Utils\Constants;
 use App\Utils\CustomValidators;
+use App\Edificio;
+
 class EdificioController extends Controller
 {
     /**

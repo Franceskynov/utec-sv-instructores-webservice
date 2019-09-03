@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Aula;
+use App\Utils\CustomValidators;
 
 class AulaController extends Controller
 {
@@ -51,7 +52,20 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = CustomValidators::EdificioValidator($request);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidCreation;
+
+        } else {
+
+            Edificio::create($request->all());
+
+            $this->response = $this->successCreation;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
