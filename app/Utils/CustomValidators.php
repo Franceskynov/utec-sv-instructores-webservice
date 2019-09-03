@@ -27,6 +27,10 @@ class CustomValidators
       ]);
     }
 
+    /**
+     * @param $request
+     * @return \Illuminate\Validation\Validator
+     */
     static function HorarioValidator($request)
     {
         return \Validator::make($request->all(), [
@@ -34,6 +38,19 @@ class CustomValidators
             'nombre_dia' => 'required',
             'inicio'     => 'required',
             'fin'        => 'required'
+        ]);
+    }
+
+    /**
+     * @param $request
+     * @return \Illuminate\Validation\Validator
+     */
+    static function AulaValidator($request)
+    {
+        return \Validator::make($request->all(), [
+            'codigo'      => 'required',
+            'capacidad'   => 'required',
+            'edificio_id' => 'required'
         ]);
     }
 }

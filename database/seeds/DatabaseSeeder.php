@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call([
              EdificiosTableSeeder::class,
              HorariosTableSeeder::class,
+             AulasTableSeeder::class,
          ]);
     }
 }

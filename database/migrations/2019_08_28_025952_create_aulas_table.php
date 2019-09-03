@@ -16,6 +16,7 @@ class CreateAulasTable extends Migration
         Schema::create('aulas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('codigo');
+            $table->integer('capacidad');
             $table->integer('edificio_id')->unsigned();
             $table->foreign('edificio_id')->references('id')->on('edificios');
             $table->boolean('is_enabled')->default(true);

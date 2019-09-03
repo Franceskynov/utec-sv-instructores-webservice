@@ -23,7 +23,7 @@ class EdificioController extends Controller
     public function index()
     {
 
-        if ( $edificios =  Edificio::get()) {
+        if ( $edificios =  Edificio::with('aulas')->get()) {
 
             $this->response = $this->successResponse($edificios);
 
@@ -80,7 +80,7 @@ class EdificioController extends Controller
     {
         if ( $edificios =  Edificio::find($id)) {
 
-            $this->response = $this->successResponse($edificios);
+            $this->response = $this->successResponse($edificios->load('aulas'));
 
         } else {
 

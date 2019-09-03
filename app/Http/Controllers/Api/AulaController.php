@@ -10,17 +10,27 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Aula;
 
 class AulaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        if ( $aulas =  Aula::with('edificio')->get()) {
+
+            $this->response = $this->successResponse($aulas);
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

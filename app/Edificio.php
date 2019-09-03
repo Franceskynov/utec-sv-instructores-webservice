@@ -20,4 +20,13 @@ class Edificio extends Model
         'pisos',
         'is_enabled'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function aulas()
+    {
+        return $this
+            ->hasMany('App\Aula', 'edificio_id', 'id');
+    }
 }
