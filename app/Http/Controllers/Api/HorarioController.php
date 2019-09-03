@@ -53,7 +53,7 @@ class HorarioController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = CustomValidators::HorarioValidator($request);
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$horarioRules);
 
         if ($validator->fails())
         {
@@ -111,7 +111,7 @@ class HorarioController extends Controller
     {
         if($horario = Horario::find($id))
         {
-            $validator = CustomValidators::HorarioValidator($request);
+            $validator = CustomValidators::requestValidator($request, CustomValidators::$horarioRules);
 
             if ($validator->fails())
             {

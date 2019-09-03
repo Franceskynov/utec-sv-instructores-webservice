@@ -55,7 +55,7 @@ class EdificioController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = CustomValidators::EdificioValidator($request);
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$edificioRules);
 
         if ($validator->fails())
         {
@@ -113,7 +113,7 @@ class EdificioController extends Controller
     {
         if($edificio =  Edificio::find($id))
         {
-            $validator = CustomValidators::EdificioValidator($request);
+            $validator = CustomValidators::requestValidator($request, CustomValidators::$edificioRules);
 
             if ($validator->fails())
             {

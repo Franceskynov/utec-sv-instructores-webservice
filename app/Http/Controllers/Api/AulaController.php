@@ -48,11 +48,11 @@ class AulaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $validator = CustomValidators::EdificioValidator($request);
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$aulaRules);
 
         if ($validator->fails())
         {
@@ -60,7 +60,7 @@ class AulaController extends Controller
 
         } else {
 
-            Edificio::create($request->all());
+            Aula::create($request->all());
 
             $this->response = $this->successCreation;
         }
@@ -72,11 +72,20 @@ class AulaController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        if ( $aula =  Aula::find($id)) {
+
+            $this->response = $this->successResponse($aula->load('edificio'));
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
@@ -95,21 +104,68 @@ class AulaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if($aula =  Aula::find($id))
+        {
+            $rules = CustomValidators::$aulaRules;
+            $rules['codigo'] = 'required';
+            $validator = CustomValidators::requestValidator($request, $rules);
+
+            if ($validator->fails())
+            {
+                $this->response = $this->invalidChecking;
+
+            } else {
+
+                if($aula->update($request->all()))
+                {
+                    $this->response = $this->successResponse($aula);
+
+                } else {
+
+                    $this->response = $this->invalidUpdate;
+                }
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        if($aula = Aula::find($id))
+        {
+            if ($aula->is_enabled)
+            {
+                $aula->update([
+                    'is_enabled' => ($aula->is_enabled == 1) ? 0 : 0
+                ]);
+
+                $this->response = $this->successDeletion;
+
+            } else {
+
+                $this->response = $this->previouslyDeleted;
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 }

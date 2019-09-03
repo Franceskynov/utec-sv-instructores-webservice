@@ -13,44 +13,42 @@ class CustomValidators
 {
 
     /**
-     * @param $request
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @var array
      */
-    static function EdificioValidator($request)
-    {
-      return \Validator::make($request->all(), [
-          'nombre'      => 'required',
-          'direccion'   => 'required',
-          'abreviacion' => 'required',
-          'descripcion' => 'required',
-          'pisos'       => 'required'
-      ]);
-    }
+    static $edificioRules = [
+        'nombre'      => 'required',
+        'direccion'   => 'required',
+        'abreviacion' => 'required',
+        'descripcion' => 'required',
+        'pisos'       => 'required'
+    ];
+
+    /**
+     * @var array
+     */
+    static $horarioRules = [
+        'dia'        => 'required',
+        'nombre_dia' => 'required',
+        'inicio'     => 'required',
+        'fin'        => 'required'
+    ];
+
+    /**
+     * @var array
+     */
+    static $aulaRules = [
+        'codigo'      => 'required|unique:aulas',
+        'capacidad'   => 'required',
+        'edificio_id' => 'required'
+    ];
 
     /**
      * @param $request
+     * @param $rules
      * @return \Illuminate\Validation\Validator
      */
-    static function HorarioValidator($request)
+    static function requestValidator($request, $rules)
     {
-        return \Validator::make($request->all(), [
-            'dia'        => 'required',
-            'nombre_dia' => 'required',
-            'inicio'     => 'required',
-            'fin'        => 'required'
-        ]);
-    }
-
-    /**
-     * @param $request
-     * @return \Illuminate\Validation\Validator
-     */
-    static function AulaValidator($request)
-    {
-        return \Validator::make($request->all(), [
-            'codigo'      => 'required',
-            'capacidad'   => 'required',
-            'edificio_id' => 'required'
-        ]);
+        return \Validator::make($request->all(), $rules);
     }
 }
