@@ -43,6 +43,15 @@ class CustomValidators
     ];
 
     /**
+     * @var array
+     */
+    static $facultadRules = [
+        'nombre'      => 'required',
+        'abreviacion' => 'required|unique:facultades',
+        'descripcion' => 'required'
+    ];
+
+    /**
      * @param $request
      * @param $rules
      * @return \Illuminate\Validation\Validator

@@ -12,5 +12,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Facultad extends Model
 {
-    //
+    protected $table = 'facultades';
+    protected $fillable = [
+        'nombre',
+        'abreviacion',
+        'descripcion',
+        'is_enabled'
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function materias()
+    {
+        return $this
+            ->hasMany('App\Materia', 'edificio_id', 'id');
+    }
 }

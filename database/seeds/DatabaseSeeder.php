@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
              EdificiosTableSeeder::class,
              HorariosTableSeeder::class,
              AulasTableSeeder::class,
+             FacultadesTableSeeder::class,
          ]);
     }
 }
