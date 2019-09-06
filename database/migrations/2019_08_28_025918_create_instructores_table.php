@@ -19,13 +19,13 @@ class CreateInstructoresTable extends Migration
             $table->string('carnet');
             $table->string('carrera');
             $table->string('cum');
-            $table->integer('nota_id')->unsigned();
+            $table->integer('nota_id')->unsigned()->nullable();
             $table->foreign('nota_id')->references('id')->on('notas');
 
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('historial_id')->unsigned();
+            $table->integer('historial_id')->unsigned()->nullable();
             $table->foreign('historial_id')->references('id')->on('historiales');
 
             $table->boolean('is_enabled')->default(true);

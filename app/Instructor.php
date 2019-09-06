@@ -12,11 +12,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Instructor extends Model
 {
+    protected $table = 'instructores';
     protected $fillable = [
         'nombre',
         'carnet',
         'carrera',
         'cum',
-        'notas'
+        'is_enabled'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notas()
+    {
+        return $this
+            ->hasMany('App\Nota', 'user_id', 'id');
+    }
 }

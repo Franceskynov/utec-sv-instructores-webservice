@@ -60,6 +60,15 @@ class Controller extends BaseController
     /**
      * @var array
      */
+    protected $invalidUserDelete = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_DELETE_USER_ADM,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
     protected $successCreation = [
         Constants::ERROR    => false,
         Constants::MESSAGE  => Constants::MESSAGE_SUCCESS_CREATION,

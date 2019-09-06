@@ -46,4 +46,6 @@ class Constants
 
     public const MESSAGE_INVALID_UPDATE = 'El registro no pudo ser actualizado';
     public const MESSAGE_INVALID_CHECKING = 'Los datos enviados no cumplen con los requerimientos';
+
+    public const MESSAGE_INVALID_DELETE_USER_ADM = 'Error los usuarios administradores no pueden ser borrados';
 }
