@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Instructor;
 use App\Nota;
+use App\User;
 
 class InstructoresTableSeeder extends Seeder
 {
@@ -13,13 +14,16 @@ class InstructoresTableSeeder extends Seeder
      */
     public function run()
     {
-        Instructor::create([
+
+        $instructorA = Instructor::create([
             'nombre'  => 'FakeName a',
             'carnet'  => 'FakeLastName a',
             'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
-            'cum'     => '7.7'
+            'cum'     => '7.7',
+            'user_id' => 3
+        ]);
 
-        ])->notas()->saveMany([
+        $instructorA->notas()->saveMany([
             new Nota([
                 'mat_codigo' => 'ALG1-E',
                 'mat_nombre' => 'ALGORITMOS I',

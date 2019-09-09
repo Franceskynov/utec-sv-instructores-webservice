@@ -21,11 +21,11 @@ class Facultad extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
     public function materias()
     {
         return $this
-            ->hasMany('App\Materia', 'edificio_id', 'id');
+            ->belongsTo('App\Materia');
     }
 }

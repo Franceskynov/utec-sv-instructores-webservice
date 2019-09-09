@@ -1,19 +1,12 @@
 <?php
 
-   /*
-   |--------------------------------------------------------------------------
-   | Copyright (C) (2019) (Franceskynov) (franceskynov@gmail.com)
-   |--------------------------------------------------------------------------
-   |
-   */
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Utils\CustomValidators;
-use App\Instructor;
+use App\Facultad;
 
-class InstructorController extends Controller
+class FacultadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +15,9 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if ( $instructor =  Instructor::with('notas', 'user')->get()) {
+        if ($facultad =  Facultad::get()) {
 
-            $this->response = $this->successResponse($instructor);
+            $this->response = $this->successResponse($facultad);
 
         } else {
 

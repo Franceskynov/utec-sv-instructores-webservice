@@ -27,3 +27,5 @@ Route::resource('/edificio', 'Api\EdificioController');
 Route::resource('/horario', 'Api\HorarioController');
 Route::resource('/aula', 'Api\AulaController');
 Route::resource('/user', 'Api\UserController');
+Route::resource('/instructor', 'Api\InstructorController');
+Route::resource('facultad', 'Api\FacultadController');

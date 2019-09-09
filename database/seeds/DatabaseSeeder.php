@@ -16,9 +16,12 @@ class DatabaseSeeder extends Seeder
              HorariosTableSeeder::class,
              AulasTableSeeder::class,
              FacultadesTableSeeder::class,
-             // InstructoresTableSeeder::class,
+             CarreraTableSeeder::class,
              RolesTableSeeder::class,
              UserTableSeeder::class,
+
+             InstructoresTableSeeder::class,
+
          ]);
     }
 }
