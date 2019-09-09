@@ -17,11 +17,20 @@ class MateriaController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        if ($materias =  Materia::with('facultades')->get()) {
+
+            $this->response = $this->successResponse($materias);
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

@@ -15,16 +15,15 @@ class Materia extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
-        'facultad_id',
         'is_enabled'
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
-    public function facultad()
+    public function facultades()
     {
         return $this
-            ->belongsTo('App\Facultad', 'facultad_id', 'id');
+            ->belongsToMany('App\Facultad');
     }
 }

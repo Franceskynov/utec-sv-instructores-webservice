@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Facultad;
+use App\Materia;
 
 class FacultadesTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class FacultadesTableSeeder extends Seeder
             'nombre' => 'Informatica y Ciencias Aplicadas',
             'abreviacion' => 'FICA',
             'descripcion' => '...'
-        ]);
+        ])->materias()->sync([1, 2, 3, 4, 5, 6]);
 
         Facultad::create([
             'nombre' => 'Ciencias Empresariales',

@@ -1,19 +1,12 @@
 <?php
 
-   /*
-   |--------------------------------------------------------------------------
-   | Copyright (C) (2019) (Franceskynov) (franceskynov@gmail.com)
-   |--------------------------------------------------------------------------
-   |
-   */
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Utils\CustomValidators;
-use App\Instructor;
+use App\Historial;
 
-class InstructorController extends Controller
+class HistorialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +15,9 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if ( $instructor =  Instructor::with('notas', 'user', 'historial', 'historial.materia')->get()) {
+        if ( $historial =  Historial::with('materia')->get()) {
 
-            $this->response = $this->successResponse($instructor);
+            $this->response = $this->successResponse($historial);
 
         } else {
 

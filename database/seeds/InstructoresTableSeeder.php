@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Instructor;
 use App\Nota;
 use App\User;
+use App\Historial;
 
 class InstructoresTableSeeder extends Seeder
 {
@@ -38,6 +39,15 @@ class InstructoresTableSeeder extends Seeder
                 'nota'       => '6.8',
                 'estado'     => 'Aprobada',
                 'ciclo'      => '01-2016'
+            ])
+        ]);
+
+        $instructorA->historial()->saveMany([
+            new Historial([
+                'nota'        => 8.5,
+                'comentarios' => 'se sabe desembolver en la materia',
+                'ciclo_id'    => 1,
+                'materia_id'  => 4
             ])
         ]);
     }

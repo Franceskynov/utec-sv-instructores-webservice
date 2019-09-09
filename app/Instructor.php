@@ -40,11 +40,11 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
     public function historial()
     {
         return $this
-            ->belongsTo('App\Historial', 'historial_id', 'id');
+            ->belongsToMany('App\Historial');
     }
 }

@@ -28,4 +28,6 @@ Route::resource('/horario', 'Api\HorarioController');
 Route::resource('/aula', 'Api\AulaController');
 Route::resource('/user', 'Api\UserController');
 Route::resource('/instructor', 'Api\InstructorController');
-Route::resource('facultad', 'Api\FacultadController');
+Route::resource('/facultad', 'Api\FacultadController');
+Route::resource('/materia', 'Api\MateriaController');
+Route::resource('/historial', 'Api\HistorialController');

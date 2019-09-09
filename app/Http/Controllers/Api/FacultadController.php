@@ -15,7 +15,7 @@ class FacultadController extends Controller
      */
     public function index()
     {
-        if ($facultad =  Facultad::get()) {
+        if ($facultad =  Facultad::with('materias')->get()) {
 
             $this->response = $this->successResponse($facultad);
 

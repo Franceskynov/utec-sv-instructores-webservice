@@ -17,10 +17,6 @@ class CreateMateriasTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
-
-            $table->integer('carreras_id')->unsigned();
-            $table->foreign('carreras_id')->references('id')->on('carreras');
-
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
