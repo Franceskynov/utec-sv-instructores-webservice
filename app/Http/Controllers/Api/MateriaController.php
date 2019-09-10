@@ -55,11 +55,24 @@ class MateriaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$materiaRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidCreation;
+
+        } else {
+
+            Materia::create($request->all());
+
+            $this->response = $this->successCreation;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
