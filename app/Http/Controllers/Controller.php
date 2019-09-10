@@ -111,6 +111,21 @@ class Controller extends BaseController
         Constants::DATA     => null
     ];
 
+    /**
+     * @param $data
+     * @param $message
+     * @param $error
+     * @return array
+     */
+    protected function loginResponse($data, $message, $error)
+    {
+        return [
+            Constants::ERROR    => $error,
+            Constants::MESSAGE  => $message,
+            Constants::DATA     => $data
+        ];
+    }
+
     protected function soapResponse($data)
     {
         return [

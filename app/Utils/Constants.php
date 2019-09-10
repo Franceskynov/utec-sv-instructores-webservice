@@ -48,4 +48,7 @@ class Constants
     public const MESSAGE_INVALID_CHECKING = 'Los datos enviados no cumplen con los requerimientos';
 
     public const MESSAGE_INVALID_DELETE_USER_ADM = 'Error los usuarios administradores no pueden ser borrados';
+    public const MESSAGE_LOGIN_SUCCESS = 'La autorizacion correcta';
+    public const MESSAGE_LOGIN_FAILS = 'La el email o la clave son incorrectos, por favor revise';
+    public const MESSAGE_LOGOUT_SUCCESS = 'Se cerro la sesion';
 }
