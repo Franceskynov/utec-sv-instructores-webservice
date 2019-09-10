@@ -51,6 +51,11 @@ class CustomValidators
         'descripcion' => 'required'
     ];
 
+    static $materiaRules = [
+        'nombre'      => 'required',
+        'descripcion' => 'required',
+    ];
+
     /**
      * @param $request
      * @param $rules

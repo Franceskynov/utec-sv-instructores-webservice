@@ -66,11 +66,20 @@ class MateriaController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        if ( $row =  Materia::find($id)) {
+
+            $this->response = $this->successResponse($row->load('facultades'));
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
@@ -89,21 +98,66 @@ class MateriaController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if($row = Materia::find($id))
+        {
+            $validator = CustomValidators::requestValidator($request, CustomValidators::$materiaRules);
+
+            if ($validator->fails())
+            {
+                $this->response = $this->invalidChecking;
+
+            } else {
+
+                if($row->update($request->all()))
+                {
+                    $this->response = $this->successResponse($row);
+
+                } else {
+
+                    $this->response = $this->invalidUpdate;
+                }
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        if($row = Materia::find($id))
+        {
+            if ($row->is_enabled)
+            {
+                $row->update([
+                    'is_enabled' => ($row->is_enabled == 1) ? 0 : 0
+                ]);
+
+                $this->response = $this->successDeletion;
+
+            } else {
+
+                $this->response = $this->previouslyDeleted;
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 }
