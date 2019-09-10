@@ -47,5 +47,11 @@ class MateriaTableSeeder extends Seeder
             'descripcion' => '...',
             'is_enabled'  => true
         ]);
+
+        Materia::create([
+            'nombre'      => 'Matematica financiera',
+            'descripcion' => '...',
+            'is_enabled'  => true
+        ]);
     }
 }
