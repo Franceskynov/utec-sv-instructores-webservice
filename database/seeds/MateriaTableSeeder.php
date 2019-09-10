@@ -53,5 +53,11 @@ class MateriaTableSeeder extends Seeder
             'descripcion' => '...',
             'is_enabled'  => true
         ]);
+
+        Materia::create([
+            'nombre'      => 'Redes 1',
+            'descripcion' => '...',
+            'is_enabled'  => true
+        ]);
     }
 }
