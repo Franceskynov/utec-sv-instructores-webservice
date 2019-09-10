@@ -12,6 +12,14 @@ use App\Http\Controllers\Controller;
 
 class AsignacioneController extends Controller
 {
+    public function __construct()
+    {
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

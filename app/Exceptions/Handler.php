@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Utils\Constants;
 
 class Handler extends ExceptionHandler
 {
@@ -42,10 +43,17 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        return \Response::json([
+
+             Constants::ERROR    => true,
+             Constants::MESSAGE  => $exception->getMessage(),
+             Constants::DATA     => [
+                'code' => $exception->getCode()
+            ]
+        ]);
     }
 }

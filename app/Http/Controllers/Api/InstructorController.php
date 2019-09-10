@@ -15,6 +15,15 @@ use App\Instructor;
 
 class InstructorController extends Controller
 {
+
+    public function __construct()
+    {
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

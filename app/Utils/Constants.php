@@ -43,6 +43,7 @@ class Constants
     public const MESSAGE_PREVIOUSLY_DELETED = 'El registro ya fue eliminado';
 
     public const MESSAGE_NOT_FOUND = 'El registro no pudo ser encontrado';
+    public const MESSAGE_RESOURCE_NOT_FOUND = 'El recurso no pudo ser encontrado';
 
     public const MESSAGE_INVALID_UPDATE = 'El registro no pudo ser actualizado';
     public const MESSAGE_INVALID_CHECKING = 'Los datos enviados no cumplen con los requerimientos';

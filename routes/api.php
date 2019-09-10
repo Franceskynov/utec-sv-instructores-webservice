@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Utils\Constants;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,11 @@ Route::resource('/historial', 'Api\HistorialController');
 
 Route::post('/login', 'Security\AuthController@login');
 Route::post('/logout', 'Security\AuthController@logout');
+
+Route::fallback(function(){
+    return \Response::json([
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_RESOURCE_NOT_FOUND,
+        Constants::DATA     => []
+    ], 404);
+});
