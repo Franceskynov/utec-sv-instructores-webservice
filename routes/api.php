@@ -32,6 +32,7 @@ Route::resource('/instructor', 'Api\InstructorController');
 Route::resource('/facultad', 'Api\FacultadController');
 Route::resource('/materia', 'Api\MateriaController');
 Route::resource('/historial', 'Api\HistorialController');
+Route::resource('/ciclo', 'Api\CicloController');
 
 Route::post('/login', 'Security\AuthController@login');
 Route::post('/logout', 'Security\AuthController@logout');

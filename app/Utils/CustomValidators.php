@@ -51,7 +51,18 @@ class CustomValidators
         'descripcion' => 'required'
     ];
 
+    /**
+     * @var array
+     */
     static $materiaRules = [
+        'nombre'      => 'required',
+        'descripcion' => 'required',
+    ];
+
+    /**
+     * @var array
+     */
+    static $cicloRules = [
         'nombre'      => 'required',
         'descripcion' => 'required',
     ];
@@ -59,7 +70,7 @@ class CustomValidators
     /**
      * @param $request
      * @param $rules
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     static function requestValidator($request, $rules)
     {
