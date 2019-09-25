@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Utils\DataManipulation;
 use App\Utils\CustomValidators;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -62,9 +63,18 @@ class FacultadController extends Controller
 
         } else {
 
-            Facultad::create($request->all());
-
-            $this->response = $this->successCreation;
+            $created = Facultad::create($request->all());
+            $id = $created->id;
+            $materias = $request->materias;
+            if(count($materias) > 0) {
+                if (Facultad::addMateriasToFacultad($id, $materias)) {
+                    $this->response = $this->successCreation;
+                } else {
+                    $this->response = $this->simpleInvalodCreation;
+                }
+            } else {
+              $this->response = $this->invalidChecking;
+            }
         }
 
         return \Response::json($this->response);
@@ -125,16 +135,23 @@ class FacultadController extends Controller
 
                 if($row->update($request->all()))
                 {
-                    $this->response = $this->successResponse($row);
-
+                    $storedMaterias = $row->materias->pluck('id')->toArray();
+                    $materias = $request->materias;
+                    if(count($materias) > 0) {
+                        if (Facultad::addMateriasToFacultad($id, DataManipulation::tagDiff($storedMaterias, $materias), 'editMode')) {
+                            $this->response = $this->validUpdate;
+                        } else {
+                            $this->response = $this->simpleInvalodCreation;
+                        }
+                    } else {
+                        $this->response = $this->invalidChecking;
+                    }
                 } else {
-
                     $this->response = $this->invalidUpdate;
                 }
             }
 
         } else {
-
             $this->response = $this->notFoundResponse;
         }
 

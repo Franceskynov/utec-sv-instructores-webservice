@@ -57,6 +57,12 @@ class Controller extends BaseController
         Constants::DATA     => []
     ];
 
+    protected $simpleInvalodCreation = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_CREATION,
+        Constants::DATA     => []
+    ];
+
     /**
      * @var array
      */
@@ -90,6 +96,15 @@ class Controller extends BaseController
     protected $invalidUpdate = [
         Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_UPDATE,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
+    protected $validUpdate = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_SUCCESS_UPDATE,
         Constants::DATA     => []
     ];
 

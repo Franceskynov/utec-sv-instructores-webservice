@@ -48,7 +48,8 @@ class CustomValidators
     static $facultadRules = [
         'nombre'      => 'required',
         'abreviacion' => 'required|unique:facultades',
-        'descripcion' => 'required'
+        'descripcion' => 'required',
+        'materias'    => 'required'
     ];
 
     /**
