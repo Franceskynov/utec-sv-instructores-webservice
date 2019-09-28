@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Utils\CustomValidators;
+use App\Utils\DataManipulation;
 use App\Docente;
 
 class DocenteController extends Controller
@@ -26,17 +27,24 @@ class DocenteController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        if ( $row =  Docente::get()) {
-
-            $this->response = $this->successResponse($row);
-
+        if ($request->input('noPaginate'))
+        {
+            if ( $row = Docente::with('especialidades')->get() ) {
+                $this->response = $this->successResponse($row);
+            } else {
+                $this->response = $this->invalidResponse;
+            }
         } else {
-
-            $this->response = $this->invalidResponse;
+            if ( $rowPaginate =  Docente::with('especialidades')->paginate(DataManipulation::getRowsPerPage($request)) ) {
+                $this->response = $this->successResponse($rowPaginate);
+            } else {
+                $this->response = $this->invalidResponse;
+            }
         }
 
         return \Response::json($this->response);
@@ -67,11 +75,20 @@ class DocenteController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        if ( $row =  Docente::find($id)) {
+
+            $this->response = $this->successResponse($row->load('especialidades'));
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

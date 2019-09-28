@@ -21,9 +21,22 @@ class UserTableSeeder extends Seeder
             'is_enabled' => true
         ]);
 
+        /**
+         * Docentes
+         */
         User::create([
-            'username'   => 'docente001',
-            'email'      => 'docente@gmail.com',
+            'username'   => 'dany.chacon',
+            'email'      => 'dany.chacon@mail.utec.edu.sv',
+            'password'   => bcrypt('secret'),
+            'rol_id'     => 2,
+            'is_admin'   => false,
+            'is_enabled' => true
+        ]);
+
+
+        User::create([
+            'username'   => 'martha.belloso',
+            'email'      => 'martha.belloso@mail.utec.edu.sv',
             'password'   => bcrypt('secret'),
             'rol_id'     => 2,
             'is_admin'   => false,
@@ -31,8 +44,48 @@ class UserTableSeeder extends Seeder
         ]);
 
         User::create([
-            'username'   => 'alumno001',
-            'email'      => 'test@gmail.com',
+            'username'   => 'edwin.callejas',
+            'email'      => 'edwin.callejas@mail.utec.edu.sv',
+            'password'   => bcrypt('secret'),
+            'rol_id'     => 2,
+            'is_admin'   => false,
+            'is_enabled' => true
+        ]);
+
+        User::create([
+            'username'   => 'oscar.pineda',
+            'email'      => 'oscar.pineda@mail.utec.edu.sv',
+            'password'   => bcrypt('secret'),
+            'rol_id'     => 2,
+            'is_admin'   => false,
+            'is_enabled' => true
+        ]);
+
+        User::create([
+            'username'   => 'ronny.cortez',
+            'email'      => 'ronny.cortez@mail.utec.edu.sv',
+            'password'   => bcrypt('secret'),
+            'rol_id'     => 2,
+            'is_admin'   => false,
+            'is_enabled' => true
+        ]);
+
+        User::create([
+            'username'   => 'julio.barrera',
+            'email'      => 'julio.barrera@mail.utec.edu.sv',
+            'password'   => bcrypt('secret'),
+            'rol_id'     => 2,
+            'is_admin'   => false,
+            'is_enabled' => true
+        ]);
+
+
+        /**
+         * Instructores
+         */
+        User::create([
+            'username'   => 'instructor001',
+            'email'      => 'instructor001@gmail.com',
             'password'   => bcrypt('secret'),
             'rol_id'     => 3,
             'is_admin'   => false,
