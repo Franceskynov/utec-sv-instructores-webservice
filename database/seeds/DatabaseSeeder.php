@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
              AulasTableSeeder::class,
              MateriaTableSeeder::class,
              FacultadesTableSeeder::class,
+             EspecialidadesTableSeeder::class,
              RolesTableSeeder::class,
              UserTableSeeder::class,
 

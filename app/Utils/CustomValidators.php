@@ -68,6 +68,11 @@ class CustomValidators
         'descripcion' => 'required',
     ];
 
+    static $especialidadRules = [
+        'nombre'      => 'required',
+        'descripcion' => 'required',
+    ];
+
     /**
      * @param $request
      * @param $rules

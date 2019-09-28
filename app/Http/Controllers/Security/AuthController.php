@@ -17,6 +17,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
+        $credentials['is_enabled'] = true;
         if (!$token = auth('api')->attempt($credentials)) {
 
             $this->response = $this->loginResponse([
