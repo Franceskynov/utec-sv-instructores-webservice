@@ -11,6 +11,8 @@
 |
 */
 
+use App\Utils\Constants;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::fallback(function(){
+    return \Response::json([
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_RESOURCE_NOT_FOUND,
+        Constants::DATA     => []
+    ], 404)->header('access-control-expose-headers', '*');
+});

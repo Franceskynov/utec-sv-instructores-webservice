@@ -54,6 +54,7 @@ class Handler extends ExceptionHandler
              Constants::DATA     => [
                 'code' => $exception->getCode()
             ]
-        ]);
+        ], 500)->header('service-code' , $exception->getCode())
+            ->header('service-description',  $exception->getMessage());
     }
 }
