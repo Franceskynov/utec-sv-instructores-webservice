@@ -64,4 +64,15 @@ class DataManipulation
             ->rows_per_page ? $request
             ->rows_per_page : env('ROWS_PER_PAGE', 4);
     }
+
+    /**
+     * @param int $length
+     * @return bool|string
+     */
+    public static function randomStrings($length = 8)
+    {
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+    }
 }

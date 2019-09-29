@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Utils\CustomValidators;
 use App\Utils\DataManipulation;
+use Illuminate\Support\Facades\Hash;
 use App\Docente;
+use App\User;
 
 class DocenteController extends Controller
 {
@@ -64,11 +66,53 @@ class DocenteController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$docenteRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidCreation;
+
+        } else {
+
+            $email = $request->email;
+            $user = explode( '@', $email)[0];
+            $secret = DataManipulation::randomStrings();
+            $created = User::create([
+                'username'   => $user,
+                'email'      => $email,
+                'password'   => bcrypt($secret),
+                'rol_id'     => 2,
+                'is_admin'   => false,
+                'is_enabled' => false
+            ]);
+
+            if ($id = $created->id)
+            {
+
+                $data = [
+                    'email'    => $email,
+                    'password' => $secret
+                ];
+
+                \Mail::send('notifications.nuevos_usuarios', $data, function($message) use ($email)
+                {
+                    $message->to($email)->subject('Creacion de un nuevo usuario');
+                    $message->from('contactanos@utec.edu.sv', 'Control de instructores');
+                });
+
+                $this->response = [
+                    'user_id' => $id
+                ];
+            } else {
+                $this->response = [];
+            }
+        }
+
+         return \Response::json($this->response);
     }
 
     /**
@@ -99,7 +143,7 @@ class DocenteController extends Controller
      */
     public function edit($id)
     {
-        //
+        return dd($id);
     }
 
     /**

@@ -73,6 +73,14 @@ class CustomValidators
         'descripcion' => 'required',
     ];
 
+    static $docenteRules = [
+        'nombre'     => 'required',
+        'apellido'   => 'required',
+        'email'      => 'required',
+        'telefono'   => 'required',
+        'oficina'    => 'required',
+    ];
+
     /**
      * @param $request
      * @param $rules
