@@ -17,9 +17,9 @@ class CreateDocentesTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('telefono')->nullable();
-            $table->string('oficina');
+            $table->string('oficina')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('is_enabled')->default(true);

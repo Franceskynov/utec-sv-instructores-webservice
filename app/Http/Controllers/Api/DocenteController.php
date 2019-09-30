@@ -104,6 +104,30 @@ class DocenteController extends Controller
                     $message->from('contactanos@utec.edu.sv', 'Control de instructores');
                 });
 
+                $docente = Docente::create([
+                    'nombre'     => $request->nombre,
+                    'apellido'   => $request->apellido,
+                    'email'      => $email,
+                    'telefono'   => $request->telefono,
+                    'oficina'    => $request->oficina,
+                    'user_id'    => $id,
+                    'is_enabled' => true
+                ]);
+
+                $docente_id = $docente->id;
+                $especialidades = $request->especialidades;
+
+                if(count($especialidades) > 0)
+                {
+                    if(Docente::addEspecialidadesToDocente($docente_id, $especialidades)) {
+                        $this->response = $this->successCreation;
+                    } else {
+                        $this->response = $this->simpleInvalodCreation;
+                    }
+                } else {
+                    $this->response = $this->invalidChecking;
+                }
+
                 $this->response = [
                     'user_id' => $id
                 ];

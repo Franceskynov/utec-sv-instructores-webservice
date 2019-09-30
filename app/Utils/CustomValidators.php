@@ -79,6 +79,7 @@ class CustomValidators
         'email'      => 'required',
         'telefono'   => 'required',
         'oficina'    => 'required',
+        'especialidades' => 'required',
     ];
 
     /**

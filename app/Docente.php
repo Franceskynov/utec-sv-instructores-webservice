@@ -28,4 +28,51 @@ class Docente extends Model
         return $this
             ->belongsToMany('App\Especialidad');
     }
+
+    /**
+     * @param $id
+     * @param $especialidad
+     * @param string $mode
+     * @return bool
+     */
+    public static function addEspecialidadesToDocente($id, $especialidad, $mode = 'create')
+    {
+        $row = Docente::find($id);
+        if($mode == 'create')
+        {
+            if(gettype($especialidad) == 'integer')
+            {
+                if (Materia::find($especialidad))
+                {
+                    $row
+                        ->especialidades()
+                        ->attach($especialidad);
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+
+                try {
+                    $row
+                        ->especialidades()
+                        ->syncWithoutDetaching($especialidad);
+                    return true;
+                } catch (\Exception $e) {
+                    return false;
+                }
+            }
+
+        } else {
+            try {
+                $row
+                    ->especialidades()
+                    ->toggle($especialidad);
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
+    }
 }
