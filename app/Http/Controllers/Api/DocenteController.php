@@ -128,11 +128,9 @@ class DocenteController extends Controller
                     $this->response = $this->invalidChecking;
                 }
 
-                $this->response = [
-                    'user_id' => $id
-                ];
+                $this->response = $this->successCreation;
             } else {
-                $this->response = [];
+                $this->response = $this->invalidCreation;
             }
         }
 

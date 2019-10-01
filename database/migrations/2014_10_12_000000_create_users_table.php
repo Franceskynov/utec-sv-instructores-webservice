@@ -15,7 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->foreign('rol_id')->references('id')->on('roles');
             $table->boolean('is_admin')->default(false);
             $table->boolean('is_enabled')->default(true);
+            $table->boolean('is_activated')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

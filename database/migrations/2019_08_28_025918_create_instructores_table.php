@@ -24,6 +24,8 @@ class CreateInstructoresTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->boolean('is_enabled')->default(true);
+            $table->string('telefono')->nullable();
+            $table->string('email_personal')->nullable();
             $table->timestamps();
         });
     }

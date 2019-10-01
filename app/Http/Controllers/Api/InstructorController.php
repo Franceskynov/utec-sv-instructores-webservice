@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Utils\CustomValidators;
 use App\Instructor;
+use App\Utils\DataManipulation;
+use App\User;
 
 class InstructorController extends Controller
 {
@@ -57,11 +59,60 @@ class InstructorController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$instructorRules);
+
+        if ($validator->fails())
+        {
+            $failedRules = $validator->failed();
+            $this->response = $this->invalidCreationResponse($failedRules);
+
+        } else {
+
+            $email = $request->email;
+            $user = $request->username;
+            $secret = DataManipulation::randomStrings();
+            $created = User::create([
+                'username'   => $user,
+                'email'      => $email,
+                'password'   => bcrypt($secret),
+                'rol_id'     => 3,
+                'is_admin'   => false,
+                'is_enabled' => true
+            ]);
+
+            if ($id = $created->id) {
+
+                $data = [
+                    'email' => $email,
+                    'password' => $secret
+                ];
+
+                \Mail::send('notifications.nuevos_usuarios', $data, function ($message) use ($email) {
+                    $message->to($email)->subject('Creacion de un nuevo usuario');
+                    $message->from('contactanos@utec.edu.sv', 'Control de instructores');
+                });
+
+                $instructor = Instructor::create([
+                    'nombre'  => $request->nombre,
+                    'carnet'  => $request->carnet,
+                    'carrera' => $request->carrera,
+                    'cum'     => $request->cum,
+                    'telefono' => $request->telefono,
+                    'email_personal' => $request->emailPersonal,
+                    'user_id' => $id
+                ]);
+
+                $this->response = $this->successCreation;
+            } else {
+                $this->response = $this->invalidCreation;
+            }
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

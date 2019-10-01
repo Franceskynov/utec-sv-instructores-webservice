@@ -73,6 +73,9 @@ class CustomValidators
         'descripcion' => 'required',
     ];
 
+    /**
+     * @var array
+     */
     static $docenteRules = [
         'nombre'     => 'required',
         'apellido'   => 'required',
@@ -80,6 +83,20 @@ class CustomValidators
         'telefono'   => 'required',
         'oficina'    => 'required',
         'especialidades' => 'required',
+    ];
+
+    /**
+     * @var array
+     */
+    static $instructorRules = [
+        'nombre'         => 'required',
+        'carnet'         => 'required',
+        'carrera'        => 'required',
+        'cum'            => 'required',
+        'telefono'       => 'required',
+        'email'          => 'required|unique:users',
+        'emailPersonal' => 'required',
+        'username'        => 'required|unique:users'
     ];
 
     /**

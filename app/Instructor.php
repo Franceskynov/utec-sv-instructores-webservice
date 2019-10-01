@@ -19,7 +19,8 @@ class Instructor extends Model
         'carrera',
         'cum',
         'user_id',
-        'historial_id',
+        'telefono',
+        'email_personal',
         'is_enabled'
     ];
 

@@ -163,4 +163,13 @@ class Controller extends BaseController
         ];
     }
 
+    protected function invalidCreationResponse($data)
+    {
+        return [
+            Constants::ERROR    => true,
+            Constants::MESSAGE  => Constants::MESSAGE_INVALID_CREATION,
+            Constants::DATA     => $data
+        ];
+    }
+
 }
