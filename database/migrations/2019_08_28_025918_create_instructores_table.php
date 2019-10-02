@@ -16,7 +16,7 @@ class CreateInstructoresTable extends Migration
         Schema::create('instructores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('carnet');
+            $table->string('carnet')->unique();
             $table->string('carrera');
             $table->string('cum');
 

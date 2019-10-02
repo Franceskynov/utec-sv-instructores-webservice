@@ -90,13 +90,13 @@ class CustomValidators
      */
     static $instructorRules = [
         'nombre'         => 'required',
-        'carnet'         => 'required',
+        'carnet'         => 'required|unique:instructores',
         'carrera'        => 'required',
         'cum'            => 'required',
         'telefono'       => 'required',
         'email'          => 'required|unique:users',
-        'emailPersonal' => 'required',
-        'username'        => 'required|unique:users'
+        'emailPersonal'  => 'required',
+        'username'       => 'required|unique:users'
     ];
 
     /**
