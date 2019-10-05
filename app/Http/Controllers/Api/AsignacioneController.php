@@ -79,11 +79,20 @@ class AsignacioneController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        if ( $row =  Asignacion::find($id)) {
+
+            $this->response = $this->successResponse($row);
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
@@ -102,11 +111,36 @@ class AsignacioneController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if($row = Asignacion::find($id))
+        {
+            $validator = CustomValidators::requestValidator($request, CustomValidators::$asignacionRules);
+
+            if ($validator->fails())
+            {
+                $this->response = $this->invalidChecking;
+
+            } else {
+
+                if($row->update($request->all()))
+                {
+                    $this->response = $this->successResponse($row);
+
+                } else {
+
+                    $this->response = $this->invalidUpdate;
+                }
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

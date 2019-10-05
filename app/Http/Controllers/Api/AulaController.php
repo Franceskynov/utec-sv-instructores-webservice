@@ -8,6 +8,7 @@
    */
 namespace App\Http\Controllers\Api;
 
+use App\Utils\DataManipulation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Aula;
@@ -148,7 +149,19 @@ class AulaController extends Controller
 
                 if($aula->update($request->all()))
                 {
-                    $this->response = $this->successResponse($aula);
+                    $storedHorarios =  $aula->horarios->pluck('id')->toArray();
+                    $horarios = $request->horarios;
+
+
+                    if(count($horarios) > 0) {
+                        if (Aula::addHorarioToAula($id, DataManipulation::tagDiff($storedHorarios, $horarios), 'editMode')) {
+                            $this->response = $this->validUpdate;
+                        } else {
+                            $this->response = $this->simpleInvalodCreation;
+                        }
+                    } else {
+                        $this->response = $this->invalidChecking;
+                    }
 
                 } else {
 
