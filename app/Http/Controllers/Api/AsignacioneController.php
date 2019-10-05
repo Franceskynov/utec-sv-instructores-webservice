@@ -7,8 +7,10 @@
    */
 namespace App\Http\Controllers\Api;
 
+use App\Utils\CustomValidators;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Asignacion;
 
 class AsignacioneController extends Controller
 {
@@ -23,11 +25,20 @@ class AsignacioneController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        if ( $rows =  Asignacion::with('ciclo', 'horario', 'instructor', 'materia', 'aula')->get()) {
+
+            $this->response = $this->successResponse($rows);
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
@@ -44,11 +55,24 @@ class AsignacioneController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$asignacionRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidCreation;
+
+        } else {
+
+            Asignacion::create($request->all());
+
+            $this->response = $this->successCreation;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
@@ -89,10 +113,28 @@ class AsignacioneController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        if($row = Asignacion::find($id))
+        {
+            if ($row->is_enabled)
+            {
+                $row->update([
+                    'is_enabled' => ($row->is_enabled == 1) ? 0 : 0
+                ]);
+
+                $this->response = $this->successDeletion;
+
+            } else {
+                $this->response = $this->previouslyDeleted;
+            }
+
+        } else {
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 }

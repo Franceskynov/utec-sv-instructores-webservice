@@ -36,6 +36,9 @@ Route::resource('/historial', 'Api\HistorialController');
 Route::resource('/ciclo', 'Api\CicloController');
 Route::resource('/edificio', 'Api\EdificioController');
 Route::resource('/especialidad', 'Api\EspecialidadController');
+Route::resource('/asignacion', 'Api\AsignacioneController');
+
+
 Route::get('/dashboard', 'Api\DashboardController@index');
 
 Route::post('/login', 'Security\AuthController@login');

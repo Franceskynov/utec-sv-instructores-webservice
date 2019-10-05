@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Docente;
 use App\Instructor;
 use App\User;
+use App\Asignacion;
 
 class DashboardController extends Controller
 {
@@ -30,7 +31,7 @@ class DashboardController extends Controller
             'docentes'      => Docente::get()->count(),
             'instructores'  => Instructor::get()->count(),
             'usuarios'      => User::get()->count(),
-            'instructorias' => 0
+            'instructorias' => Asignacion::get()->count(),
         ];
         $this->response = $this->successResponse($customResponse);
 

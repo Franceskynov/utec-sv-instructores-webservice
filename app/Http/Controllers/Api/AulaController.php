@@ -30,7 +30,7 @@ class AulaController extends Controller
      */
     public function index()
     {
-        if ( $aulas =  Aula::with('edificio')->get()) {
+        if ( $aulas =  Aula::with('edificio', 'horarios')->get()) {
 
             $this->response = $this->successResponse($aulas);
 
@@ -68,7 +68,25 @@ class AulaController extends Controller
 
         } else {
 
-            Aula::create($request->all());
+            $created = Aula::create($request->all());
+            if ($id = $created->id)
+            {
+                $horarios = $request->horarios;
+                if(count($horarios) > 0)
+                {
+                    if(Aula::addHorarioToAula($id, $horarios)) {
+                        $this->response = $this->successCreation;
+                    } else {
+                        $this->response = $this->simpleInvalodCreation;
+                    }
+                } else {
+                    $this->response = $this->invalidChecking;
+                }
+
+                $this->response = $this->successCreation;
+            } else {
+                $this->response = $this->invalidCreation;
+            }
 
             $this->response = $this->successCreation;
         }
@@ -86,7 +104,7 @@ class AulaController extends Controller
     {
         if ( $aula =  Aula::find($id)) {
 
-            $this->response = $this->successResponse($aula->load('edificio'));
+            $this->response = $this->successResponse($aula->load('edificio', 'horarios'));
 
         } else {
 

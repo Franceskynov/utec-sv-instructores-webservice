@@ -39,7 +39,8 @@ class CustomValidators
     static $aulaRules = [
         'codigo'      => 'required|unique:aulas',
         'capacidad'   => 'required',
-        'edificio_id' => 'required'
+        'edificio_id' => 'required',
+        'horarios'    => 'required'
     ];
 
     /**
@@ -97,6 +98,15 @@ class CustomValidators
         'email'          => 'required|unique:users',
         'emailPersonal'  => 'required',
         'username'       => 'required|unique:users'
+    ];
+
+    static $asignacionRules = [
+        'nombre'        => 'required',
+        'ciclo_id'      => 'required',
+        'horario_id'    => 'required',
+        'aula_id'       => 'required',
+        'instructor_id' => 'required',
+        'materia_id'    => 'required'
     ];
 
     /**

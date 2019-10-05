@@ -22,7 +22,7 @@ class CreateInstructoresTable extends Migration
 
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-
+            $table->boolean('is_selected')->default(false);
             $table->boolean('is_enabled')->default(true);
             $table->string('telefono')->nullable();
             $table->string('email_personal')->nullable();

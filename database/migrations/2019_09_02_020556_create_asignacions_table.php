@@ -18,6 +18,9 @@ class CreateAsignacionsTable extends Migration
 
             $table->string('nombre');
 
+            $table->integer('ciclo_id')->unsigned();
+            $table->foreign('ciclo_id')->references('id')->on('ciclos');
+
             $table->integer('horario_id')->unsigned();
             $table->foreign('horario_id')->references('id')->on('horarios');
 
@@ -30,6 +33,7 @@ class CreateAsignacionsTable extends Migration
             $table->integer('materia_id')->unsigned();
             $table->foreign('materia_id')->references('id')->on('materias');
 
+            $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });
     }

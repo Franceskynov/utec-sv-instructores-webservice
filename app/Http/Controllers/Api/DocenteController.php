@@ -184,10 +184,30 @@ class DocenteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        if($row = Docente::find($id))
+        {
+            if ($row->is_enabled)
+            {
+                $row->update([
+                    'is_enabled' => ($row->is_enabled == 1) ? 0 : 0
+                ]);
+
+                $this->response = $this->successDeletion;
+
+            } else {
+
+                $this->response = $this->previouslyDeleted;
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 }

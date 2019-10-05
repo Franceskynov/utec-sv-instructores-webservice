@@ -17,11 +17,12 @@ class InstructoresTableSeeder extends Seeder
     {
 
         $instructorA = Instructor::create([
-            'nombre'  => 'FakeName a',
-            'carnet'  => 'FakeLastName a',
+            'nombre'  => 'MELVIN ANTONIO FLORES RODRIGUEZ',
+            'carnet'  => '2504802014',
             'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
-            'cum'     => '7.7',
-            'user_id' => 3
+            'cum'     => '7.2',
+            'user_id' => 8,
+            'is_selected' => true
         ]);
 
         $instructorA->notas()->saveMany([
@@ -49,6 +50,23 @@ class InstructoresTableSeeder extends Seeder
                 'ciclo_id'    => 1,
                 'materia_id'  => 4
             ])
+        ]);
+
+        $instructorB = Instructor::create([
+            'nombre'  => 'JOSE DANIEL VILLALTA ESCAMILLA',
+            'carnet'  => '2700062018',
+            'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
+            'cum'     => '7.5',
+            'user_id' => 9
+        ]);
+
+
+        $instructorC = Instructor::create([
+            'nombre'  => 'WALTER HERNAN RAMOS',
+            'carnet'  => '2564062012',
+            'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
+            'cum'     => '7.6',
+            'user_id' => 10
         ]);
     }
 }

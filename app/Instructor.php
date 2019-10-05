@@ -21,6 +21,7 @@ class Instructor extends Model
         'user_id',
         'telefono',
         'email_personal',
+        'is_selected',
         'is_enabled'
     ];
 

@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
              DocentesTableSeeder::class,
              InstructoresTableSeeder::class,
 
+             AsignacionTableSeeder::class,
+
          ]);
     }
 }

@@ -44,18 +44,26 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function rol()
     {
         return $this
             ->belongsTo('App\Rol', 'rol_id', 'id');
     }
 
+    /**
+     * @return mixed
+     */
     public function getJWTIdentifier()
     {
         return $this->getKey();
     }
 
+    /**
+     * @return array
+     */
     public function getJWTCustomClaims()
     {
         return [
