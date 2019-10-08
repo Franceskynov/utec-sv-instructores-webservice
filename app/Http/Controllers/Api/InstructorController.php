@@ -119,11 +119,20 @@ class InstructorController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        //
+        if ( $row =  Instructor::find($id)) {
+
+            $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula'));
+
+        } else {
+
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

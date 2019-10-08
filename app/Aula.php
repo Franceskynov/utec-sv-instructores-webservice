@@ -35,9 +35,16 @@ class Aula extends Model
     public function horarios()
     {
         return $this
-            ->belongsToMany('App\Horario');
+            ->belongsToMany('App\Horario')
+            ->withPivot('is_used');
     }
 
+    /**
+     * @param $id
+     * @param $horario
+     * @param string $mode
+     * @return bool
+     */
     public static function addHorarioToAula($id, $horario, $mode = 'create')
     {
         $row = Aula::find($id);
@@ -49,7 +56,7 @@ class Aula extends Model
                 {
                     $row
                         ->horarios()
-                        ->attach($horario);
+                        ->attach($horario, ['is_used' => false]);
                     return true;
                 } else {
                     return false;
@@ -60,7 +67,7 @@ class Aula extends Model
                 try {
                     $row
                         ->horarios()
-                        ->syncWithoutDetaching($horario);
+                        ->syncWithoutDetaching($horario,  ['is_used' => false]);
                     return true;
                 } catch (\Exception $e) {
                     return false;

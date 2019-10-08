@@ -68,6 +68,13 @@ class AsignacioneController extends Controller
         } else {
 
             Asignacion::create($request->all());
+            \DB::table('aula_horario')
+                ->where('horario_id', $request->horario_id)
+                ->where('aula_id', $request->aula_id)
+                ->limit(1)
+                ->update([
+                    'is_used' => 1
+                ]);
 
             $this->response = $this->successCreation;
         }
@@ -83,7 +90,7 @@ class AsignacioneController extends Controller
      */
     public function show($id)
     {
-        if ( $row =  Asignacion::find($id)) {
+        if ( $row =  Asignacion::with('ciclo', 'horario', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio')->find($id)) {
 
             $this->response = $this->successResponse($row);
 

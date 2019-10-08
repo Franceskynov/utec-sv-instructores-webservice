@@ -49,4 +49,10 @@ class Instructor extends Model
         return $this
             ->belongsToMany('App\Historial');
     }
+
+    public function instructoria()
+    {
+        return $this
+            ->hasMany('App\Asignacion');
+    }
 }
