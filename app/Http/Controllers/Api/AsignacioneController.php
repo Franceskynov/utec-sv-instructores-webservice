@@ -29,7 +29,7 @@ class AsignacioneController extends Controller
      */
     public function index()
     {
-        if ( $rows =  Asignacion::with('ciclo', 'horario', 'instructor', 'materia', 'aula')->get()) {
+        if ( $rows =  Asignacion::with('ciclo', 'horario', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio', 'docente', 'docente.especialidades')->get()) {
 
             $this->response = $this->successResponse($rows);
 
@@ -90,7 +90,7 @@ class AsignacioneController extends Controller
      */
     public function show($id)
     {
-        if ( $row =  Asignacion::with('ciclo', 'horario', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio')->find($id)) {
+        if ( $row =  Asignacion::with('ciclo', 'horario', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio', 'docente', 'docente.especialidades')->find($id)) {
 
             $this->response = $this->successResponse($row);
 

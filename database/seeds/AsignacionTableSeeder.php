@@ -18,6 +18,7 @@ class AsignacionTableSeeder extends Seeder
             'aula_id' => 1,
             'instructor_id' => 1,
             'materia_id' => 4,
+            'docente_id' => 6,
             'is_enabled' => true
         ]);
     }

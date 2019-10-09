@@ -14,6 +14,7 @@ class Asignacion extends Model
         'aula_id',
         'instructor_id',
         'materia_id',
+        'docente_id',
         'is_enabled'
     ];
 
@@ -60,5 +61,14 @@ class Asignacion extends Model
     {
         return $this
             ->belongsTo('App\Aula', 'aula_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function docente()
+    {
+        return $this
+            ->belongsTo('App\Docente', 'docente_id', 'id');
     }
 }

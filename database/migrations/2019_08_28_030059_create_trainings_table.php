@@ -17,6 +17,7 @@ class CreateTrainingsTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->string('descripcion');
+            $table->string('tipo');
             $table->integer('docente_id')->unsigned();
             $table->foreign('docente_id')->references('id')->on('docentes');
             $table->boolean('is_enabled')->default(true);

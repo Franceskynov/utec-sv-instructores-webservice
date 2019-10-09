@@ -46,10 +46,25 @@ class InstructoresTableSeeder extends Seeder
         $instructorA->historial()->saveMany([
             new Historial([
                 'nota'        => 8.5,
-                'comentarios' => 'se sabe desembolver en la materia',
+                'comentarios' => 'Posee dominio de la materia',
                 'ciclo_id'    => 1,
                 'materia_id'  => 4
             ])
+        ]);
+
+        $instructorA->capacitaciones()->sync([
+            1 => [
+                'estado' => 'Aprobado',
+                'nota'   => '8.9'
+            ],
+            2 => [
+                'estado' => 'Aprobado',
+                'nota'   => '7.9'
+            ],
+            3 => [
+                'estado' => 'Aprobado',
+                'nota'   => '8.0'
+            ]
         ]);
 
         $instructorB = Instructor::create([

@@ -33,6 +33,9 @@ class CreateAsignacionsTable extends Migration
             $table->integer('materia_id')->unsigned();
             $table->foreign('materia_id')->references('id')->on('materias');
 
+            $table->integer('docente_id')->unsigned();
+            $table->foreign('docente_id')->references('id')->on('docentes');
+
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();
         });

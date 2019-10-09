@@ -143,7 +143,7 @@ class InstructorController extends Controller
     {
         if ( $row =  Instructor::find($id)) {
 
-            $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula'));
+            $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones'));
 
         } else {
 
