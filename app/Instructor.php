@@ -9,6 +9,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Nota;
 
 class Instructor extends Model
 {
@@ -34,7 +35,9 @@ class Instructor extends Model
             ->belongsToMany('App\Nota');
     }
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this
@@ -50,9 +53,59 @@ class Instructor extends Model
             ->belongsToMany('App\Historial');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function instructoria()
     {
         return $this
             ->hasMany('App\Asignacion');
+    }
+
+    /**
+     * @param $id
+     * @param $nota
+     * @param string $mode
+     * @return bool
+     */
+    public static function addNotasToInstructor($id, $nota, $mode = 'create')
+    {
+        $row = Instructor::find($id);
+        if($mode == 'create')
+        {
+            if(gettype($nota) == 'integer')
+            {
+                if (Nota::find($nota))
+                {
+                    $row
+                        ->notas()
+                        ->attach($nota);
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+
+                try {
+                    $row
+                        ->notas()
+                        ->syncWithoutDetaching($nota);
+                    return true;
+                } catch (\Exception $e) {
+                    return false;
+                }
+            }
+
+        } else {
+            try {
+                $row
+                    ->notas()
+                    ->toggle($nota);
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
     }
 }

@@ -14,12 +14,12 @@
 use App\Utils\Constants;
 
 Route::get('/', function () {
-    return view('welcome');
+    return \Response::json([
+        Constants::ERROR    => false,
+        Constants::MESSAGE  => Constants::MESSAGE_WELLCOME,
+        Constants::DATA     => []
+    ], 200);
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::fallback(function(){
     return \Response::json([

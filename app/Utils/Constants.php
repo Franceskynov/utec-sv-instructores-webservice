@@ -31,6 +31,8 @@ class Constants
     /**
      * Messages
      */
+    public const MESSAGE_WELLCOME = 'Bienvenido esta es solamente una api';
+
     public const MESSAGE_SUCCESS = 'Peticion realizada con exito';
     public const MESSAGE_INVALID_RESPONSE = 'La recuperacion de datos fallo';
     public const MESSAGE_INVALID_CARNET = 'El carnet no es valido';

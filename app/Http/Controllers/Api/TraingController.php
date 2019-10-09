@@ -4,35 +4,18 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Historial;
+use App\Training;
 
-class HistorialController extends Controller
+class TraingController extends Controller
 {
-    public function __construct()
-    {
-        if (env('JWT_LOGIN'))
-        {
-            $this->middleware('jwt.auth');
-        }
-    }
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        if ( $historial =  Historial::with('materia', 'ciclo')->get()) {
-
-            $this->response = $this->successResponse($historial);
-
-        } else {
-
-            $this->response = $this->invalidResponse;
-        }
-
-        return \Response::json($this->response);
+        //
     }
 
     /**
@@ -60,20 +43,11 @@ class HistorialController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if ( $row =  Historial::with('materia', 'ciclo')->find($id)) {
-
-            $this->response = $this->successResponse($row);
-
-        } else {
-
-            $this->response = $this->invalidResponse;
-        }
-
-        return \Response::json($this->response);
+        //
     }
 
     /**

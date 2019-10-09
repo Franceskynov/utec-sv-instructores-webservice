@@ -19,4 +19,10 @@ class Historial extends Model
         return $this
             ->belongsTo('App\Materia', 'materia_id', 'id');
     }
+
+    public function ciclo()
+    {
+        return $this
+            ->belongsTo('App\Ciclo', 'ciclo_id', 'id');
+    }
 }

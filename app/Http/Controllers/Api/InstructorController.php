@@ -14,6 +14,7 @@ use App\Utils\CustomValidators;
 use App\Instructor;
 use App\Utils\DataManipulation;
 use App\User;
+use App\Nota;
 
 class InstructorController extends Controller
 {
@@ -106,6 +107,23 @@ class InstructorController extends Controller
                     'user_id' => $id
                 ]);
 
+                $id = $instructor->id;
+                $notas = $request->notas;
+                $notasId = [];
+                foreach ($notas as $key => $value)
+                {
+                    $created = Nota::create([
+                        'mat_codigo' => $value['mat_codigo'],
+                        'mat_nombre' => $value['mat_nombre'],
+                        'nota'       => $value['nota'],
+                        'estado'     => $value['estado'],
+                        'ciclo'      => $value['ciclo']
+                    ]);
+                    $notasId[] = $created->id;
+                }
+
+                $instructor->notas()->sync($notasId);
+
                 $this->response = $this->successCreation;
             } else {
                 $this->response = $this->invalidCreation;
@@ -125,7 +143,7 @@ class InstructorController extends Controller
     {
         if ( $row =  Instructor::find($id)) {
 
-            $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula'));
+            $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula'));
 
         } else {
 
