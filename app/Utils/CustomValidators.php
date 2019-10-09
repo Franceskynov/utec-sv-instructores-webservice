@@ -64,6 +64,16 @@ class CustomValidators
     /**
      * @var array
      */
+    static $trainingRules = [
+        'nombre'      => 'required',
+        'descripcion' => 'required',
+        'tipo'        => 'required',
+        'docente_id'  => 'required',
+    ];
+
+    /**
+     * @var array
+     */
     static $cicloRules = [
         'nombre'      => 'required',
         'descripcion' => 'required',

@@ -34,16 +34,16 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if ( $instructor =  Instructor::with('notas', 'user', 'historial', 'historial.materia')->get()) {
-
+        if ( $instructor =  Instructor::with('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones')->get()) {
+            $this->status = 200;
             $this->response = $this->successResponse($instructor);
 
         } else {
-
+            $this->status = 404;
             $this->response = $this->invalidResponse;
         }
 
-        return \Response::json($this->response);
+        return \Response::json($this->response, $this->status);
     }
 
     /**
@@ -143,14 +143,16 @@ class InstructorController extends Controller
     {
         if ( $row =  Instructor::find($id)) {
 
+            $this->status = 200;
             $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones'));
 
         } else {
 
+            $this->status = 404;
             $this->response = $this->invalidResponse;
         }
 
-        return \Response::json($this->response);
+        return \Response::json($this->response, $this->status);
     }
 
     /**
@@ -180,10 +182,30 @@ class InstructorController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        if($row = Instructor::find($id))
+        {
+            if ($row->is_enabled)
+            {
+                $row->update([
+                    'is_enabled' => ($row->is_enabled == 1) ? 0 : 0
+                ]);
+
+                $this->response = $this->successDeletion;
+
+            } else {
+
+                $this->response = $this->previouslyDeleted;
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 }

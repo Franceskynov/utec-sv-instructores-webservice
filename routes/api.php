@@ -37,7 +37,7 @@ Route::resource('/ciclo', 'Api\CicloController');
 Route::resource('/edificio', 'Api\EdificioController');
 Route::resource('/especialidad', 'Api\EspecialidadController');
 Route::resource('/asignacion', 'Api\AsignacioneController');
-
+Route::resource('/capacitacion', 'Api\TrainingController');
 
 Route::get('/dashboard', 'Api\DashboardController@index');
 
