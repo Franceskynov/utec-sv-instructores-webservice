@@ -38,6 +38,8 @@ class Constants
     public const MESSAGE_INVALID_CARNET = 'El carnet no es valido';
 
     public const MESSAGE_SUCCESS_CREATION = 'El registro se creo correctamente';
+    public const MESSAGE_SUCCESS_CHANGED_CREDENTIALS = 'Se modificaron las credenciales correctamente';
+    public const MESSAGE_INVALID_CHANGED_CREDENTIALS = 'No se cambiaron las credenciales';
     public const MESSAGE_INVALID_CREATION = 'Fallo la creacion del registro';
     public const MESSAGE_INVALID_TRAINGIN_ASIGNATION = 'El curso ya fue asignado';
 

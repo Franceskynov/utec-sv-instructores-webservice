@@ -61,6 +61,16 @@ class CustomValidators
         'descripcion' => 'required',
     ];
 
+    /**
+     * @var array
+     */
+    static $credentialsRules = [
+        'oldPassword' => 'required',
+        'password'    => 'required|min:6'
+    ];
+    /**
+     * @var array
+     */
     static $instructorMateriaRules = [
         'nota'         => 'required',
         'instructorId' => 'required',

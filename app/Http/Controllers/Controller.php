@@ -97,6 +97,24 @@ class Controller extends BaseController
     /**
      * @var array
      */
+    protected $successChanged = [
+        Constants::ERROR    => false,
+        Constants::MESSAGE  => Constants::MESSAGE_SUCCESS_CHANGED_CREDENTIALS,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
+    protected $invalidChanged = [
+        Constants::ERROR    => false,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_CHANGED_CREDENTIALS,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
     protected $invalidResponse = [
         Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_RESPONSE,
