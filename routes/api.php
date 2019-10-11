@@ -38,6 +38,7 @@ Route::resource('/edificio', 'Api\EdificioController');
 Route::resource('/especialidad', 'Api\EspecialidadController');
 Route::resource('/asignacion', 'Api\AsignacioneController');
 Route::resource('/capacitacion', 'Api\TrainingController');
+Route::resource('/instructor/capacitacion', 'Api\InstructorTrainingController');
 
 Route::get('/dashboard', 'Api\DashboardController@index');
 

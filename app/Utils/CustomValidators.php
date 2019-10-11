@@ -61,6 +61,12 @@ class CustomValidators
         'descripcion' => 'required',
     ];
 
+    static $instructorMateriaRules = [
+        'nota'         => 'required',
+        'instructorId' => 'required',
+        'trainingId'   => 'required'
+    ];
+
     /**
      * @var array
      */

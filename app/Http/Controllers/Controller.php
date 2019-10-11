@@ -58,6 +58,18 @@ class Controller extends BaseController
         Constants::DATA     => []
     ];
 
+    /**
+     * @var array
+     */
+    protected $invalidTrainingAsignation = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_TRAINGIN_ASIGNATION,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
     protected $simpleInvalodCreation = [
         Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_CREATION,

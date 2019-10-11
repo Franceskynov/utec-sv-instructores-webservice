@@ -1,5 +1,11 @@
 <?php
 
+/*
+ |--------------------------------------------------------------------------
+ | Copyright (C) (2019) (Franceskynov) (franceskynov@gmail.com)
+ |--------------------------------------------------------------------------
+ |
+ */
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -25,7 +31,7 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        if ($row =  Training::get()) {
+        if ($row =  Training::with('docente')->get()) {
 
             $this->response = $this->successResponse($row);
 
@@ -81,7 +87,7 @@ class TrainingController extends Controller
     {
         if ($row = Training::find($id)) {
 
-            $this->response = $this->successResponse($row);
+            $this->response = $this->successResponse($row->load('docente'));
 
         } else {
 

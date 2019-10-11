@@ -75,13 +75,39 @@ class InstructoresTableSeeder extends Seeder
             'user_id' => 9
         ]);
 
-
+        /**
+         *
+         */
         $instructorC = Instructor::create([
             'nombre'  => 'WALTER HERNAN RAMOS',
             'carnet'  => '2564062012',
             'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
             'cum'     => '7.6',
             'user_id' => 10
+        ]);
+
+        $instructorC->notas()->saveMany([
+            new Nota([
+                'mat_codigo' => 'ALG1-E',
+                'mat_nombre' => 'ALGORITMOS I',
+                'nota'       => '7.4',
+                'estado'     => 'Aprobada',
+                'ciclo'      => '02-2012'
+            ]),
+            new Nota([
+                'mat_codigo' => 'MAT1-T',
+                'mat_nombre' => 'MATEMATICA I',
+                'nota'       => '7.6',
+                'estado'     => 'Aprobada',
+                'ciclo'      => '02-2012'
+            ]),
+            new Nota([
+                'mat_codigo' => 'ORTI-I',
+                'mat_nombre' => 'ORIENTACION TECNICA DE INGENIERIA',
+                'nota'       => '6.8',
+                'estado'     => 'Aprobada',
+                'ciclo'      => '02-2012'
+            ]),
         ]);
     }
 }

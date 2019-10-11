@@ -1,4 +1,5 @@
 <?php
+
 /*
  |--------------------------------------------------------------------------
  | Copyright (C) (2019) (Franceskynov) (franceskynov@gmail.com)
@@ -7,37 +8,22 @@
  */
 namespace App\Http\Controllers\Api;
 
+use App\Utils\CustomValidators;
+use App\Utils\DataManipulation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Historial;
-
-class HistorialController extends Controller
+use App\Instructor;
+use App\Training;
+class InstructorTrainingController extends Controller
 {
-    public function __construct()
-    {
-        if (env('JWT_LOGIN'))
-        {
-            $this->middleware('jwt.auth');
-        }
-    }
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        if ( $historial =  Historial::with('materia', 'ciclo')->get()) {
-
-            $this->response = $this->successResponse($historial);
-
-        } else {
-
-            $this->response = $this->invalidResponse;
-        }
-
-        return \Response::json($this->response);
+        //
     }
 
     /**
@@ -54,31 +40,50 @@ class HistorialController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$instructorMateriaRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidCreation;
+
+        } else {
+
+            if ($row = Instructor::find($request->instructorId))
+            {
+                $nota = (float) $request->nota;
+                $trainingId = $request->trainingId;
+
+                if ($row->capacitaciones->contains($trainingId))
+                {
+                   $this->response = $this->invalidTrainingAsignation;
+
+                } else {
+
+                    $row->capacitaciones()->syncWithoutDetaching(Training::build($trainingId, $nota));
+                    $this->response = $this->successCreation;
+                }
+            } else {
+                $this->response = $this->invalidCreation;
+            }
+        }
+
+        return \Response::json($this->response);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if ( $row =  Historial::with('materia', 'ciclo')->find($id)) {
-
-            $this->response = $this->successResponse($row);
-
-        } else {
-
-            $this->response = $this->invalidResponse;
-        }
-
-        return \Response::json($this->response);
+        //
     }
 
     /**
