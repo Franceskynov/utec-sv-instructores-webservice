@@ -35,10 +35,14 @@ class Constants
 
     public const MESSAGE_SUCCESS = 'Peticion realizada con exito';
     public const MESSAGE_INVALID_RESPONSE = 'La recuperacion de datos fallo';
+    public const MESSAGE_INVALID_EMAIL_RESPONSE = 'El email ingresado no esta registrado';
     public const MESSAGE_INVALID_CARNET = 'El carnet no es valido';
 
     public const MESSAGE_SUCCESS_CREATION = 'El registro se creo correctamente';
     public const MESSAGE_SUCCESS_CHANGED_CREDENTIALS = 'Se modificaron las credenciales correctamente';
+    public const MESSAGE_SUCCESS_ACTIVATED_USER = 'Se activo el usuario correctamente';
+    public const MESSAGE_INVALID_ACTIVATED_USER_ACTIVATED = 'El usuario ya se encuentra activado';
+    public const MESSAGE_INVALID_ACTIVATED_USER = 'No se pudo activar el usuario';
     public const MESSAGE_INVALID_CHANGED_CREDENTIALS = 'No se cambiaron las credenciales';
     public const MESSAGE_INVALID_CREATION = 'Fallo la creacion del registro';
     public const MESSAGE_INVALID_TRAINGIN_ASIGNATION = 'El curso ya fue asignado';

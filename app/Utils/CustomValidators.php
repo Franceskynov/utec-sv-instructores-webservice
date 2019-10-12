@@ -68,6 +68,22 @@ class CustomValidators
         'oldPassword' => 'required',
         'password'    => 'required|min:6'
     ];
+
+    /**
+     * @var array
+     */
+    static $checkByEmailRules = [
+        'email' => 'required|email'
+    ];
+
+    /**
+     * @var array
+     */
+    static $activateCreadentialsRule = [
+        'email'    => 'required|email',
+        'password' => 'required'
+    ];
+
     /**
      * @var array
      */

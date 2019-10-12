@@ -20,13 +20,13 @@ class CredentialsController extends Controller
     {
         if (env('JWT_LOGIN'))
         {
-            $this->middleware('jwt.auth');
+            $this->middleware('jwt.auth', [
+                'except' => [
+                    'checkUserByEmail',
+                    'activateUser'
+                ]
+            ]);
         }
-    }
-
-    public function activate(Request $request)
-    {
-
     }
 
     /**
@@ -39,7 +39,7 @@ class CredentialsController extends Controller
 
         if ($validator->fails())
         {
-            $this->response = $this->invalidCreation;
+            $this->response = $this->invalidChecking;
 
         } else {
 
@@ -58,5 +58,75 @@ class CredentialsController extends Controller
         }
 
         return \Response::json($this->response);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkUserByEmail(Request $request)
+    {
+
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$checkByEmailRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidChecking;
+        } else {
+            if (User::where('email', $request->email)->exists())
+            {
+                $this->status = 200;
+                $this->response = $this->successResponse([
+                    'extraMessage' => 'El email existe'
+                ]);
+            } else {
+                $this->status = 404;
+                $this->response = $this->invalidEmailResponse;
+            }
+        }
+
+        return \Response::json($this->response, $this->status);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function activateUser(Request $request)
+    {
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$activateCreadentialsRule);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidChecking;
+            $this->status = 406;
+
+        } else {
+            $user = User::where('email', $request->email)
+                ->where('is_activated', false)
+                ->first();
+
+            if ($user)
+            {
+                $hashedPassword = $user->password;
+
+                if (Hash::check($request->password, $hashedPassword))
+                {
+                    $user->update([
+                        'is_activated' => 1
+                    ]);
+                    $this->response = $this->successActivatedUser;
+                    $this->status = 200;
+                } else {
+                    $this->response = $this->invalidActivatedUser;
+                    $this->status = 400;
+                }
+            } else {
+                $this->status = 400;
+                $this->response = $this->invalidUserActivate;
+            }
+        }
+
+        return \Response::json($this->response, $this->status);
     }
 }

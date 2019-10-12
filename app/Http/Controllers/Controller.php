@@ -106,6 +106,15 @@ class Controller extends BaseController
     /**
      * @var array
      */
+    protected $successActivatedUser = [
+        Constants::ERROR    => false,
+        Constants::MESSAGE  => Constants::MESSAGE_SUCCESS_ACTIVATED_USER,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
     protected $invalidChanged = [
         Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_CHANGED_CREDENTIALS,
@@ -115,9 +124,36 @@ class Controller extends BaseController
     /**
      * @var array
      */
+    protected $invalidUserActivate = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_ACTIVATED_USER_ACTIVATED,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
+    protected $invalidActivatedUser = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_ACTIVATED_USER,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
     protected $invalidResponse = [
         Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_RESPONSE,
+        Constants::DATA     => []
+    ];
+
+    /**
+     * @var array
+     */
+    protected $invalidEmailResponse = [
+        Constants::ERROR    => true,
+        Constants::MESSAGE  => Constants::MESSAGE_INVALID_EMAIL_RESPONSE,
         Constants::DATA     => []
     ];
 

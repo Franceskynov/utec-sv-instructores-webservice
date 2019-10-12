@@ -18,6 +18,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $credentials['is_enabled'] = true;
+        $credentials['is_activated'] = true;
         if (!$token = auth('api')->attempt($credentials)) {
 
             $this->response = $this->loginResponse([
@@ -38,6 +39,9 @@ class AuthController extends Controller
         return \Response::json($this->response);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout()
     {
         auth()->logout();
@@ -45,6 +49,9 @@ class AuthController extends Controller
         return \Response::json($this->response);
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function refresh() {
         $token = \Auth::guard('api')->refresh();
 
