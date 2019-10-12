@@ -44,6 +44,7 @@ Route::get('/dashboard', 'Api\DashboardController@index');
 
 Route::post('/login', 'Security\AuthController@login');
 Route::post('/logout', 'Security\AuthController@logout');
+Route::get('/refresh', 'Security\AuthController@refresh');
 Route::put('/credentials', 'Security\CredentialsController@update');
 
 Route::fallback(function(){

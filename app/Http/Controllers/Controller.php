@@ -107,7 +107,7 @@ class Controller extends BaseController
      * @var array
      */
     protected $invalidChanged = [
-        Constants::ERROR    => false,
+        Constants::ERROR    => true,
         Constants::MESSAGE  => Constants::MESSAGE_INVALID_CHANGED_CREDENTIALS,
         Constants::DATA     => []
     ];

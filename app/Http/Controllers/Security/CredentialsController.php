@@ -49,7 +49,7 @@ class CredentialsController extends Controller
             if (Hash::check($request->oldPassword, $hashedPassword))
             {
                 $user->update([
-                   'password' => Hash::make($request->password)
+                    'password' => Hash::make($request->password)
                 ]);
                 $this->response = $this->successChanged;
             } else {

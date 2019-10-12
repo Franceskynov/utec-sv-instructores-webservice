@@ -45,4 +45,15 @@ class AuthController extends Controller
         return \Response::json($this->response);
     }
 
+    public function refresh() {
+        $token = \Auth::guard('api')->refresh();
+
+        $this->response = $this->loginResponse([
+            'token'   => $token,
+            'type'    => 'bearer',
+            'expires' => auth('api')->factory()->getTTL() * 60,
+        ], Constants::MESSAGE_LOGIN_SUCCESS, false);
+        return \Response::json($this->response);
+    }
+
 }
