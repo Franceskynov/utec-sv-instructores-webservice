@@ -47,6 +47,7 @@ Route::post('/logout', 'Security\AuthController@logout');
 Route::get('/refresh', 'Security\AuthController@refresh');
 Route::post('/credentials/checkUserByEmail', 'Security\CredentialsController@checkUserByEmail');
 Route::post('/credentials/activateUser', 'Security\CredentialsController@activateUser');
+Route::post('/credentials/accountRecover', 'Security\CredentialsController@accountRecover');
 Route::put('/credentials', 'Security\CredentialsController@update');
 
 Route::fallback(function(){

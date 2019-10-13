@@ -8,6 +8,7 @@
    */
 namespace App\Http\Controllers\Api;
 
+use App\Utils\Constants;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Utils\CustomValidators;
@@ -88,11 +89,14 @@ class InstructorController extends Controller
             if ($id = $created->id) {
 
                 $data = [
-                    'email' => $email,
-                    'password' => $secret
+                    'url'           => env('APP_URL') . '/#/login',
+                    'email'         => $email,
+                    'password'      => $secret,
+                    'headerMessage' => Constants::EMAIL_USER_CREATION_HEADER_MESSAGE,
+                    'footerMessage' => Constants::EMAIL_USER_CREATION_FOOTER_MESSAGE
                 ];
 
-                \Mail::send('notifications.nuevos_usuarios', $data, function ($message) use ($email) {
+                \Mail::send('notifications.users_email_template', $data, function ($message) use ($email) {
                     $message->to($email)->subject('Creacion de un nuevo usuario');
                     $message->from('contactanos@utec.edu.sv', 'Control de instructores');
                 });

@@ -71,7 +71,7 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <font class="mob_title1" face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 30px; line-height: 30px; font-weight: 300; letter-spacing: -1.5px;">
-                                        <span class="mob_title1" style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 30px; line-height: 55px; font-weight: 300; letter-spacing: -1.5px;"> Creaci&oacute;n de usuario en el sistema de control de estudiantes </span>
+                                        <span class="mob_title1" style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 30px; line-height: 55px; font-weight: 300; letter-spacing: -1.5px;"> {{ $headerMessage }} </span>
                                     </font>
                                     <div class="top_pad3" style="height: 30px; line-height: 30px; font-size: 28px;">&nbsp;</div>
                                 </td>
@@ -98,7 +98,7 @@
                                     <table class="mob_btn" cellpadding="0" cellspacing="0" border="0" style="background: #7d0634; border-radius: 4px;">
                                         <tr>
                                             <td align="center" valign="top">
-                                                <a href="remplazar" target="_blank" style="display: block; border: 1px solid #7d0634; border-radius: 4px; padding: 19px 27px; font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 26px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
+                                                <a href="{{ $url }} " target="_blank" style="display: block; border: 1px solid #7d0634; border-radius: 4px; padding: 19px 27px; font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 26px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
                                                     <font face="'Source Sans Pro', sans-serif" color="#ffffff" style="font-size: 15px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">
                                                         <span style="font-family: 'Source Sans Pro', Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 15px; line-height: 30px; text-decoration: none; white-space: nowrap; font-weight: 600;">Iniciar&nbsp;sesi&oacute;n</span>
                                                     </font>
@@ -130,7 +130,7 @@
                                                 </font>
                                                 <div style="height: 4px; line-height: 4px; font-size: 2px;">&nbsp;</div>
                                                 <font face="'Source Sans Pro', sans-serif" color="#868686" style="font-size: 17px; line-height: 20px;">
-                                                    <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;">El motivo por el cual usted recibi&oacute; este mensaje fue por que fue registrado en el sistema de control de instructores. </span>
+                                                    <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;"> {{ $footerMessage }} </span>
                                                 </font>
                                                 <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                                                 <font face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 17px; line-height: 20px;">

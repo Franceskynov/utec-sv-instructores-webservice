@@ -62,4 +62,10 @@ class Constants
     public const MESSAGE_LOGIN_SUCCESS = 'La autorizacion correcta';
     public const MESSAGE_LOGIN_FAILS = 'La el email o la clave son incorrectos, por favor revise';
     public const MESSAGE_LOGOUT_SUCCESS = 'Se cerro la sesion';
+
+    public const EMAIL_USER_CREATION_HEADER_MESSAGE = 'Creacion de usuario en el sistema de control de estudiantes';
+    public const EMAIL_USER_CREATION_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue por que fue registrado en el sistema de control de instructores.';
+
+    public const EMAIL_ACCOUNT_RECOVER_HEADER_MESSAGE = 'Recuperacion de su cuenta';
+    public const EMAIL_ACCOUNT_RECOVER_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue por que usted solicito un cambio de clave. Si usted no lo ha solicitado ignore este mensaje';
 }

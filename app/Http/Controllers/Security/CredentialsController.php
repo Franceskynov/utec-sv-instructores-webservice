@@ -9,7 +9,9 @@
 namespace App\Http\Controllers\Security;
 
 use App\User;
+use App\Utils\Constants;
 use App\Utils\CustomValidators;
+use App\Utils\DataManipulation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +25,8 @@ class CredentialsController extends Controller
             $this->middleware('jwt.auth', [
                 'except' => [
                     'checkUserByEmail',
-                    'activateUser'
+                    'activateUser',
+                    'accountRecover'
                 ]
             ]);
         }
@@ -73,11 +76,14 @@ class CredentialsController extends Controller
         {
             $this->response = $this->invalidChecking;
         } else {
-            if (User::where('email', $request->email)->exists())
+
+
+            if ($user = User::where('email', $request->email)->first())
             {
                 $this->status = 200;
                 $this->response = $this->successResponse([
-                    'extraMessage' => 'El email existe'
+                    'is_enabled'   => $user->is_enabled,
+                    'is_activated' => $user->is_activated,
                 ]);
             } else {
                 $this->status = 404;
@@ -113,7 +119,8 @@ class CredentialsController extends Controller
                 if (Hash::check($request->password, $hashedPassword))
                 {
                     $user->update([
-                        'is_activated' => 1
+                        'is_activated'      => 1,
+                        'email_verified_at' => \Carbon\Carbon::now()
                     ]);
                     $this->response = $this->successActivatedUser;
                     $this->status = 200;
@@ -124,6 +131,57 @@ class CredentialsController extends Controller
             } else {
                 $this->status = 400;
                 $this->response = $this->invalidUserActivate;
+            }
+        }
+
+        return \Response::json($this->response, $this->status);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function accountRecover(Request $request)
+    {
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$checkByEmailRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidChecking;
+            $this->status = 406;
+        } else {
+
+            $user = User::where('email', $request->email)
+                ->where('is_activated', true)
+                ->first();
+            if ($user)
+            {
+                $secret = DataManipulation::randomStrings();
+                $this->status = 200;
+                $email = $user->email;
+                $user->update([
+                    'password' => Hash::make($secret)
+                ]);
+                $data = [
+                    'url'           => env('APP_URL') . '/#/login',
+                    'email'         => $email,
+                    'password'      => $secret,
+                    'headerMessage' => Constants::EMAIL_ACCOUNT_RECOVER_HEADER_MESSAGE,
+                    'footerMessage' => Constants::EMAIL_ACCOUNT_RECOVER_FOOTER_MESSAGE
+                ];
+
+                \Mail::send('notifications.users_email_template', $data, function($message) use ($email)
+                {
+                    $message->to($email)->subject('Recuperacion de credenciales');
+                    $message->from('contactanos@utec.edu.sv', 'Control de instructores');
+                });
+
+                $this->response = $this->successResponse([
+                    'recovered' => true
+                ]);
+            } else {
+                $this->status = 404;
+                $this->response = $this->invalidEmailResponse;
             }
         }
 
