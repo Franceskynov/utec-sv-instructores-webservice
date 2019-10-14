@@ -9,7 +9,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Especialidad;
+use App\Materia;
 class Docente extends Model
 {
     protected $table = 'docentes';
@@ -23,10 +24,22 @@ class Docente extends Model
         'is_enabled'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function especialidades()
     {
         return $this
             ->belongsToMany('App\Especialidad');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function materias()
+    {
+        return $this
+            ->belongsToMany('App\Materia');
     }
 
     /**
@@ -42,7 +55,7 @@ class Docente extends Model
         {
             if(gettype($especialidad) == 'integer')
             {
-                if (Materia::find($especialidad))
+                if (Especialidad::find($especialidad))
                 {
                     $row
                         ->especialidades()
@@ -69,6 +82,53 @@ class Docente extends Model
                 $row
                     ->especialidades()
                     ->toggle($especialidad);
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
+    }
+
+    /**
+     * @param $id
+     * @param $materia
+     * @param string $mode
+     * @return bool
+     */
+    public static function addMateriasToDocente($id, $materia, $mode = 'create')
+    {
+        $row = Docente::find($id);
+        if($mode == 'create')
+        {
+            if(gettype($materia) == 'integer')
+            {
+                if (Materia::find($materia))
+                {
+                    $row
+                        ->especialidades()
+                        ->attach($materia);
+                    return true;
+                } else {
+                    return false;
+                }
+
+            } else {
+
+                try {
+                    $row
+                        ->especialidades()
+                        ->syncWithoutDetaching($materia);
+                    return true;
+                } catch (\Exception $e) {
+                    return false;
+                }
+            }
+
+        } else {
+            try {
+                $row
+                    ->especialidades()
+                    ->toggle($materia);
                 return true;
             } catch (\Exception $e) {
                 return false;

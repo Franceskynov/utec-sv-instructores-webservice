@@ -11,7 +11,7 @@ class DocentesTableSeeder extends Seeder
      */
     public function run()
     {
-        Docente::create([
+        $docenteA = Docente::create([
             'nombre'     => 'Dany Salvador',
             'apellido'   => 'Chacon Orellana',
             'email'      => 'dany.chacon@mail.utec.edu.sv',
@@ -19,9 +19,11 @@ class DocentesTableSeeder extends Seeder
             'oficina'    => '...',
             'user_id'    => 2,
             'is_enabled' => true
-        ])->especialidades()->sync([1, 2]);
+        ]);
+        $docenteA->especialidades()->sync([1, 2]);
+        $docenteA->materias()->sync([1, 2]);
 
-        Docente::create([
+        $docenteB = Docente::create([
             'nombre'     => 'Marta Eugenia',
             'apellido'   => 'Belloso Rivas',
             'email'      => 'martha.belloso@mail.utec.edu.sv',
@@ -29,10 +31,12 @@ class DocentesTableSeeder extends Seeder
             'oficina'    => '...',
             'user_id'    => 3,
             'is_enabled' => true
-        ])->especialidades()->sync([1, 2]);
+        ]);
+        $docenteB->especialidades()->sync([1, 2]);
+        $docenteB->materias()->sync([1, 2]);
 
 
-        Docente::create([
+        $docenteC = Docente::create([
             'nombre'     => 'Edwin Alberto',
             'apellido'   => 'Callejas',
             'email'      => 'edwin.callejas@mail.utec.edu.sv',
@@ -40,9 +44,11 @@ class DocentesTableSeeder extends Seeder
             'oficina'    => '...',
             'user_id'    => 4,
             'is_enabled' => true
-        ])->especialidades()->sync([1, 2]);
+        ]);
+        $docenteC->especialidades()->sync([1, 2]);
+        $docenteC->materias()->sync([1, 2]);
 
-        Docente::create([
+        $docenteD = Docente::create([
             'nombre'     => 'Oscar Bertony',
             'apellido'   => 'Pineda Medrano',
             'email'      => 'oscar.pineda@mail.utec.edu.sv',
@@ -50,9 +56,11 @@ class DocentesTableSeeder extends Seeder
             'oficina'    => '...',
             'user_id'    => 5,
             'is_enabled' => true
-        ])->especialidades()->sync([4, 2]);
+        ]);
+        $docenteD->especialidades()->sync([4, 2]);
+        $docenteD->materias()->sync([1, 2]);
 
-        Docente::create([
+        $docenteE = Docente::create([
             'nombre'     => 'Ronny Adalberto',
             'apellido'   => 'Cortez Reyes',
             'email'      => 'ronny.cortez@mail.utec.edu.sv',
@@ -60,9 +68,11 @@ class DocentesTableSeeder extends Seeder
             'oficina'    => '...',
             'user_id'    => 6,
             'is_enabled' => true
-        ])->especialidades()->sync([7, 2]);
+        ]);
+        $docenteE->especialidades()->sync([7, 2]);
+        $docenteE->materias()->sync([1, 2]);
 
-        Docente::create([
+        $docenteF = Docente::create([
             'nombre'     => 'Julio Cesar',
             'apellido'   => 'Rosales Barrera',
             'email'      => 'julio.barrera@mail.utec.edu.sv',
@@ -70,7 +80,9 @@ class DocentesTableSeeder extends Seeder
             'oficina'    => '...',
             'user_id'    => 7,
             'is_enabled' => true
-        ])->especialidades()->sync([4, 6]);
+        ]);
+        $docenteF->especialidades()->sync([4, 6]);
+        $docenteF->materias()->sync([1, 2]);
 
     }
 }

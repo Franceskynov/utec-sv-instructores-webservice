@@ -35,7 +35,7 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if ( $instructor =  Instructor::with('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones')->get()) {
+        if ( $instructor =  Instructor::with('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'historial.docente', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones')->get()) {
             $this->status = 200;
             $this->response = $this->successResponse($instructor);
 
@@ -146,9 +146,22 @@ class InstructorController extends Controller
     public function show($id)
     {
         if ( $row =  Instructor::find($id)) {
-
+            $data = $row->load(
+                'notas',
+                'user',
+                'historial',
+                'historial.materia',
+                'historial.ciclo',
+                'historial.docente',
+                'instructoria',
+                'instructoria.ciclo',
+                'instructoria.horario',
+                'instructoria.materia',
+                'instructoria.aula',
+                'instructoria.docente',
+                'capacitaciones');
             $this->status = 200;
-            $this->response = $this->successResponse($row->load('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones'));
+            $this->response = $this->successResponse($data);
 
         } else {
 

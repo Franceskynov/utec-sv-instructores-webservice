@@ -6,7 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-
+use App\Instructor;
+use App\Docente;
+use App\Coordinator;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -63,6 +65,29 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * @param $param
+     * @param $id
+     * @return string
+     */
+    public static function getPeopleData($param, $id)
+    {
+        $result = '';
+        switch ($param) {
+            case 'Administrador':
+                $result = Coordinator::where('user_id', $id)->first();
+                break;
+            case 'Docente':
+                $result = Docente::where('user_id', $id)->first();
+                break;
+            case 'Instructor':
+                $result = Instructor::where('user_id', $id)->first();
+                break;
+        }
+
+        return $result;
+    }
+
+    /**
      * @return array
      */
     public function getJWTCustomClaims()
@@ -73,6 +98,7 @@ class User extends Authenticatable implements JWTSubject
             'descrpcn'  => $this->rol->descripcion,
             'username'  => $this->username,
             'email'     => $this->email,
+            'people'    => self::getPeopleData($this->rol->nombre, $this->id)
         ];
     }
 

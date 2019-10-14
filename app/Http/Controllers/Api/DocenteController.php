@@ -37,13 +37,13 @@ class DocenteController extends Controller
     {
         if ($request->input('noPaginate'))
         {
-            if ( $row = Docente::with('especialidades')->get() ) {
+            if ( $row = Docente::with('especialidades', 'materias')->get() ) {
                 $this->response = $this->successResponse($row);
             } else {
                 $this->response = $this->invalidResponse;
             }
         } else {
-            if ( $rowPaginate =  Docente::with('especialidades')->paginate(DataManipulation::getRowsPerPage($request)) ) {
+            if ( $rowPaginate =  Docente::with('especialidades', 'materias')->paginate(DataManipulation::getRowsPerPage($request)) ) {
                 $this->response = $this->successResponse($rowPaginate);
             } else {
                 $this->response = $this->invalidResponse;
@@ -151,7 +151,7 @@ class DocenteController extends Controller
     {
         if ( $row =  Docente::find($id)) {
 
-            $this->response = $this->successResponse($row->load('especialidades'));
+            $this->response = $this->successResponse($row->load('especialidades', 'materias'));
 
         } else {
 

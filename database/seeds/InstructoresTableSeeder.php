@@ -22,6 +22,7 @@ class InstructoresTableSeeder extends Seeder
             'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
             'cum'     => '7.2',
             'user_id' => 8,
+            'score'   => 150,
             'is_selected' => true
         ]);
 
@@ -48,7 +49,8 @@ class InstructoresTableSeeder extends Seeder
                 'nota'        => 8.5,
                 'comentarios' => 'Posee dominio de la materia',
                 'ciclo_id'    => 1,
-                'materia_id'  => 4
+                'materia_id'  => 4,
+                'docente_id'  => 2
             ])
         ]);
 

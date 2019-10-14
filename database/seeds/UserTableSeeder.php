@@ -14,8 +14,8 @@ class UserTableSeeder extends Seeder
     {
         // 1
         User::create([
-            'username'   => 'admin',
-            'email'      => 'admin@gmail.com',
+            'username'   => 'claudia.dimas',
+            'email'      => 'claudia.dimas@mail.utec.edu.sv',
             'password'   => bcrypt('secret'),
             'rol_id'     => 1,
             'is_admin'   => true,

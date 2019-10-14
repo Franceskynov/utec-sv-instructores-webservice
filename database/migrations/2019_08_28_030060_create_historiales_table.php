@@ -17,10 +17,21 @@ class CreateHistorialesTable extends Migration
             $table->increments('id');
             $table->double('nota');
             $table->text('comentarios');
-            $table->integer('ciclo_id')->unsigned();
-            $table->foreign('ciclo_id')->references('id')->on('ciclos');
-            $table->integer('materia_id')->unsigned();
-            $table->foreign('materia_id')->references('id')->on('materias');
+            $table->integer('ciclo_id')
+                ->unsigned();
+            $table->foreign('ciclo_id')
+                ->references('id')
+                ->on('ciclos');
+            $table->integer('materia_id')
+                ->unsigned();
+            $table->foreign('materia_id')
+                ->references('id')
+                ->on('materias');
+            $table->integer('docente_id')
+                ->unsigned();
+            $table->foreign('docente_id')
+                ->references('id')
+                ->on('docentes');
             $table->timestamps();
         });
     }
