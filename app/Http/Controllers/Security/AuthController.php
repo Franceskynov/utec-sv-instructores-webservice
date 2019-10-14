@@ -45,7 +45,9 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-        $this->response = $this->successResponse(Constants::MESSAGE_LOGOUT_SUCCESS);
+        $this->response = $this->successResponse([
+          'message' => Constants::MESSAGE_LOGOUT_SUCCESS
+        ]);
         return \Response::json($this->response);
     }
 

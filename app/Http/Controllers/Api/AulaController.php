@@ -29,8 +29,9 @@ class AulaController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['Administrador']);
         if ( $aulas =  Aula::with('edificio', 'horarios')->get()) {
 
             $this->response = $this->successResponse($aulas);
@@ -61,6 +62,7 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->user()->authorizeRoles(['Administrador']);
         $validator = CustomValidators::requestValidator($request, CustomValidators::$aulaRules);
 
         if ($validator->fails())
@@ -135,6 +137,7 @@ class AulaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->user()->authorizeRoles(['Administrador']);
         if($aula =  Aula::find($id))
         {
             $rules = CustomValidators::$aulaRules;
@@ -183,8 +186,9 @@ class AulaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
+        $request->user()->authorizeRoles(['Administrador']);
         if($aula = Aula::find($id))
         {
             if ($aula->is_enabled)
