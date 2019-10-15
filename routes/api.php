@@ -51,6 +51,16 @@ Route::post('/credentials/activateUser', 'Security\CredentialsController@activat
 Route::post('/credentials/accountRecover', 'Security\CredentialsController@accountRecover');
 Route::put('/credentials', 'Security\CredentialsController@update');
 
+Route::get('/reporte/docentes', 'Reports\ReportBuilderController@docentes');
+Route::get('/reporte/instructores', 'Reports\ReportBuilderController@instructores');
+Route::get('/reporte/asignacion', 'Reports\ReportBuilderController@asignacion');
+Route::get('/reporte/historial', 'Reports\ReportBuilderController@historial');
+
+
+// teachers
+// instructors
+// issues
+
 Route::fallback(function(){
     return \Response::json([
         Constants::ERROR    => true,
