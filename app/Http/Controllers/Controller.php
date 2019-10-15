@@ -170,7 +170,7 @@ class Controller extends BaseController
      * @var array
      */
     protected $validUpdate = [
-        Constants::ERROR    => true,
+        Constants::ERROR    => false,
         Constants::MESSAGE  => Constants::MESSAGE_SUCCESS_UPDATE,
         Constants::DATA     => []
     ];

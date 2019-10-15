@@ -85,7 +85,15 @@ class MateriaController extends Controller
     {
         if ( $row =  Materia::find($id)) {
 
-            $this->response = $this->successResponse($row->load('facultades'));
+            $this->response = $this->successResponse($row->load(
+                'facultades',
+                'instructorias',
+                'instructorias.ciclo',
+                'instructorias.horario',
+                'instructorias.materia',
+                'instructorias.aula',
+                'instructorias.docente'
+            ));
 
         } else {
 

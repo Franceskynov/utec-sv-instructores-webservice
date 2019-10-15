@@ -105,7 +105,7 @@ class Docente extends Model
                 if (Materia::find($materia))
                 {
                     $row
-                        ->especialidades()
+                        ->materias()
                         ->attach($materia);
                     return true;
                 } else {
@@ -116,7 +116,7 @@ class Docente extends Model
 
                 try {
                     $row
-                        ->especialidades()
+                        ->materias()
                         ->syncWithoutDetaching($materia);
                     return true;
                 } catch (\Exception $e) {
@@ -127,7 +127,7 @@ class Docente extends Model
         } else {
             try {
                 $row
-                    ->especialidades()
+                    ->materias()
                     ->toggle($materia);
                 return true;
             } catch (\Exception $e) {

@@ -96,6 +96,14 @@ class CustomValidators
     /**
      * @var array
      */
+    static $docenteMateriaRules = [
+        'docenteId' => 'required',
+        'materias'  => 'required',
+    ];
+
+    /**
+     * @var array
+     */
     static $trainingRules = [
         'nombre'      => 'required',
         'descripcion' => 'required',
@@ -136,9 +144,9 @@ class CustomValidators
         'carnet'         => 'required|unique:instructores',
         'carrera'        => 'required',
         'cum'            => 'required',
-        'telefono'       => 'required',
+        // 'telefono'       => 'required',
         'email'          => 'required|unique:users',
-        'emailPersonal'  => 'required',
+        // 'emailPersonal'  => 'required',
         'username'       => 'required|unique:users'
     ];
 

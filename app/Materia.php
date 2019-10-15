@@ -26,4 +26,13 @@ class Materia extends Model
         return $this
             ->belongsToMany('App\Facultad');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function instructorias()
+    {
+        return $this
+            ->hasMany('App\Asignacion');
+    }
 }
