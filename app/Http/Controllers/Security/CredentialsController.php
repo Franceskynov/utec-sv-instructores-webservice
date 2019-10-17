@@ -74,6 +74,7 @@ class CredentialsController extends Controller
 
         if ($validator->fails())
         {
+            $this->status = 406;
             $this->response = $this->invalidChecking;
         } else {
 

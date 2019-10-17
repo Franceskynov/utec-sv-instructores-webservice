@@ -21,6 +21,7 @@ class Docente extends Model
         'telefono',
         'oficina',
         'user_id',
+        'score',
         'is_enabled'
     ];
 
@@ -40,6 +41,15 @@ class Docente extends Model
     {
         return $this
             ->belongsToMany('App\Materia');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function instructorias()
+    {
+        return $this
+            ->hasMany('App\Asignacion');
     }
 
     /**

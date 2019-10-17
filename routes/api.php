@@ -40,6 +40,7 @@ Route::resource('/asignacion', 'Api\AsignacioneController');
 Route::resource('/capacitacion', 'Api\TrainingController');
 Route::resource('/instructor/capacitacion', 'Api\InstructorTrainingController');
 Route::resource('/docente/materia', 'Api\DocenteMateriaController');
+Route::resource('/asignacion/docente', 'Api\DocenteAsignacionController');
 
 Route::get('/dashboard', 'Api\DashboardController@index');
 

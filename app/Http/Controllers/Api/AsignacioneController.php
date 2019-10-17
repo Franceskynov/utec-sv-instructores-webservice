@@ -11,6 +11,7 @@ use App\Utils\CustomValidators;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Asignacion;
+use App\Instructor;
 
 class AsignacioneController extends Controller
 {
@@ -68,6 +69,10 @@ class AsignacioneController extends Controller
         } else {
 
             Asignacion::create($request->all());
+            $instructor = Instructor::find($request->instructor_id);
+            $instructor->update([
+               'is_selected' => 1
+            ]);
             \DB::table('aula_horario')
                 ->where('horario_id', $request->horario_id)
                 ->where('aula_id', $request->aula_id)

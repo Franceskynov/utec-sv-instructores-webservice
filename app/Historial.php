@@ -15,6 +15,11 @@ class Historial extends Model
         'docente_id'
     ];
 
+    public function getnotaAttribute($value)
+    {
+        return number_format((float)$value, 2, '.', '');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
