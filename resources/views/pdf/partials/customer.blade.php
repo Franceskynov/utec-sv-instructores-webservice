@@ -1,17 +1,5 @@
 <style>
 
-
-    body {
-        position: relative;
-        width: 21cm;
-        height: 29.7cm;
-        margin: 0 auto;
-        color: #555555;
-        background: #FFFFFF;
-        font-size: 12px;
-        font-family: sans-serif;
-    }
-
     html, body {
         font-family:  'HelveticaWorld-Regular', sans-serif;
         color: #222;
@@ -25,9 +13,6 @@
         color: #444;
     }
 
-    #cv {
-        width: 90%;
-    }
 
     section {
         border-top: 1px dotted #dedede;
@@ -40,16 +25,6 @@
 
     section:last-child {
         padding: 20px 0 10px;
-    }
-
-    .sectionTitle {
-        float: left;
-        width: 25%;
-    }
-
-    .sectionContent {
-        float: right;
-        width: 72.5%;
     }
 
     .sectionTitle h1 {
@@ -157,13 +132,13 @@
 
     body {
         position: relative;
-        width: 21cm;
-        height: 29.7cm;
+        width: 99%;
+        height: 21cm;
         margin: 0 auto;
         color: #555555;
         background: #FFFFFF;
-        /*font-family: Arial, sans-serif;*/
-        font-size: 14px;
+        font-family: sans-serif;
+        font-size: 12px;
         font-family: SourceSansPro;
     }
 
@@ -223,7 +198,7 @@
     }
 
     table {
-        width: 90%;
+        width: 100%;
         border-collapse: collapse;
         border-spacing: 0;
         margin-bottom: 20px;
@@ -231,9 +206,9 @@
 
     table th,
     table td {
-        padding: 20px;
+        padding: 10px;
         text-align: center;
-        border-bottom: 1px solid #FFFFFF;
+        /*border-bottom: 1px solid #FFFFFF;*/
     }
 
     table th {
@@ -246,16 +221,12 @@
     }
 
     table td h3{
-        color: #57B223;
+        color: #7d0634;
         font-size: 1.2em;
         font-weight: normal;
         margin: 0 0 0.2em 0;
     }
 
-
-    table tbody tr:last-child td {
-        border: none;
-    }
 
     table tfoot td {
         padding: 10px 20px;
@@ -282,21 +253,22 @@
     }
 
     thead{
-        background-color: #5791E3;
+        background-color: #7d0634;
     }
     th {
         font-weight: bold;
         color: #fff;
         font-size:1.2em;
-        border: 2px solid #4D86D9;
+        border: 2px solid #d20974;
         padding: 10px 15px;
     }
     td {
         color: #444;
-        border-top: 2px solid #F8F8FF;
+        /*border-top: 2px solid #F8F8FF;*/
         padding: 10px 15px;
-        border-right: 2px dotted #E5E5E5;
+        border: 2px dotted #d20974;
+        border-bottom:  2px dotted #d20974;;
     }
-    tr:nth-child(2n) {background: #F8F8FF;}
+    /*tr:nth-child(2n) {background: #F8F8FF;}*/
 
 </style>

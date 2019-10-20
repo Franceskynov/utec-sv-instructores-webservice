@@ -11,6 +11,7 @@ use App\Asignacion;
 use App\Historial;
 use App\Ciclo;
 use App\Materia;
+use App\User;
 class ReportBuilderController extends Controller
 {
 
@@ -25,21 +26,34 @@ class ReportBuilderController extends Controller
     /**
      * @return mixed
      */
+    public function getUserData()
+    {
+        $authtorizedUser = \JWTAuth::user();
+        return User::find($authtorizedUser->id)->first();
+    }
+
+    /**
+     * @return mixed
+     */
     public function docentes(Request $request)
     {
         $materiaId =  $request->input('materia');
         if ($materia = Materia::find($materiaId)) {
             $title = "Reporte de docentes por la materia: $materia->nombre";
-            $data = Docente::with('materias')->whereHas('materias', function($q) use($materiaId) {
+            $docenteData = Docente::with('materias')->whereHas('materias', function($q) use($materiaId) {
                 $q->where('materia_id', '=', $materiaId);
-            })->get();
+            })->paginate(1000);
+
+            $data = [
+              'rows' => $docenteData,
+              'user' => self::getUserData()
+            ];
         } else {
             $title = '';
             $data = [];
         }
 
-        // return \Response::json($data);
-        return PdfBuilder::makePdf($title, 'pdf.teachers', $data, 1);
+        return PdfBuilder::makePdf($title, 'pdf.teachers', $data, 1, 'reporte', true);
     }
 
     /**
@@ -51,13 +65,14 @@ class ReportBuilderController extends Controller
         if ($row =  Instructor::where('carrera', $carrera)->first())
         {
             $title = "Reporte de instructores por la carrera de: $row->carrera";
-            $data = Instructor::where('carrera', $row->carrera)->with('capacitaciones', 'historial')->get();
+            $data = Instructor::where('carrera', $row->carrera)->with('capacitaciones', 'historial')
+                ->paginate(1000);
         } else {
             $title = '';
             $data = [];
         }
 
-        return PdfBuilder::makePdf($title, 'pdf.instructors', $data, 1);
+        return PdfBuilder::makePdf($title, 'pdf.instructors', $data, 1, 'reporte', true);
     }
 
     /**
@@ -80,14 +95,14 @@ class ReportBuilderController extends Controller
                     'aula.edificio',
                     'docente',
                     'docente.especialidades'
-                )->get();
+                )->paginate(1000);
         } else {
             $title = '';
             $data = [];
         }
 
 
-        return PdfBuilder::makePdf($title, 'pdf.issues', $data, 1);
+        return PdfBuilder::makePdf($title, 'pdf.issues', $data, 1, 'reporte', true);
     }
 
     /**

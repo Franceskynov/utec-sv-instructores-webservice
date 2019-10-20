@@ -13,7 +13,10 @@
 <main>
     <h3>{{ $title }}</h3>
     <h4>
-        <b>Instructores encontrados: {{ count($data)  }}</b>
+        <b>Instructores encontrados: </b> {{ count($data)  }} ,
+        <b>Con capacitaci&oacute;n: </b>
+        <b>Sin capacitaci&oacute;n: </b>
+
     </h4>
 
     <br>
@@ -35,9 +38,14 @@
                 <td>{{ $instructor->cum }}</td>
                 <td>{{ $instructor->carrera }}</td>
                 <td>{{ $instructor->carnet }}</td>
-                <td>@foreach ($instructor->capacitaciones as $object)
-                        {{ $object->nombre . ', ' }}
-                    @endforeach
+                <td>
+                    @if(count($instructor->capacitaciones) > 0)
+                        @foreach ($instructor->capacitaciones as $object)
+                            {{ $object->nombre . ', ' }}
+                        @endforeach
+                    @else
+                        <b>No tiene capacitaciones</b>
+                    @endif
                 </td>
             </tr>
         @empty
