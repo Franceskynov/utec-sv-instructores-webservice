@@ -9,6 +9,7 @@
         color: #555555;
         background: #FFFFFF;
         font-size: 12px;
+        font-family: sans-serif;
     }
 
     html, body {

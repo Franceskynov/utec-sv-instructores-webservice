@@ -47,6 +47,21 @@ class InstructorController extends Controller
         return \Response::json($this->response, $this->status);
     }
 
+    public function carreras()
+    {
+        $rows = Instructor::distinct('carrera')->get('carrera');
+        if ($rows)
+        {
+            $this->status = 200;
+            $this->response = $this->successResponse($rows);
+        } else {
+            $this->status = 404;
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response, $this->status);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -159,7 +174,7 @@ class InstructorController extends Controller
                 'instructoria.materia',
                 'instructoria.aula',
                 'instructoria.docente',
-                'capacitaciones');
+                'capacitaciones', 'asignaciones');
             $this->status = 200;
             $this->response = $this->successResponse($data);
 

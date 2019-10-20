@@ -75,6 +75,15 @@ class Instructor extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function asignaciones()
+    {
+        return $this
+            ->hasMany('App\Asignacion');
+    }
+
+    /**
      * @param $id
      * @param $nota
      * @param string $mode

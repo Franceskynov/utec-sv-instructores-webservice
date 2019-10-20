@@ -29,7 +29,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        if ($materias =  Materia::with('facultades')->get()) {
+        if ($materias =  Materia::with('facultades', 'docentes')->get()) {
 
             $this->response = $this->successResponse($materias);
 

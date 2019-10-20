@@ -56,11 +56,7 @@ Route::get('/reporte/docentes', 'Reports\ReportBuilderController@docentes');
 Route::get('/reporte/instructores', 'Reports\ReportBuilderController@instructores');
 Route::get('/reporte/asignacion', 'Reports\ReportBuilderController@asignacion');
 Route::get('/reporte/historial', 'Reports\ReportBuilderController@historial');
-
-
-// teachers
-// instructors
-// issues
+Route::get('/carrera', 'Api\InstructorController@carreras');
 
 Route::fallback(function(){
     return \Response::json([

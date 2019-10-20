@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{{ $title }}</title>
     <meta name="viewport" content="width=device-width"/>
     <meta name="description" content="{{ $title }}"/>
@@ -10,10 +11,10 @@
 <body>
 @include('pdf.partials.header')
 <main>
-    <h1>Reporte de Docentes</h1>
+    <h2>{{ $title }}</h2>
 
    <h3>
-       <b>Docentes registrados: {{ count($data)  }}</b>
+       <b>Docentes encontrados: {{ count($data)  }}</b>
    </h3>
 
     <br>
@@ -23,7 +24,7 @@
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
-            <th>Materia</th>
+            <th>Materia(s)</th>
         </tr>
         </thead>
         <tbody>

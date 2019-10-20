@@ -9,43 +9,77 @@ use App\Docente;
 use App\Instructor;
 use App\Asignacion;
 use App\Historial;
+use App\Ciclo;
+use App\Materia;
 class ReportBuilderController extends Controller
 {
 
     /**
      * @return mixed
      */
-    public function docentes()
+    public function docentes(Request $request)
     {
-        $data = Docente::get();
-        return PdfBuilder::makePdf('Reporte de docentes', 'pdf.teachers', $data, 1);
+        $materiaId =  $request->input('materia');
+        if ($materia = Materia::find($materiaId)) {
+            $title = "Reporte de docentes por la materia: $materia->nombre";
+            $data = Docente::with('materias')->whereHas('materias', function($q) use($materiaId) {
+                $q->where('materia_id', '=', $materiaId);
+            })->get();
+        } else {
+            $title = '';
+            $data = [];
+        }
+
+        // return \Response::json($data);
+        return PdfBuilder::makePdf($title, 'pdf.teachers', $data, 1);
     }
 
     /**
      * @return mixed
      */
-    public function instructores()
+    public function instructores(Request $request)
     {
-        $data = Instructor::with('capacitaciones')->get();
-        return PdfBuilder::makePdf('Reporte de instructores', 'pdf.instructors', $data, 1);
+        $carrera = $request->input('carrera');
+        if ($row =  Instructor::where('carrera', $carrera)->first())
+        {
+            $title = "Reporte de instructores por la carrera de: $row->carrera";
+            $data = Instructor::where('carrera', $row->carrera)->with('capacitaciones', 'historial')->get();
+        } else {
+            $title = '';
+            $data = [];
+        }
+
+        return PdfBuilder::makePdf($title, 'pdf.instructors', $data, 1);
     }
 
     /**
      * @return mixed
      */
-    public function asignacion()
+    public function asignacion(Request $request)
     {
-        $data = Asignacion::with(
-            'ciclo',
-                     'horario',
-                     'instructor',
-                     'instructor.historial',
-                     'materia',
-                     'aula',
-                     'aula.edificio',
-                     'docente',
-                     'docente.especialidades')->get();
-        return PdfBuilder::makePdf('Reporte de instructorias', 'pdf.issues', $data, 1);
+        $cicloId = $request->input('ciclo');
+        if ($ciclo = Ciclo::find($cicloId))
+        {
+            $title = " Reporte de instructorias del ciclo: $ciclo->nombre " ;
+            $data = Asignacion::where('ciclo_id', $cicloId)
+                ->with(
+                    'ciclo',
+                    'horario',
+                    'instructor',
+                    'instructor.historial',
+                    'materia',
+                    'aula',
+                    'aula.edificio',
+                    'docente',
+                    'docente.especialidades'
+                )->get();
+        } else {
+            $title = '';
+            $data = [];
+        }
+
+
+        return PdfBuilder::makePdf($title, 'pdf.issues', $data, 1);
     }
 
     /**
