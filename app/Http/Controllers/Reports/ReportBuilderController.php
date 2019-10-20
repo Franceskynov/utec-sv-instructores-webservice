@@ -14,6 +14,14 @@ use App\Materia;
 class ReportBuilderController extends Controller
 {
 
+    public function __construct()
+    {
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
+
     /**
      * @return mixed
      */
