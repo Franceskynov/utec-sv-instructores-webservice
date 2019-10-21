@@ -13,10 +13,7 @@
 <main>
     <h3>{{ $title }}</h3>
     <h4>
-        <b>Instructores encontrados: </b> {{ count($data)  }} ,
-        <b>Con capacitaci&oacute;n: </b>
-        <b>Sin capacitaci&oacute;n: </b>
-
+        <b>Instructores encontrados: </b> {{ count($data['rows'])  }}, {{ $data['subtitle'] }}
     </h4>
 
     <br>
@@ -31,7 +28,7 @@
         </tr>
         </thead>
         <tbody>
-        @forelse($data as $instructor)
+        @forelse($data['rows'] as $instructor)
 
             <tr>
                 <td>{{ $instructor->nombre }}</td>
@@ -44,7 +41,7 @@
                             {{ $object->nombre . ', ' }}
                         @endforeach
                     @else
-                        <b>No tiene capacitaciones</b>
+                        <b style="color: red;">No tiene capacitaciones</b>
                     @endif
                 </td>
             </tr>

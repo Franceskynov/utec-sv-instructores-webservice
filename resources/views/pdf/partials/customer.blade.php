@@ -1,8 +1,7 @@
 <style>
 
-    html, body {
-        font-family:  'HelveticaWorld-Regular', sans-serif;
-        color: #222;
+    * {
+        font-family:  'sans-serif';
     }
 
     .clear {clear: both; }

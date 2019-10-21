@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Utils\Constants;
+use App\Utils\DataManipulation;
 
 class Handler extends ExceptionHandler
 {

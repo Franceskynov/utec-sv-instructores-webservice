@@ -75,4 +75,18 @@ class DataManipulation
 
         return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
     }
+
+    /**
+     * @param $text
+     * @return false|string
+     */
+    public static function truncate($text) {
+
+        $chars = 15;
+        $text = $text.'';
+        $text = substr($text,0, $chars);
+        $text = substr($text,0, strrpos($text,' '));
+        $text = $text.'...';
+        return $text;
+    }
 }

@@ -62,11 +62,28 @@ class ReportBuilderController extends Controller
     public function instructores(Request $request)
     {
         $carrera = $request->input('carrera');
-        if ($row =  Instructor::where('carrera', $carrera)->first())
+        $capacitaciones = $request->input('capacitaciones');
+        $row =  Instructor::where('carrera', $carrera)->first();
+        if ($row && $capacitaciones == 'todas')
         {
             $title = "Reporte de instructores por la carrera de: $row->carrera";
-            $data = Instructor::where('carrera', $row->carrera)->with('capacitaciones', 'historial')
-                ->paginate(1000);
+            $data = [
+                'rows' => Instructor::where('carrera', $row->carrera)
+                    ->with('capacitaciones', 'historial')
+                    ->has('capacitaciones', '>=', 3)
+                    ->paginate(1000),
+                'subtitle' => 'Intructores con capacitaciones'
+            ];
+        } else if ($capacitaciones == 'ninguna') {
+
+            $title = "Reporte de instructores por la carrera de: $row->carrera";
+            $data = [
+              'rows' => Instructor::where('carrera', $row->carrera)
+                  ->with('capacitaciones', 'historial')
+                  ->has('capacitaciones', '=', 0)
+                  ->paginate(1000),
+              'subtitle' => 'Instructores sin capacitacion'
+            ];
         } else {
             $title = '';
             $data = [];
