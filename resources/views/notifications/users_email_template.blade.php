@@ -59,8 +59,8 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <div style="height: 40px; line-height: 40px; font-size: 38px;">&nbsp;</div>
-                                    <a href="#" target="_blank" style="display: block; max-width: 128px;">
-                                        <img src="https://biblioteca.utec.edu.sv/entorno/public/site/images/logo_utec.png" alt="img" width="200px" border="0" style="display: block; width: 128px;" />
+                                    <a href="#" target="_blank" style="display: block; max-width: 300px;">
+                                        <img src="https://biblioteca.utec.edu.sv/entorno/public/site/images/logo_utec.png" alt="img" border="0" style="display: block; width: 300px;" />
                                     </a>
                                     <div class="top_pad2" style="height: 70px; line-height: 70px; font-size: 68px;">&nbsp;</div>
                                 </td>

@@ -9,6 +9,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Instructor;
 use App\Docente;
 use App\Coordinator;
+use App\Setting;
+
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -47,6 +49,9 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
+    /*
+     *
+     */
     public function getCreatedAtAttribute($value)
     {
         return \Carbon\Carbon::parse($value)->format('d/m/Y H:i');
@@ -79,7 +84,10 @@ class User extends Authenticatable implements JWTSubject
         $result = '';
         switch ($param) {
             case 'Administrador':
-                $result = Coordinator::where('user_id', $id)->first();
+                $result = [
+                    'settings' => Setting::with('ciclo')->find(1),
+                    'userData' => Coordinator::where('user_id', $id)->first()
+                ];
                 break;
             case 'Docente':
                 $result = Docente::where('user_id', $id)->first();

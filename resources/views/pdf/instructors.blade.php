@@ -24,6 +24,7 @@
             <th>Cum</th>
             <th>Carrera</th>
             <th>Carnet</th>
+            <th>Es becado</th>
             <th>Capacitaciones</th>
         </tr>
         </thead>
@@ -35,6 +36,14 @@
                 <td>{{ $instructor->cum }}</td>
                 <td>{{ $instructor->carrera }}</td>
                 <td>{{ $instructor->carnet }}</td>
+                <td>
+                    @if($instructor->is_scholarshipped == '1')
+                        <span style="color: green">Si</span>
+                    @else
+                        <span>No</span>
+                    @endif
+
+                </td>
                 <td>
                     @if(count($instructor->capacitaciones) > 0)
                         @foreach ($instructor->capacitaciones as $object)

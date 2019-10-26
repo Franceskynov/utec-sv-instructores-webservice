@@ -23,7 +23,8 @@ class InstructoresTableSeeder extends Seeder
             'cum'     => '7.2',
             'user_id' => 8,
             'score'   => 150,
-            'is_selected' => true
+            'is_selected' => true,
+            'is_scholarshipped' => true
         ]);
 
         $instructorA->notas()->saveMany([

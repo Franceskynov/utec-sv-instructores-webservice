@@ -24,6 +24,7 @@ class Instructor extends Model
         'email_personal',
         'score',
         'is_selected',
+        'is_scholarshipped',
         'is_enabled'
     ];
 

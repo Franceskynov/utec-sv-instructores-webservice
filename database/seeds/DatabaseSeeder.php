@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
          $this->call([
              EdificiosTableSeeder::class,
              CicloTableSeeder::class,
+             SettingTableSeeder::class,
              HorariosTableSeeder::class,
              AulasTableSeeder::class,
              MateriaTableSeeder::class,

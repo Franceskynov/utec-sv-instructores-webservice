@@ -68,4 +68,8 @@ class Constants
 
     public const EMAIL_ACCOUNT_RECOVER_HEADER_MESSAGE = 'Recuperacion de su cuenta';
     public const EMAIL_ACCOUNT_RECOVER_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue por que usted solicito un cambio de clave. Si usted no lo ha solicitado ignore este mensaje';
+
+    public const EMAIL_ASIGNATION_HEADER_MESSAGE = 'Asignacion de instructoria por parte de el coordinador';
+    public const EMAIL_ASIGNATION_MODIFY_HEADER_MESSAGE = 'Modificacion de instructoria por parte de el coordinador';
+    public const EMAIL_ASIGNATION_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue por que el coordinador de los instructores selecciono los diferentes parametros para una instructoria';
 }

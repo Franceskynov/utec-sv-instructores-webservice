@@ -59,8 +59,8 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <div style="height: 40px; line-height: 40px; font-size: 38px;">&nbsp;</div>
-                                    <a href="#" target="_blank" style="display: block; max-width: 128px;">
-                                        <img src="https://biblioteca.utec.edu.sv/entorno/public/site/images/logo_utec.png" alt="img" width="200px" border="0" style="display: block; width: 128px;" />
+                                    <a href="#" target="_blank" style="display: block; max-width: 300px;">
+                                        <img src="https://biblioteca.utec.edu.sv/entorno/public/site/images/logo_utec.png" alt="img" border="0" style="display: block; width: 300px;" />
                                     </a>
                                     <div class="top_pad2" style="height: 70px; line-height: 70px; font-size: 68px;">&nbsp;</div>
                                 </td>
@@ -71,7 +71,7 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <font class="mob_title1" face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 30px; line-height: 30px; font-weight: 300; letter-spacing: -1.5px;">
-                                        <span class="mob_title1" style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 30px; line-height: 55px; font-weight: 300; letter-spacing: -1.5px;"> {{ $headerMessage }} </span>
+                                        <span class="mob_title1" style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 30px; line-height: 55px; font-weight: 300; letter-spacing: -1.5px;"> {{ $data['headerMessage'] }} </span>
                                     </font>
                                     <div class="top_pad3" style="height: 30px; line-height: 30px; font-size: 28px;">&nbsp;</div>
                                 </td>
@@ -83,52 +83,46 @@
                                 <td width="15" style="width: 15px; max-width: 15px; min-width: 15px;">&nbsp;</td>
                                 <td align="center" valign="top">
                                     <div style="height: 38px; line-height: 38px; font-size: 36px;">&nbsp;</div>
-                                    <!-- <a href="#" target="_blank" style="display: block; max-width: 100px;">
-                                       <img src="img/face.jpg" alt="img" width="100" border="0" style="display: block; width: 100px;" />
-                                    </a> -->
-                                    <div style="height: 15px; line-height: 15px; font-size: 13px;">&nbsp;</div>
-                                    <font face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 19px; line-height: 25px; font-weight: 600; text-decoration: none;">
-                                        <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 19px; line-height: 25px; font-weight: 600; text-decoration: none;">
-{{--                                        algo--}}
-                                        </span>
-                                    </font>
+
                                     <div style="height: 2px; line-height: 2px; font-size: 1px;">&nbsp;</div>
                                     <font face="'Source Sans Pro', sans-serif" color="#5E5E5E" style="font-size: 19px; line-height: 22px; text-decoration: none;">
                                         <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #5E5E5E; font-size: 19px; line-height: 22px; text-decoration: none;">
-                                            Ciclo:
+                                            Ciclo: {{ $data['ciclo'] }}
                                         </span>
                                     </font>
                                     <br>
                                     <font face="'Source Sans Pro', sans-serif" color="#5E5E5E" style="font-size: 19px; line-height: 22px; text-decoration: none;">
                                         <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #5E5E5E; font-size: 19px; line-height: 22px; text-decoration: none;">
-                                            Aula:
+                                            Aula: {{ $data['aula']  }}
                                         </span>
                                     </font>
                                     <br>
                                     <font face="'Source Sans Pro', sans-serif" color="#5E5E5E" style="font-size: 19px; line-height: 22px; text-decoration: none;">
                                         <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #5E5E5E; font-size: 19px; line-height: 22px; text-decoration: none;">
-                                            Horario:
+                                            Horario: {{ $data['horario'] }}
                                         </span>
                                     </font>
                                     <br>
                                     <font face="'Source Sans Pro', sans-serif" color="#5E5E5E" style="font-size: 19px; line-height: 22px; text-decoration: none;">
                                         <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #5E5E5E; font-size: 19px; line-height: 22px; text-decoration: none;">
-                                            Instructor:
+                                            Instructor: {{ $data['instructor'] }}
                                         </span>
                                     </font>
                                     <br>
                                     <font face="'Source Sans Pro', sans-serif" color="#5E5E5E" style="font-size: 19px; line-height: 22px; text-decoration: none;">
                                         <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #5E5E5E; font-size: 19px; line-height: 22px; text-decoration: none;">
-                                            Materia:
+                                            Materia: {{ $data['materia'] }}
                                         </span>
                                     </font>
 
                                     <br>
                                     <font face="'Source Sans Pro', sans-serif" color="#5E5E5E" style="font-size: 19px; line-height: 22px; text-decoration: none;">
                                         <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #5E5E5E; font-size: 19px; line-height: 22px; text-decoration: none;">
-                                            Docente:
+                                            Docente: {{ $data['docente']  }}
                                         </span>
                                     </font>
+                                    <br>
+                                    <div style="height: 38px; line-height: 38px; font-size: 36px;">&nbsp;</div>
 
                                 <td width="15" style="width: 15px; max-width: 15px; min-width: 15px;">&nbsp;</td>
 
@@ -153,7 +147,7 @@
                                                 </font>
                                                 <div style="height: 4px; line-height: 4px; font-size: 2px;">&nbsp;</div>
                                                 <font face="'Source Sans Pro', sans-serif" color="#868686" style="font-size: 17px; line-height: 20px;">
-                                                    <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;"> {{ $footerMessage }} </span>
+                                                    <span style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #868686; font-size: 17px; line-height: 20px;"> {{ $data['footerMessage'] }} </span>
                                                 </font>
                                                 <div style="height: 3px; line-height: 3px; font-size: 1px;">&nbsp;</div>
                                                 <font face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 17px; line-height: 20px;">

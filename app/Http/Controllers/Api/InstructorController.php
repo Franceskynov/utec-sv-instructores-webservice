@@ -72,6 +72,21 @@ class InstructorController extends Controller
         //
     }
 
+    public function checkInstructorByCarnet(Request $request)
+    {
+        $carnet = $request->input('carnet');
+        if ($row = Instructor::where('carnet', $carnet)->first())
+        {
+            $this->status = 200;
+            $this->response = $this->successResponse($row);
+        } else {
+            $this->status = 404;
+            $this->response = $this->invalidResponse;
+        }
+
+        return \Response::json($this->response, $this->status);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

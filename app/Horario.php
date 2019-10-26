@@ -18,6 +18,7 @@ class Horario extends Model
         'nombre_dia',
         'inicio',
         'fin',
+        'ciclo_id',
         'is_enabled'
     ];
 
@@ -39,9 +40,39 @@ class Horario extends Model
         return \Carbon\Carbon::parse($value)->format('H:i');
     }
 
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d/m/Y H:i');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d/m/Y H:i');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function aulas()
     {
         return $this
             ->belongsToMany('App\Aula');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ciclo()
+    {
+        return $this
+            ->belongsTo('App\Ciclo', 'ciclo_id', 'id');
     }
 }

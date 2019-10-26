@@ -30,7 +30,18 @@ class CustomValidators
         'dia'        => 'required',
         'nombre_dia' => 'required',
         'inicio'     => 'required',
-        'fin'        => 'required'
+        'fin'        => 'required',
+        'ciclo_id'   => 'required'
+    ];
+
+    /**
+     * @var array
+     */
+    static $settingRules = [
+        'ciclo_id'                 => 'required',
+        'horas_sociales_a_asignar' => 'required',
+        'docente_email_prefix'     => 'required',
+        'instructor_email_prefix'  => 'required'
     ];
 
     /**

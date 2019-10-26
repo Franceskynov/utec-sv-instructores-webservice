@@ -13,7 +13,7 @@ class AsignacionTableSeeder extends Seeder
     {
         Asignacion::create([
             'nombre' => 'rodriguez-melvin-2504802014-3c4f5b92',
-            'ciclo_id' => 2,
+            'ciclo_id' => 1,
             'horario_id' => 1,
             'aula_id' => 1,
             'instructor_id' => 1,

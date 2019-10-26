@@ -24,6 +24,7 @@ class CreateInstructoresTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('is_selected')->default(false);
             $table->boolean('is_enabled')->default(true);
+            $table->boolean('is_scholarshipped')->default(false);
             $table->string('telefono')->nullable();
             $table->string('email_personal')->nullable();
             $table->integer('score')->default(0);

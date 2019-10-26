@@ -25,6 +25,7 @@
             <th>Materia</th>
             <th>Aula</th>
             <th>Docente</th>
+            <th>Estado</th>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +38,17 @@
                 <td> {{ $asignacion->materia->nombre }} </td>
                 <td> {{ $asignacion->aula->codigo }} </td>
                 <td> {{ $asignacion->docente->nombre }} </td>
+                <td>
+                    @if($asignacion->is_enabled == 1)
+                        <span style="color:green;">
+                            En curso
+                        </span>
+                    @else
+                        <span style="color: red">
+                            Terminado
+                        </span>
+                    @endif
+                </td>
             </tr>
         @empty
             No hay registros que mostrar.

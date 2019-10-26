@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Asignacion;
 use App\Instructor;
+use App\Docente;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AsignacioneMailable;
 
 class AsignacioneController extends Controller
 {
@@ -68,8 +71,9 @@ class AsignacioneController extends Controller
 
         } else {
 
-            Asignacion::create($request->all());
+            $created = Asignacion::create($request->all());
             $instructor = Instructor::find($request->instructor_id);
+            $docente = Docente::find($request->docente_id);
             $instructor->update([
                'is_selected' => 1
             ]);
@@ -80,6 +84,13 @@ class AsignacioneController extends Controller
                 ->update([
                     'is_used' => 1
                 ]);
+
+            $id = $created->id;
+            $instructorEmail = $instructor->carnet . '@mail.utec.edu.sv';
+            $docenteEmail = $docente->email;
+            $emails = [$docenteEmail, $instructorEmail];
+            Mail::to($emails)
+                ->send(new AsignacioneMailable($id, 'Asignacion de instructoria', 'create'));
 
             $this->response = $this->successCreation;
         }
@@ -139,6 +150,26 @@ class AsignacioneController extends Controller
 
                 if($row->update($request->all()))
                 {
+                    $emails = [];
+                    if ($row->docente_id == $request->docente_id)
+                    {
+                        $docente = Docente::find($request->docente_id);
+                        $emails[] = $docente->email;
+                    } else {
+                        $docenteStored = Docente::find($row->docente_id);
+
+
+                        $docente = Docente::find($request->docente_id);
+                        $emails = [$docenteStored->email, $docente->email];
+                    }
+
+                    $instructor = Instructor::find($request->instructor_id);
+
+                    $instructorEmail = $instructor->carnet . '@mail.utec.edu.sv';
+
+                    $emails[] = $instructorEmail;
+                    Mail::to($emails)
+                        ->send(new AsignacioneMailable($id, 'Modificacion de instructoria', 'modify'));
                     $this->response = $this->successResponse($row);
 
                 } else {

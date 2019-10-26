@@ -41,12 +41,14 @@ Route::resource('/capacitacion', 'Api\TrainingController');
 Route::resource('/instructor/capacitacion', 'Api\InstructorTrainingController');
 Route::resource('/docente/materia', 'Api\DocenteMateriaController');
 Route::resource('/asignacion/docente', 'Api\DocenteAsignacionController');
+Route::resource('/sistema/preferencia', 'Api\SettingController');
 
 Route::get('/dashboard', 'Api\DashboardController@index');
 
 Route::post('/login', 'Security\AuthController@login');
 Route::post('/logout', 'Security\AuthController@logout');
 Route::get('/refresh', 'Security\AuthController@refresh');
+Route::get('/checkInstructorByCarnet', 'Api\InstructorController@checkInstructorByCarnet');
 Route::post('/credentials/checkUserByEmail', 'Security\CredentialsController@checkUserByEmail');
 Route::post('/credentials/activateUser', 'Security\CredentialsController@activateUser');
 Route::post('/credentials/accountRecover', 'Security\CredentialsController@accountRecover');

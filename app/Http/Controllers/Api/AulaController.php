@@ -32,7 +32,7 @@ class AulaController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['Administrador']);
-        if ( $aulas =  Aula::with('edificio', 'horarios')->get()) {
+        if ( $aulas =  Aula::with('edificio', 'horarios', 'horarios.ciclo')->get()) {
 
             $this->response = $this->successResponse($aulas);
 
