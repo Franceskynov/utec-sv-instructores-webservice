@@ -80,7 +80,7 @@ class InstructorController extends Controller
             $this->status = 200;
             $this->response = $this->successResponse($row);
         } else {
-            $this->status = 404;
+            $this->status = 200;
             $this->response = $this->invalidResponse;
         }
 
@@ -138,7 +138,8 @@ class InstructorController extends Controller
                     'cum'     => $request->cum,
                     'telefono' => $request->telefono,
                     'email_personal' => $request->emailPersonal,
-                    'user_id' => $id
+                    'user_id' => $id,
+                    'is_scholarshipped' => $request->is_scholarshipped
                 ]);
 
                 $id = $instructor->id;
