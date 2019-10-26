@@ -24,7 +24,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        if ( $row =  Setting::first()) {
+        if ( $row =  Setting::with('ciclo')->first()) {
 
             $this->response = $this->successResponse($row);
 
