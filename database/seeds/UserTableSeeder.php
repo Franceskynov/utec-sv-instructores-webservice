@@ -103,6 +103,7 @@ class UserTableSeeder extends Seeder
             'password'   => bcrypt('secret'),
             'rol_id'     => 3,
             'is_admin'   => false,
+            'is_admin'   => false,
             'is_enabled' => true,
             'is_activated' => true
         ]);

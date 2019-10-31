@@ -168,7 +168,7 @@ class CustomValidators
         'email'          => 'required|unique:users',
         // 'emailPersonal'  => 'required',
         'username'       => 'required|unique:users',
-        'is_scholarshipped' => 'required',
+        // 'is_scholarshipped' => 'required',
     ];
 
     static $asignacionRules = [
