@@ -17,11 +17,25 @@ class CreateInstructorTrainingTable extends Migration
             $table->increments('id');
             $table->string('estado');
             $table->string('nota');
-            $table->integer('instructor_id')->unsigned();
-            $table->foreign('instructor_id')->references('id')->on('instructores');
 
-            $table->integer('training_id')->unsigned();
-            $table->foreign('training_id')->references('id')->on('trainings');
+            $table->integer('instructor_id')
+                ->unsigned();
+            $table->foreign('instructor_id')
+                ->references('id')
+                ->on('instructores');
+
+            $table->integer('training_id')
+                ->unsigned();
+            $table->foreign('training_id')
+                ->references('id')
+                ->on('trainings');
+
+            $table->integer('ciclo_id')
+                ->unsigned();
+            $table->foreign('ciclo_id')
+                ->references('id')
+                ->on('ciclos');
+            $table->string('ciclo_nombre');
             $table->timestamps();
         });
     }

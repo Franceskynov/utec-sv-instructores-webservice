@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Instructor;
 use App\Training;
+use App\Ciclo;
 class InstructorTrainingController extends Controller
 {
     /**
@@ -56,6 +57,8 @@ class InstructorTrainingController extends Controller
             if ($row = Instructor::find($request->instructorId))
             {
                 $nota = (float) $request->nota;
+                $cicloId = $request->cicloId;
+                $cicloNombre = Ciclo::find($cicloId)->nombre;
                 $trainingId = $request->trainingId;
 
                 if ($row->capacitaciones->contains($trainingId))
@@ -64,7 +67,7 @@ class InstructorTrainingController extends Controller
 
                 } else {
 
-                    $row->capacitaciones()->syncWithoutDetaching(Training::build($trainingId, $nota));
+                    $row->capacitaciones()->syncWithoutDetaching(Training::build($trainingId, $nota, $cicloId, $cicloNombre));
                     $this->response = $this->successCreation;
                 }
             } else {

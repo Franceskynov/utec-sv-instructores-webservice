@@ -56,14 +56,16 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
     public function capacitaciones()
     {
         return $this
             ->belongsToMany('App\Training')
             ->withPivot('estado')
-            ->withPivot('nota');
+            ->withPivot('nota')
+            ->withPivot('ciclo_nombre')
+            ->withPivot('ciclo_id');
     }
 
     /**

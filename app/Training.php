@@ -15,6 +15,9 @@ class Training extends Model
         'is_enabled'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function docente()
     {
         return $this
@@ -41,12 +44,21 @@ class Training extends Model
         return ($nota >= 7) ? 'Aprobado' : 'Desaprobado';
     }
 
-    public static function build($trainingId, $nota)
+    /**
+     * @param $trainingId
+     * @param $nota
+     * @param $cicloId
+     * @param $cicloNombre
+     * @return array
+     */
+    public static function build($trainingId, $nota, $cicloId, $cicloNombre)
     {
         return [
             $trainingId => [
                 'estado' => self::approbateNota($nota),
-                'nota'   => self::validateNota($nota)
+                'nota'   => self::validateNota($nota),
+                'ciclo_id' => $cicloId,
+                'ciclo_nombre' => $cicloNombre
             ]
         ];
     }

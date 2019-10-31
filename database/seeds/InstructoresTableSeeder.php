@@ -58,15 +58,21 @@ class InstructoresTableSeeder extends Seeder
         $instructorA->capacitaciones()->sync([
             1 => [
                 'estado' => 'Aprobado',
-                'nota'   => '8.9'
+                'nota'   => '8.9',
+                'ciclo_id' => 1,
+                'ciclo_nombre' => '01-2019'
             ],
             2 => [
                 'estado' => 'Aprobado',
-                'nota'   => '7.9'
+                'nota'   => '7.9',
+                'ciclo_id' => 1,
+                'ciclo_nombre' => '01-2019'
             ],
             3 => [
                 'estado' => 'Aprobado',
-                'nota'   => '8.0'
+                'nota'   => '8.0',
+                'ciclo_id' => 1,
+                'ciclo_nombre' => '01-2019'
             ]
         ]);
 

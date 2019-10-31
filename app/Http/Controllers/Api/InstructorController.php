@@ -190,7 +190,8 @@ class InstructorController extends Controller
                 'instructoria.materia',
                 'instructoria.aula',
                 'instructoria.docente',
-                'capacitaciones', 'asignaciones');
+                'capacitaciones',
+                'asignaciones');
             $this->status = 200;
             $this->response = $this->successResponse($data);
 
