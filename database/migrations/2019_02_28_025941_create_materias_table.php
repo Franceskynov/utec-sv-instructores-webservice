@@ -18,6 +18,11 @@ class CreateMateriasTable extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->boolean('is_enabled')->default(true);
+            $table->integer('school_id')
+                ->unsigned();
+            $table->foreign('school_id')
+                ->references('id')
+                ->on('schools');
             $table->timestamps();
         });
     }

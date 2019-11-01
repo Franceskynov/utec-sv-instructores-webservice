@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
              SettingTableSeeder::class,
              HorariosTableSeeder::class,
              AulasTableSeeder::class,
+             SchoolsTableSeeder::class,
              MateriaTableSeeder::class,
              FacultadesTableSeeder::class,
              EspecialidadesTableSeeder::class,
