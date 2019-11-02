@@ -15,7 +15,8 @@ class Materia extends Model
     protected $fillable = [
         'nombre',
         'descripcion',
-        'is_enabled'
+        'is_enabled',
+        'school_id'
     ];
 
     /**

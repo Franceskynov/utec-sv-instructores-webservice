@@ -70,6 +70,12 @@ class CustomValidators
     static $materiaRules = [
         'nombre'      => 'required',
         'descripcion' => 'required',
+        'school_id' => 'required',
+    ];
+
+    static $schoolRules = [
+        'name'      => 'required',
+        'description' => 'required',
     ];
 
     /**

@@ -31,6 +31,7 @@ Route::resource('/user', 'Api\UserController');
 Route::resource('/docente', 'Api\DocenteController');
 Route::resource('/instructor', 'Api\InstructorController');
 Route::resource('/facultad', 'Api\FacultadController');
+Route::resource('/school', 'Api\SchoolController');
 Route::resource('/materia', 'Api\MateriaController');
 Route::resource('/historial', 'Api\HistorialController');
 Route::resource('/ciclo', 'Api\CicloController');
