@@ -11,7 +11,7 @@
 <body>
 @include('pdf.partials.header')
 <main>
-    <h1> {{ $title }} </h1>
+    <h2> {{ $title }} </h2>
     <h3>
         <b>Instructorias asignadas: {{ count($data)  }}</b>
     </h3>
@@ -26,6 +26,7 @@
             <th>Aula</th>
             <th>Docente</th>
             <th>Estado</th>
+            <th>Nota prom.</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,9 @@
                             Terminado
                         </span>
                     @endif
+                </td>
+                <td>
+                    0.0
                 </td>
             </tr>
         @empty

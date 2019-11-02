@@ -10,6 +10,15 @@ use App\Utils\CustomValidators;
 
 class SchoolController extends Controller
 {
+
+    public function __construct()
+    {
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -12,6 +12,7 @@ use App\Historial;
 use App\Ciclo;
 use App\Materia;
 use App\User;
+use App\School;
 class ReportBuilderController extends Controller
 {
 
@@ -37,11 +38,12 @@ class ReportBuilderController extends Controller
      */
     public function docentes(Request $request)
     {
-        $materiaId =  $request->input('materia');
-        if ($materia = Materia::find($materiaId)) {
-            $title = "Reporte de docentes por la materia: $materia->nombre";
-            $docenteData = Docente::with('materias')->whereHas('materias', function($q) use($materiaId) {
-                $q->where('materia_id', '=', $materiaId);
+        $schoolId =  $request->input('school');
+        $school = School::find($schoolId);
+        if ($school) {
+            $title = "Reporte de docentes por la escuela de: $school->name";
+            $docenteData = Docente::with('materias')->whereHas('materias', function($q) use($schoolId) {
+                $q->where('school_id', '=', $schoolId);
             })->paginate(1000);
 
             $data = [
@@ -98,11 +100,13 @@ class ReportBuilderController extends Controller
     public function asignacion(Request $request)
     {
         $cicloId = $request->input('ciclo');
-        if ($ciclo = Ciclo::find($cicloId))
+        $schoolId = $request->input('escuela');
+        $ciclo = Ciclo::find($cicloId);
+        $school = School::find($schoolId);
+        if ($ciclo && $school)
         {
-            $title = " Reporte de instructorias del ciclo: $ciclo->nombre " ;
-            $data = Asignacion::where('ciclo_id', $cicloId)
-                ->with(
+            $title = " Reporte de instructorias del ciclo: $ciclo->nombre y de la escuela $school->name" ;
+            $data = Asignacion::with(
                     'ciclo',
                     'horario',
                     'instructor',
@@ -112,7 +116,11 @@ class ReportBuilderController extends Controller
                     'aula.edificio',
                     'docente',
                     'docente.especialidades'
-                )->paginate(1000);
+                )
+                ->where('ciclo_id', $cicloId)
+                ->whereHas('materia', function($q) use($schoolId) {
+                    $q->where('school_id', '=', $schoolId);
+        })->paginate(1000);
         } else {
             $title = '';
             $data = [];
