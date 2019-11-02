@@ -14,13 +14,13 @@ use App\Utils\CustomValidators;
 use App\Materia;
 class MateriaController extends Controller
 {
-    public function __construct()
-    {
-        if (env('JWT_LOGIN'))
-        {
-            $this->middleware('jwt.auth');
-        }
-    }
+//    public function __construct()
+//    {
+//        if (env('JWT_LOGIN'))
+//        {
+//            $this->middleware('jwt.auth');
+//        }
+//    }
 
     /**
      * Display a listing of the resource.
@@ -29,7 +29,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        if ($materias =  Materia::with('facultades', 'docentes')->get()) {
+        if ($materias =  Materia::with('facultades', 'docentes', 'escuela')->get()) {
 
             $this->response = $this->successResponse($materias);
 

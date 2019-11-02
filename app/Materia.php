@@ -45,4 +45,13 @@ class Materia extends Model
         return $this
             ->belongsToMany('App\Docente');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function escuela()
+    {
+        return $this
+            ->belongsTo('App\School', 'school_id', 'id');
+    }
 }
