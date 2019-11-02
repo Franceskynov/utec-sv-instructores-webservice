@@ -65,12 +65,14 @@ class ReportBuilderController extends Controller
     {
         $carrera = $request->input('carrera');
         $capacitaciones = $request->input('capacitaciones');
+        $isScholarshipped = $request->input('scholarshipped');
         $row =  Instructor::where('carrera', $carrera)->first();
         if ($row && $capacitaciones == 'todas')
         {
             $title = "Reporte de instructores por la carrera de: $row->carrera";
             $data = [
                 'rows' => Instructor::where('carrera', $row->carrera)
+                    ->where('is_scholarshipped', $isScholarshipped)
                     ->with('capacitaciones', 'historial')
                     ->has('capacitaciones', '>=', 3)
                     ->paginate(1000),
@@ -81,6 +83,7 @@ class ReportBuilderController extends Controller
             $title = "Reporte de instructores por la carrera de: $row->carrera";
             $data = [
               'rows' => Instructor::where('carrera', $row->carrera)
+                  ->where('is_scholarshipped', $isScholarshipped)
                   ->with('capacitaciones', 'historial')
                   ->has('capacitaciones', '=', 0)
                   ->paginate(1000),
