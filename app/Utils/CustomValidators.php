@@ -180,10 +180,11 @@ class CustomValidators
     static $asignacionRules = [
         'nombre'        => 'required',
         'ciclo_id'      => 'required',
-        'horario_id'    => 'required',
+        // 'horario_id'    => 'required',
         'aula_id'       => 'required',
         'instructor_id' => 'required',
-        'materia_id'    => 'required'
+        'materia_id'    => 'required',
+        'nombre_dia'    => 'required',
     ];
 
     /**

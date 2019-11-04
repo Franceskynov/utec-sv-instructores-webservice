@@ -39,7 +39,7 @@ class AsignacioneMailable extends Mailable
 
         $data = [
             'ciclo'      => $asignacion->ciclo->nombre,
-            'horario'    => $asignacion->horario->nombre_dia . ' '. $asignacion->horario->inicio .' - '. $asignacion->horario->fin,
+            'horario'    => $asignacion->nombre_dia . ' '. $asignacion->inicio .' - '. $asignacion->fin,
             'materia'    => $asignacion->materia->nombre,
             'docente'    => $asignacion->docente->nombre,
             'Estado'     => ($asignacion->is_enabled == 1) ? 'Asignada / En progreso' : 'Finalizada',

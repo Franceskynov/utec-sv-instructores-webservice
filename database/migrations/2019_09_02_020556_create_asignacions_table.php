@@ -21,8 +21,8 @@ class CreateAsignacionsTable extends Migration
             $table->integer('ciclo_id')->unsigned();
             $table->foreign('ciclo_id')->references('id')->on('ciclos');
 
-            $table->integer('horario_id')->unsigned();
-            $table->foreign('horario_id')->references('id')->on('horarios');
+//            $table->integer('horario_id')->unsigned();
+//            $table->foreign('horario_id')->references('id')->on('horarios');
 
             $table->integer('aula_id')->unsigned();
             $table->foreign('aula_id')->references('id')->on('aulas');
@@ -35,6 +35,11 @@ class CreateAsignacionsTable extends Migration
 
             $table->integer('docente_id')->unsigned();
             $table->foreign('docente_id')->references('id')->on('docentes');
+
+            $table->integer('dia');
+            $table->string('nombre_dia');
+            $table->time('inicio');
+            $table->time('fin');
 
             $table->boolean('is_enabled')->default(true);
             $table->timestamps();

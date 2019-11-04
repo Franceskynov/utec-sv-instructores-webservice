@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Utils\Constants;
 use App\Utils\DataManipulation;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -39,6 +40,16 @@ class Handler extends ExceptionHandler
         parent::report($exception);
     }
 
+    private static function setStatusCode(Exception $exception)
+    {
+        if ($exception instanceof UnauthorizedHttpException)
+        {
+            return 401;
+        } else {
+            return 409;
+        }
+    }
+
     /**
      * Render an exception into an HTTP response.
      *
@@ -53,8 +64,9 @@ class Handler extends ExceptionHandler
              Constants::ERROR    => true,
              Constants::MESSAGE  => $exception->getMessage(),
              Constants::DATA     => [
-                'code' => $exception->getCode()
+                 'code' => $exception->getCode(),
+                 'handler' => false,
             ]
-        ], 400);
+        ], self::setStatusCode($exception));
     }
 }

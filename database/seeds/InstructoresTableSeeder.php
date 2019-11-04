@@ -20,7 +20,7 @@ class InstructoresTableSeeder extends Seeder
             'nombre'  => 'MELVIN ANTONIO FLORES RODRIGUEZ',
             'carnet'  => '2504802014',
             'carrera' => 'INGENIERIA EN SISTEMAS Y COMPUTACIÓN',
-            'cum'     => '7.2',
+            'cum'     => '7.5',
             'user_id' => 8,
             'score'   => 150,
             'is_selected' => true,
@@ -39,7 +39,23 @@ class InstructoresTableSeeder extends Seeder
             new Nota([
                 'mat_codigo' => 'MAT1-T',
                 'mat_nombre' => 'MATEMATICA I',
-                'nota'       => '6.8',
+                'nota'       => '9.8',
+                'estado'     => 'Aprobada',
+                'ciclo'      => '01-2016'
+            ]),
+
+            new Nota([
+                'mat_codigo' => 'ALG1-E',
+                'mat_nombre' => 'ALGORITMOS II',
+                'nota'       => '8',
+                'estado'     => 'Aprobada',
+                'ciclo'      => '01-2016'
+            ]),
+
+            new Nota([
+                'mat_codigo' => 'MAT1-T',
+                'mat_nombre' => 'MATEMATICA I',
+                'nota'       => '8.7',
                 'estado'     => 'Aprobada',
                 'ciclo'      => '01-2016'
             ])
@@ -99,24 +115,46 @@ class InstructoresTableSeeder extends Seeder
             new Nota([
                 'mat_codigo' => 'ALG1-E',
                 'mat_nombre' => 'ALGORITMOS I',
-                'nota'       => '7.4',
+                'nota'       => '8',
                 'estado'     => 'Aprobada',
                 'ciclo'      => '02-2012'
             ]),
             new Nota([
                 'mat_codigo' => 'MAT1-T',
                 'mat_nombre' => 'MATEMATICA I',
-                'nota'       => '7.6',
+                'nota'       => '8.6',
                 'estado'     => 'Aprobada',
                 'ciclo'      => '02-2012'
             ]),
             new Nota([
                 'mat_codigo' => 'ORTI-I',
                 'mat_nombre' => 'ORIENTACION TECNICA DE INGENIERIA',
-                'nota'       => '6.8',
+                'nota'       => '9.8',
                 'estado'     => 'Aprobada',
                 'ciclo'      => '02-2012'
             ]),
+        ]);
+
+
+        $instructorC->capacitaciones()->sync([
+            1 => [
+                'estado' => 'Aprobado',
+                'nota'   => '8.9',
+                'ciclo_id' => 1,
+                'ciclo_nombre' => '01-2019'
+            ],
+            2 => [
+                'estado' => 'Aprobado',
+                'nota'   => '7.9',
+                'ciclo_id' => 1,
+                'ciclo_nombre' => '01-2019'
+            ],
+            3 => [
+                'estado' => 'Aprobado',
+                'nota'   => '8.0',
+                'ciclo_id' => 1,
+                'ciclo_nombre' => '01-2019'
+            ]
         ]);
     }
 }

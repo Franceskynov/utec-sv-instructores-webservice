@@ -11,13 +11,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Aula $aula
  * @property-read \App\Ciclo $ciclo
  * @property-read \App\Docente $docente
- * @property-read \App\Horario $horario
  * @property-read \App\Instructor $instructor
  * @property-read \App\Materia $materia
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Asignacion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Asignacion newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Asignacion query()
  * @mixin Eloquent
+ * @property-read string $inicio
+ * @property-read string $fin
  */
 class Asignacion extends Model
 {
@@ -25,11 +26,15 @@ class Asignacion extends Model
     protected $fillable = [
         'nombre',
         'ciclo_id',
-        'horario_id',
+        // 'horario_id',
         'aula_id',
         'instructor_id',
         'materia_id',
         'docente_id',
+        'dia',
+        'nombre_dia',
+        'inicio',
+        'fin',
         'is_enabled'
     ];
 
@@ -45,11 +50,11 @@ class Asignacion extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function horario()
-    {
-        return $this
-            ->belongsTo('App\Horario', 'horario_id', 'id');
-    }
+//    public function horario()
+//    {
+//        return $this
+//            ->belongsTo('App\Horario', 'horario_id', 'id');
+//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -85,5 +90,23 @@ class Asignacion extends Model
     {
         return $this
             ->belongsTo('App\Docente', 'docente_id', 'id');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getInicioAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('H:i');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getfinAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('H:i');
     }
 }

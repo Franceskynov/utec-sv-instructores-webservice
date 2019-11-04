@@ -33,7 +33,7 @@ class AsignacioneController extends Controller
      */
     public function index()
     {
-        if ( $rows =  Asignacion::with('ciclo', 'horario', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio', 'docente', 'docente.especialidades')->get()) {
+        if ( $rows =  Asignacion::with('ciclo', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio', 'docente', 'docente.especialidades')->get()) {
 
             $this->response = $this->successResponse($rows);
 
@@ -77,13 +77,6 @@ class AsignacioneController extends Controller
             $instructor->update([
                'is_selected' => 1
             ]);
-            \DB::table('aula_horario')
-                ->where('horario_id', $request->horario_id)
-                ->where('aula_id', $request->aula_id)
-                ->limit(1)
-                ->update([
-                    'is_used' => 1
-                ]);
 
             $id = $created->id;
             $instructorEmail = $instructor->carnet . '@mail.utec.edu.sv';
@@ -92,7 +85,7 @@ class AsignacioneController extends Controller
             Mail::to($emails)
                 ->send(new AsignacioneMailable($id, 'Asignacion de instructoria', 'create'));
 
-            $this->response = $this->successCreation;
+            $this->response = $request->all();
         }
 
         return \Response::json($this->response);
@@ -106,7 +99,7 @@ class AsignacioneController extends Controller
      */
     public function show($id)
     {
-        if ( $row =  Asignacion::with('ciclo', 'horario', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio', 'docente', 'docente.especialidades')->find($id)) {
+        if ( $row =  Asignacion::with('ciclo', 'instructor', 'instructor.historial', 'materia', 'aula', 'aula.edificio', 'docente', 'docente.especialidades')->find($id)) {
 
             $this->response = $this->successResponse($row);
 

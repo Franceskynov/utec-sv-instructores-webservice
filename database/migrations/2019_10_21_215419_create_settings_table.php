@@ -24,6 +24,8 @@ class CreateSettingsTable extends Migration
                 ->default(150);
             $table->string('docente_email_prefix');
             $table->string('instructor_email_prefix');
+            $table->double('minimun_cum')->default(7.5);
+            $table->double('minimum_score')->default(8);
             $table->timestamps();
         });
     }
