@@ -4,6 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Historial
+ *
+ * @property-read \App\Ciclo $ciclo
+ * @property-read \App\Docente $docente
+ * @property-read mixed $nota
+ * @property-read \App\Materia $materia
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Historial newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Historial newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Historial query()
+ * @mixin \Eloquent
+ */
 class Historial extends Model
 {
     protected $table = 'historiales';

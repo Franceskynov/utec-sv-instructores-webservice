@@ -11,6 +11,20 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Nota;
 
+/**
+ * App\Instructor
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Asignacion[] $asignaciones
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Training[] $capacitaciones
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Historial[] $historial
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Asignacion[] $instructoria
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Nota[] $notas
+ * @property-read \App\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Instructor newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Instructor newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Instructor query()
+ * @mixin \Eloquent
+ */
 class Instructor extends Model
 {
     protected $table = 'instructores';

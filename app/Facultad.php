@@ -11,6 +11,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Materia;
 
+/**
+ * App\Facultad
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Materia[] $materias
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Facultad newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Facultad newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Facultad query()
+ * @mixin \Eloquent
+ */
 class Facultad extends Model
 {
     protected $table = 'facultades';

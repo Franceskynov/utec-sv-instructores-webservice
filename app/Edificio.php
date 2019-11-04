@@ -10,6 +10,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Edificio
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Aula[] $aulas
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edificio newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edificio newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Edificio query()
+ * @mixin \Eloquent
+ */
 class Edificio extends Model
 {
     protected $fillable = [

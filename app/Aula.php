@@ -10,6 +10,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Aula
+ *
+ * @property-read \App\Edificio $edificio
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Horario[] $horarios
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Aula newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Aula newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Aula query()
+ * @mixin \Eloquent
+ */
 class Aula extends Model
 {
     protected $table = 'aulas';

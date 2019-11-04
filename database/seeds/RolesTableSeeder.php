@@ -25,5 +25,10 @@ class RolesTableSeeder extends Seeder
             'nombre'      => 'Instructor',
             'descripcion' => 'Este rol permite llevar el control e historial de asistencia al docente'
         ]);
+
+        Rol::create([
+            'nombre'      => 'Auxiliar',
+            'descripcion' => 'Este rol permite auxiliar a el coordinador'
+        ]);
     }
 }

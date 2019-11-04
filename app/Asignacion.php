@@ -2,8 +2,23 @@
 
 namespace App;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Asignacion
+ *
+ * @property-read \App\Aula $aula
+ * @property-read \App\Ciclo $ciclo
+ * @property-read \App\Docente $docente
+ * @property-read \App\Horario $horario
+ * @property-read \App\Instructor $instructor
+ * @property-read \App\Materia $materia
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Asignacion newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Asignacion newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Asignacion query()
+ * @mixin Eloquent
+ */
 class Asignacion extends Model
 {
     protected $table = 'asignacions';

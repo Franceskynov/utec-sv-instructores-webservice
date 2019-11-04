@@ -10,6 +10,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Horario
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Aula[] $aulas
+ * @property-read \App\Ciclo $ciclo
+ * @property-read string $created_at
+ * @property-read string $inicio
+ * @property-read string $updated_at
+ * @property-read string $fin
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Horario newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Horario newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Horario query()
+ * @mixin \Eloquent
+ */
 class Horario extends Model
 {
     protected $table = 'horarios';

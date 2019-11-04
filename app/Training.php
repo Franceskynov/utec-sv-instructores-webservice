@@ -4,6 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Training
+ *
+ * @property-read \App\Docente $docente
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Training newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Training newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Training query()
+ * @mixin \Eloquent
+ */
 class Training extends Model
 {
     protected $table = 'trainings';

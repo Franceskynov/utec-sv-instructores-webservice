@@ -10,6 +10,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Materia
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Docente[] $docentes
+ * @property-read \App\School $escuela
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Facultad[] $facultades
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Asignacion[] $instructorias
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Materia newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Materia newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Materia query()
+ * @mixin \Eloquent
+ */
 class Materia extends Model
 {
     protected $fillable = [

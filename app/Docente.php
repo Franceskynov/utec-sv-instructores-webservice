@@ -11,6 +11,17 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Especialidad;
 use App\Materia;
+/**
+ * App\Docente
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Especialidad[] $especialidades
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Asignacion[] $instructorias
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Materia[] $materias
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Docente newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Docente newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Docente query()
+ * @mixin \Eloquent
+ */
 class Docente extends Model
 {
     protected $table = 'docentes';
