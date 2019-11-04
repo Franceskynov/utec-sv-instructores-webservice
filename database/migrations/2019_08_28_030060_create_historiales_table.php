@@ -15,7 +15,13 @@ class CreateHistorialesTable extends Migration
     {
         Schema::create('historiales', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('nota');
+            $table->double('nota')->default(0.0);
+            $table->double('autoevaluacion')->default(0.0);
+            $table->boolean('is_autoevaluado')->default(false);
+            $table->double('evaluacion_rrhh')->default(0.0);
+            $table->boolean('is_rrhh_evaluado')->default(false);
+            $table->double('evaluacion_docente')->default(0.0);
+            $table->boolean('is_docente_evaluado')->default(false);
             $table->text('comentarios');
             $table->integer('ciclo_id')
                 ->unsigned();

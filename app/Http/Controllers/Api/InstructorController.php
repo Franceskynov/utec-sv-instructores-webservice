@@ -35,7 +35,12 @@ class InstructorController extends Controller
      */
     public function index()
     {
-        if ( $instructor =  Instructor::with('notas', 'user', 'historial', 'historial.materia', 'historial.ciclo', 'historial.docente', 'instructoria', 'instructoria.ciclo', 'instructoria.horario', 'instructoria.materia', 'instructoria.aula',  'instructoria.docente', 'capacitaciones')->get()) {
+        if ( $instructor =  Instructor::with(
+            'instructoria',
+            'instructoria.ciclo',
+            'capacitaciones',
+            'notas'
+        )->get()) {
             $this->status = 200;
             $this->response = $this->successResponse($instructor);
 
@@ -220,11 +225,30 @@ class InstructorController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        if($row = Instructor::find($id))
+        {
+
+            if($row->update([
+                'is_scholarshipped' => $request->isScholarshipped
+            ]))
+            {
+                $this->response = $this->successResponse($row);
+
+            } else {
+
+                $this->response = $this->invalidUpdate;
+            }
+
+        } else {
+
+            $this->response = $this->notFoundResponse;
+        }
+
+        return \Response::json($this->response);
     }
 
     /**

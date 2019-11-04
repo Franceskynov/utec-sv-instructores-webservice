@@ -33,11 +33,12 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
+        $cicloId =  $request->input('cicloId');
         $customResponse = [
             'docentes'      => Docente::get()->count(),
             'instructores'  => Instructor::get()->count(),
             'usuarios'      => User::get()->count(),
-            'instructorias' => Asignacion::get()->count(),
+            'instructorias' => Asignacion::where('ciclo_id', $cicloId)->get()->count(),
         ];
         $this->response = $this->successResponse($customResponse);
 
