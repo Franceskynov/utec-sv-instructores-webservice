@@ -8,11 +8,11 @@
    */
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Utils\CustomValidators;
 use App\Utils\DataManipulation;
-use Illuminate\Support\Facades\Hash;
 use App\Utils\Constants;
 use App\Docente;
 use App\User;
@@ -31,7 +31,7 @@ class DocenteController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(Request $request)
     {
@@ -66,8 +66,8 @@ class DocenteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
     public function store(Request $request)
     {
@@ -88,7 +88,7 @@ class DocenteController extends Controller
                 'password'   => bcrypt($secret),
                 'rol_id'     => 2,
                 'is_admin'   => false,
-                'is_enabled' => false
+                'is_enabled' => true
             ]);
 
             if ($id = $created->id)
@@ -145,7 +145,7 @@ class DocenteController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function show($id)
     {
@@ -185,7 +185,7 @@ class DocenteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -198,7 +198,7 @@ class DocenteController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy($id)
     {
