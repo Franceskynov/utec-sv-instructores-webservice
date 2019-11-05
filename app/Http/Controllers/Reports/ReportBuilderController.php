@@ -111,7 +111,6 @@ class ReportBuilderController extends Controller
             $title = " Reporte de instructorias del ciclo: $ciclo->nombre y de la escuela $school->name" ;
             $data = Asignacion::with(
                     'ciclo',
-                    'horario',
                     'instructor',
                     'instructor.historial',
                     'materia',
@@ -136,10 +135,16 @@ class ReportBuilderController extends Controller
     /**
      * @return mixed
      */
-    public function historial()
+    public function historial(Request $request)
     {
+
+        $cicloId = $request->input('ciclo');
+        $schoolId = $request->input('escuela');
         $data = Historial::with(
-            'materia', 'ciclo', 'docente')->get();
-        return PdfBuilder::makePdf('Reporte de instructorias', 'pdf.hystory', $data, 1);
+            'materia', 'ciclo', 'docente', 'instructor')->where('ciclo_id', $cicloId)
+            ->whereHas('materia', function($q) use($schoolId) {
+                $q->where('school_id', '=', $schoolId);
+            })->paginate(1000);
+        return PdfBuilder::makePdf('Reporte de instructorias', 'pdf.hystory', $data, 1, 'reporte', true);
     }
 }

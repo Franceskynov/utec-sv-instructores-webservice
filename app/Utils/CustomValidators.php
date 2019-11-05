@@ -37,6 +37,15 @@ class CustomValidators
     /**
      * @var array
      */
+    static $evaluateRules = [
+        'instructorId'   => 'required',
+        'asignacionName' => 'required',
+        'score'          => 'required'
+    ];
+
+    /**
+     * @var array
+     */
     static $settingRules = [
         'ciclo_id'                 => 'required',
         'horas_sociales_a_asignar' => 'required',

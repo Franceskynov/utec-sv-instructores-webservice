@@ -99,35 +99,34 @@ class DocenteAsignacionController extends Controller
                         'is_selected' => 0,
                         'score' => $instructor->score + 150
                     ]);
-
-                    $asignacion = Asignacion::find($asignacionId);
-                    $asignacion->update([
-                        'is_enabled' => 0
-                    ]);
-
-                    $instructor->historial()->saveMany([
-                        new Historial([
-                            'nombre'      => $asignacion->nombre,
-                            'evaluacion_docente' => Training::validateNota($request->nota),
-                            'nota'        => (Training::validateNota($request->nota) * 0.15),
-                            'comentarios' => $request->comentarios,
-                            'ciclo_id'    => $cicloId,
-                            'materia_id'  => $materiaId,
-                            'docente_id'  => $docenteId
-                        ])
-                    ]);
-
-                    $emails = [$instructor->user->email];
-                    Mail::to($emails)
-                        ->send( new EvaluationMailable($asignacion->nombre, 'Auto evaluacion para instructores'));
-
-                    $this->response = $this->successResponse([
-                        'instructor' => $instructor,
-                        'docente' => $data
-                    ]);
-                } else {
-                    $this->response = $this->invalidCreation;
                 }
+
+                $asignacion = Asignacion::find($asignacionId);
+                $asignacion->update([
+                    'is_enabled' => 0
+                ]);
+
+                $instructor->historial()->saveMany([
+                    new Historial([
+                        'nombre'      => $asignacion->nombre,
+                        'evaluacion_docente' => Training::validateNota($request->nota),
+                        'is_docente_evaluado' => true,
+                        'nota'        => (Training::validateNota($request->nota) * 0.15),
+                        'comentarios' => $request->comentarios,
+                        'ciclo_id'    => $cicloId,
+                        'materia_id'  => $materiaId,
+                        'docente_id'  => $docenteId
+                    ])
+                ]);
+
+                $emails = [$instructor->user->email];
+                Mail::to($emails)
+                    ->send( new EvaluationMailable($asignacion->nombre, 'Auto evaluacion para instructores'));
+
+                $this->response = $this->successResponse([
+                    'instructor' => $instructor,
+                    'docente' => $data
+                ]);
             }
 
         } else {

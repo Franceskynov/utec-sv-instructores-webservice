@@ -24,7 +24,14 @@ class Historial extends Model
         'comentarios',
         'ciclo_id',
         'materia_id',
-        'docente_id'
+        'docente_id',
+        'nombre',
+        'autoevaluacion',
+        'is_autoevaluado',
+        'evaluacion_rrhh',
+        'is_rrhh_evaluado',
+        'evaluacion_docente',
+        'is_docente_evaluado'
     ];
 
     public function getnotaAttribute($value)
@@ -57,5 +64,14 @@ class Historial extends Model
     {
         return $this
             ->belongsTo('App\Docente', 'docente_id', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function instructor()
+    {
+        return $this
+            ->belongsToMany('App\Instructor');
     }
 }

@@ -13,13 +13,13 @@ use App\Historial;
 
 class HistorialController extends Controller
 {
-    public function __construct()
-    {
-        if (env('JWT_LOGIN'))
-        {
-            $this->middleware('jwt.auth');
-        }
-    }
+//    public function __construct()
+//    {
+//        if (env('JWT_LOGIN'))
+//        {
+//            $this->middleware('jwt.auth');
+//        }
+//    }
 
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class HistorialController extends Controller
      */
     public function index()
     {
-        if ( $historial =  Historial::with('materia', 'ciclo')->get()) {
+        if ( $historial =  Historial::with('materia', 'ciclo', 'instructor')->get()) {
 
             $this->response = $this->successResponse($historial);
 

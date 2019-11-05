@@ -26,7 +26,6 @@
             <th>Aula</th>
             <th>Docente</th>
             <th>Estado</th>
-            <th>Nota prom.</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +33,7 @@
 
             <tr>
                 <td> {{ $asignacion->ciclo->nombre }} </td>
-                <td> {{ $asignacion->horario->nombre_dia }} {{ $asignacion->horario->inicio }} - {{ $asignacion->horario->fin }}</td>
+                <td> {{ $asignacion->nombre_dia }} {{ $asignacion->inicio }} - {{ $asignacion->fin }}</td>
                 <td> {{ $asignacion->instructor->nombre  }} </td>
                 <td> {{ $asignacion->materia->nombre }} </td>
                 <td> {{ $asignacion->aula->codigo }} </td>
@@ -49,9 +48,6 @@
                             Terminado
                         </span>
                     @endif
-                </td>
-                <td>
-                    0.0
                 </td>
             </tr>
         @empty
