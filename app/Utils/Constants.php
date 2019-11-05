@@ -72,4 +72,8 @@ class Constants
     public const EMAIL_ASIGNATION_HEADER_MESSAGE = 'Asignacion de instructoria por parte de el coordinador';
     public const EMAIL_ASIGNATION_MODIFY_HEADER_MESSAGE = 'Modificacion de instructoria por parte de el coordinador';
     public const EMAIL_ASIGNATION_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue por que el coordinador de los instructores selecciono los diferentes parametros para una instructoria';
+
+    public const EMAIL_EVALUATION_SELFAPPRAISAL_HEADER_MESSAGE = 'Porfavor realice la siguiente auto-evaluacion para ello debera de ingresar al sistema con sus credenciales';
+    public const EMAIL_EVALUATION_SELFAPPRAISAL_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue porque la instructoria en la cual fue inscrito finalizo y se requiere de su auto-evaluacion para asignarle una nota de desempeño';
+
 }

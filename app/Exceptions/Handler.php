@@ -7,7 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Utils\Constants;
 use App\Utils\DataManipulation;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-
+use Illuminate\Database\Eloquent\RelationNotFoundException;
 class Handler extends ExceptionHandler
 {
     /**
@@ -45,6 +45,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof UnauthorizedHttpException)
         {
             return 401;
+        } else if ($exception instanceof RelationNotFoundException ) {
+            return 500;
         } else {
             return 409;
         }
@@ -66,6 +68,7 @@ class Handler extends ExceptionHandler
              Constants::DATA     => [
                  'code' => $exception->getCode(),
                  'handler' => false,
+                 'c' => get_class($exception)
             ]
         ], self::setStatusCode($exception));
     }

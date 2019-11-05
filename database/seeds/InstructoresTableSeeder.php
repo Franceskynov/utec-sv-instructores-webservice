@@ -63,6 +63,7 @@ class InstructoresTableSeeder extends Seeder
 
         $instructorA->historial()->saveMany([
             new Historial([
+                'nombre' => 'rodriguez-melvin-2504802014-3c4f5b92',
                 'nota'        => 8.5,
                 'comentarios' => 'Posee dominio de la materia',
                 'ciclo_id'    => 1,

@@ -60,6 +60,8 @@ Route::get('/reporte/instructores', 'Reports\ReportBuilderController@instructore
 Route::get('/reporte/asignacion', 'Reports\ReportBuilderController@asignacion');
 Route::get('/reporte/historial', 'Reports\ReportBuilderController@historial');
 Route::get('/carrera', 'Api\InstructorController@carreras');
+Route::get('/evaluation/checkSelfAppraisal', 'Api\EvaluationController@checkSelfAppraisal');
+
 
 Route::fallback(function(){
     return \Response::json([

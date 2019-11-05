@@ -158,8 +158,8 @@ class DocenteController extends Controller
                 'instructorias.instructor',
                 'instructorias.aula',
                 'instructorias.materia',
-                'instructorias.ciclo',
-                'instructorias.horario'
+                'instructorias.ciclo'
+                // 'instructorias.horario'
             );
             $this->response = $this->successResponse($data);
 

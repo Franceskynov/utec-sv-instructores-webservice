@@ -10,6 +10,9 @@ use App\Docente;
 use App\Instructor;
 use App\Historial;
 use App\Training;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EvaluationMailable;
+
 class DocenteAsignacionController extends Controller
 {
     /**
@@ -104,13 +107,19 @@ class DocenteAsignacionController extends Controller
 
                     $instructor->historial()->saveMany([
                         new Historial([
-                            'nota'        => Training::validateNota($request->nota),
+                            'nombre'      => $asignacion->nombre,
+                            'evaluacion_docente' => Training::validateNota($request->nota),
+                            'nota'        => (Training::validateNota($request->nota) * 0.15),
                             'comentarios' => $request->comentarios,
                             'ciclo_id'    => $cicloId,
                             'materia_id'  => $materiaId,
                             'docente_id'  => $docenteId
                         ])
                     ]);
+
+                    $emails = [$instructor->user->email];
+                    Mail::to($emails)
+                        ->send( new EvaluationMailable($asignacion->nombre, 'Auto evaluacion para instructores'));
 
                     $this->response = $this->successResponse([
                         'instructor' => $instructor,

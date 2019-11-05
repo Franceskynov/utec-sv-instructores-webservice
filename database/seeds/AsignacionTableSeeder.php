@@ -23,7 +23,7 @@ class AsignacionTableSeeder extends Seeder
             'nombre_dia' => 'Lunes',
             'inicio'     => '9:00',
             'fin'        => '10:00',
-            'is_enabled' => true
+            'is_enabled' => false
         ]);
     }
 }

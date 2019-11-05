@@ -191,7 +191,7 @@ class InstructorController extends Controller
                 'historial.docente',
                 'instructoria',
                 'instructoria.ciclo',
-                'instructoria.horario',
+                //'instructoria.horario',
                 'instructoria.materia',
                 'instructoria.aula',
                 'instructoria.docente',
