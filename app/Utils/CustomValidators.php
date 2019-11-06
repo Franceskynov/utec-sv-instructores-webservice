@@ -46,6 +46,14 @@ class CustomValidators
     /**
      * @var array
      */
+    static $evaluateRHRules = [
+        'historialId'   => 'required',
+        'score'         => 'required'
+    ];
+
+    /**
+     * @var array
+     */
     static $settingRules = [
         'ciclo_id'                 => 'required',
         'horas_sociales_a_asignar' => 'required',

@@ -62,6 +62,7 @@ Route::get('/reporte/historial', 'Reports\ReportBuilderController@historial');
 Route::get('/carrera', 'Api\InstructorController@carreras');
 Route::get('/evaluation/checkSelfAppraisal', 'Api\EvaluationController@checkSelfAppraisal');
 Route::post('/evaluation/evaluateSelfAppraisal', 'Api\EvaluationController@evaluateSelfAppraisal');
+Route::post('/evaluation/humanResources', 'Api\EvaluationController@evaluateHumanResources');
 
 
 Route::fallback(function(){

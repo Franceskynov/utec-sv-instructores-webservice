@@ -34,7 +34,38 @@ class Historial extends Model
         'is_docente_evaluado'
     ];
 
+    /**
+     * @param $value
+     * @return string
+     */
     public function getnotaAttribute($value)
+    {
+        return number_format((float)$value, 2, '.', '');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getevaluacionRrhhAttribute($value)
+    {
+        return number_format((float)$value, 2, '.', '');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getautoevaluacionRrhhAttribute($value)
+    {
+        return number_format((float)$value, 2, '.', '');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function getevaluacionDocenteAttribute($value)
     {
         return number_format((float)$value, 2, '.', '');
     }

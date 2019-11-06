@@ -72,4 +72,35 @@ class EvaluationController extends Controller
 
         return \Response::json($this->response);
     }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function evaluateHumanResources(Request $request)
+    {
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$evaluateRHRules);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidCreation;
+
+        } else {
+            $historialId  =  $request->historialId;
+            $score = $request->score;
+            if ($row = Historial::find($historialId))
+            {
+                $row->update([
+                    'evaluacion_rrhh' => $score,
+                    'is_rrhh_evaluado' => true,
+                    'nota' => $row->nota + ($score * 0.80)
+                ]);
+                $this->response = $this->successCreation;
+            } else {
+                $this->response = $this->invalidChanged;
+            }
+        }
+
+        return \Response::json($this->response);
+    }
 }
