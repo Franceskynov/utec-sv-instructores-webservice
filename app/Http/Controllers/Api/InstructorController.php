@@ -24,7 +24,12 @@ class InstructorController extends Controller
     {
         if (env('JWT_LOGIN'))
         {
-            $this->middleware('jwt.auth');
+            $this->middleware('jwt.auth', [
+                'except' => [
+                    'checkInstructorByCarnet',
+                    'store'
+                ]
+            ]);
         }
     }
 
@@ -83,7 +88,9 @@ class InstructorController extends Controller
         if ($row = Instructor::where('carnet', $carnet)->first())
         {
             $this->status = 200;
-            $this->response = $this->successResponse($row);
+            $this->response = $this->successResponse([
+                'exist' => true
+            ]);
         } else {
             $this->status = 200;
             $this->response = $this->invalidResponse;

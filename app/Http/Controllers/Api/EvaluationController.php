@@ -9,9 +9,19 @@ use App\Http\Controllers\Controller;
 use App\Instructor;
 use App\Asignacion;
 use App\Historial;
-
+use App\Setting;
 class EvaluationController extends Controller
 {
+    public $settings;
+    public function __construct()
+    {
+        $this->settings = Setting::find(1);
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
+
 
     /**
      * @param Request $request
@@ -44,6 +54,7 @@ class EvaluationController extends Controller
     public function evaluateSelfAppraisal(Request $request)
     {
 
+
         $validator = CustomValidators::requestValidator($request, CustomValidators::$evaluateRules);
 
         if ($validator->fails())
@@ -62,7 +73,7 @@ class EvaluationController extends Controller
                 $historial->update([
                     'autoevaluacion' => $score,
                     'is_autoevaluado' => true,
-                    'nota' => $historial->nota + ($score * 0.05)
+                    'nota' => $historial->nota + ($score * $this->settings->autoevaluacion_percentage)
                 ]);
                 $this->response = $this->successCreation;
             } else {
@@ -93,7 +104,7 @@ class EvaluationController extends Controller
                 $row->update([
                     'evaluacion_rrhh' => $score,
                     'is_rrhh_evaluado' => true,
-                    'nota' => $row->nota + ($score * 0.80)
+                    'nota' => $row->nota + ($score * $this->settings->evaluacion_rrhh_percentage)
                 ]);
                 $this->response = $this->successCreation;
             } else {

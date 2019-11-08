@@ -26,6 +26,9 @@ class CreateSettingsTable extends Migration
             $table->string('instructor_email_prefix');
             $table->double('minimun_cum')->default(7.5);
             $table->double('minimum_score')->default(8);
+            $table->double('autoevaluacion_percentage', 2,3)->default(0.05);
+            $table->double('evaluacion_rrhh_percentage', 2, 3)->default(0.80);
+            $table->double('evaluacion_docente_percentage', 2, 3)->default(0.15);
             $table->timestamps();
         });
     }

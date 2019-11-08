@@ -12,9 +12,19 @@ use App\Historial;
 use App\Training;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EvaluationMailable;
-
+use App\Setting;
 class DocenteAsignacionController extends Controller
 {
+
+    public $settings;
+    public function __construct()
+    {
+        $this->settings = Setting::find(1);
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -111,7 +121,7 @@ class DocenteAsignacionController extends Controller
                         'nombre'      => $asignacion->nombre,
                         'evaluacion_docente' => Training::validateNota($request->nota),
                         'is_docente_evaluado' => true,
-                        'nota'        => (Training::validateNota($request->nota) * 0.15),
+                        'nota'        => (Training::validateNota($request->nota) * $this->settings->evaluacion_docente_percentage),
                         'comentarios' => $request->comentarios,
                         'ciclo_id'    => $cicloId,
                         'materia_id'  => $materiaId,

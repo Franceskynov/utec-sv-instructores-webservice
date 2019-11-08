@@ -52,6 +52,31 @@ class Handler extends ExceptionHandler
         }
     }
 
+    private static function stage(Exception $exception)
+    {
+        if (env('APP_DEBUG') == 'true')
+        {
+            return [
+                Constants::ERROR    => true,
+                Constants::MESSAGE  => $exception->getMessage(),
+                Constants::DATA     => [
+                    'code' => $exception->getCode(),
+                    'handler' => false,
+                    'class' => get_class($exception)
+                ]
+            ];
+
+        } else {
+            return [
+                Constants::ERROR    => true,
+                Constants::MESSAGE  => DataManipulation::truncate($exception->getMessage()),
+                Constants::DATA     => [
+                    'code' => $exception->getCode(),
+                ]
+            ];
+        }
+    }
+
     /**
      * Render an exception into an HTTP response.
      *
@@ -61,15 +86,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return \Response::json([
-
-             Constants::ERROR    => true,
-             Constants::MESSAGE  => $exception->getMessage(),
-             Constants::DATA     => [
-                 'code' => $exception->getCode(),
-                 'handler' => false,
-                 'c' => get_class($exception)
-            ]
-        ], self::setStatusCode($exception));
+        return \Response::json(self::stage($exception), self::setStatusCode($exception));
     }
 }
