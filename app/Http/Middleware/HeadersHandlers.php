@@ -28,7 +28,7 @@ class HeadersHandlers
 		$response->header('X-Powered-By','Franceskynov');
 		$response->header('X-Content-Type-Options', 'nosniff');
 		$response->header('Server', 'Server');
-		$response->header('Referrer Policy','no-referrer-when-downgrade');
+		// $response->header('Referrer Policy','no-referrer-when-downgrade');
 		$response->header('access-control-expose-headers', '*');
 		return $response;
     }

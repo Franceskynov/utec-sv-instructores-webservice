@@ -13,7 +13,9 @@ class SettingController extends Controller
     {
         if (env('JWT_LOGIN'))
         {
-            $this->middleware('jwt.auth');
+            $this->middleware('jwt.auth', [
+                'except' => 'index'
+            ]);
         }
     }
 
