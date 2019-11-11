@@ -68,7 +68,7 @@ class CustomValidators
         'codigo'      => 'required|unique:aulas',
         'capacidad'   => 'required',
         'edificio_id' => 'required',
-        'horarios'    => 'required'
+        // 'horarios'    => 'required'
     ];
 
     /**

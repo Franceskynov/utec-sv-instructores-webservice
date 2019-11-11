@@ -137,7 +137,7 @@ class AulaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrador']);
+       // $request->user()->authorizeRoles(['Administrador']);
         if($aula =  Aula::find($id))
         {
             $rules = CustomValidators::$aulaRules;
@@ -153,18 +153,18 @@ class AulaController extends Controller
                 if($aula->update($request->all()))
                 {
                     $storedHorarios =  $aula->horarios->pluck('id')->toArray();
-                    $horarios = $request->horarios;
+                    // $horarios = $request->horarios;
+                    $this->response = $this->validUpdate;
 
-
-                    if(count($horarios) > 0) {
-                        if (Aula::addHorarioToAula($id, DataManipulation::tagDiff($storedHorarios, $horarios), 'editMode')) {
-                            $this->response = $this->validUpdate;
-                        } else {
-                            $this->response = $this->simpleInvalodCreation;
-                        }
-                    } else {
-                        $this->response = $this->invalidChecking;
-                    }
+//                    if(count($horarios) > 0) {
+//                        if (Aula::addHorarioToAula($id, DataManipulation::tagDiff($storedHorarios, $horarios), 'editMode')) {
+//                            $this->response = $this->validUpdate;
+//                        } else {
+//                            $this->response = $this->simpleInvalodCreation;
+//                        }
+//                    } else {
+//                        $this->response = $this->invalidChecking;
+//                    }
 
                 } else {
 

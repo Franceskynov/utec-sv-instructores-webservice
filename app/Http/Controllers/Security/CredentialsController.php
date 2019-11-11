@@ -12,9 +12,12 @@ use App\User;
 use App\Utils\Constants;
 use App\Utils\CustomValidators;
 use App\Utils\DataManipulation;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\InstructorQuerieMailable;
 class CredentialsController extends Controller
 {
 
@@ -26,7 +29,8 @@ class CredentialsController extends Controller
                 'except' => [
                     'checkUserByEmail',
                     'activateUser',
-                    'accountRecover'
+                    'accountRecover',
+                    'temporalUserActivation'
                 ]
             ]);
         }
@@ -34,7 +38,7 @@ class CredentialsController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function update(Request $request)
     {
@@ -65,7 +69,7 @@ class CredentialsController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function checkUserByEmail(Request $request)
     {
@@ -97,7 +101,7 @@ class CredentialsController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function activateUser(Request $request)
     {
@@ -140,7 +144,7 @@ class CredentialsController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function accountRecover(Request $request)
     {
@@ -184,6 +188,31 @@ class CredentialsController extends Controller
                 $this->status = 404;
                 $this->response = $this->invalidEmailResponse;
             }
+        }
+
+        return \Response::json($this->response, $this->status);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function temporalUserActivation(Request $request)
+    {
+        $validator = CustomValidators::requestValidator($request, CustomValidators::$activateCreadentialsRule);
+
+        if ($validator->fails())
+        {
+            $this->response = $this->invalidChecking;
+            $this->status = 406;
+
+        } else {
+            $email = $request->email;
+            $password = $request->password;
+            Mail::to($email)
+                ->send( new InstructorQuerieMailable('Credenciales temporales', $email, $password));
+            $this->response = $this->successActivatedUser;
+            $this->status = 200;
         }
 
         return \Response::json($this->response, $this->status);

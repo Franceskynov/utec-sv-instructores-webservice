@@ -14,11 +14,11 @@
 use App\Utils\Constants;
 
 Route::get('/', function () {
-    return \Response::json([
-        Constants::ERROR    => false,
-        Constants::MESSAGE  => Constants::MESSAGE_WELLCOME,
-        Constants::DATA     => []
-    ], 200);
+    return redirect('app/website');
+});
+
+Route::get('/admin', function () {
+    return redirect('app/administrator');
 });
 
 Route::fallback(function(){

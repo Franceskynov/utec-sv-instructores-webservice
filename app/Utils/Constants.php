@@ -76,4 +76,7 @@ class Constants
     public const EMAIL_EVALUATION_SELFAPPRAISAL_HEADER_MESSAGE = 'Porfavor realice la siguiente auto-evaluacion para ello debera de ingresar al sistema con sus credenciales';
     public const EMAIL_EVALUATION_SELFAPPRAISAL_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue porque la instructoria en la cual fue inscrito finalizo y se requiere de su auto-evaluacion para asignarle una nota de desempeño';
 
+    public const EMAIL_INSTRUCTOR_QUERIE_HEADER_MESSAGE = 'Credenciales temporales';
+    public const EMAIL_INSTRUCTOR_QUERIEL_FOOTER_MESSAGE = 'El motivo por el cual usted recibio este mensaje fue porque empezo el proceso de inscripcion al sistema de instructores';
+
 }

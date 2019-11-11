@@ -29,6 +29,7 @@ class CreateSettingsTable extends Migration
             $table->double('autoevaluacion_percentage', 2,3)->default(0.05);
             $table->double('evaluacion_rrhh_percentage', 2, 3)->default(0.80);
             $table->double('evaluacion_docente_percentage', 2, 3)->default(0.15);
+            $table->boolean('enable_website_recaptcha')->default(false);
             $table->timestamps();
         });
     }

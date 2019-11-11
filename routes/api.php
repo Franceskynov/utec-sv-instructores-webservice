@@ -53,6 +53,7 @@ Route::get('/checkInstructorByCarnet', 'Api\InstructorController@checkInstructor
 Route::post('/credentials/checkUserByEmail', 'Security\CredentialsController@checkUserByEmail');
 Route::post('/credentials/activateUser', 'Security\CredentialsController@activateUser');
 Route::post('/credentials/accountRecover', 'Security\CredentialsController@accountRecover');
+Route::post('/credentials/temporalUserActivation', 'Security\CredentialsController@temporalUserActivation');
 Route::put('/credentials', 'Security\CredentialsController@update');
 
 Route::get('/reporte/docentes', 'Reports\ReportBuilderController@docentes');
