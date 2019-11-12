@@ -13,16 +13,18 @@ class EvaluationMailable extends Mailable
     use Queueable, SerializesModels;
     public $assignationName;
     public $subject;
+    public $host;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($assignationName, $subject)
+    public function __construct($assignationName, $subject, $host)
     {
         $this->assignationName = $assignationName;
         $this->subject = $subject;
+        $this->host = $host;
     }
 
     /**
@@ -33,7 +35,7 @@ class EvaluationMailable extends Mailable
     public function build()
     {
         $data = [
-            'url'           => env('APP_URL') . '/#/login?returnUrl=/autoEvaluacion/' . $this->assignationName,
+            'url'           => $this->host. '/admin/#/login?returnUrl=/autoEvaluacion/' . $this->assignationName,
             'headerMessage' => Constants::EMAIL_EVALUATION_SELFAPPRAISAL_HEADER_MESSAGE,
             'footerMessage' => Constants::EMAIL_EVALUATION_SELFAPPRAISAL_FOOTER_MESSAGE
         ];

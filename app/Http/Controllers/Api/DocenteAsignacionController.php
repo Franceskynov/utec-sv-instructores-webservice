@@ -13,6 +13,7 @@ use App\Training;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EvaluationMailable;
 use App\Setting;
+use App\Utils\HttpUtils;
 class DocenteAsignacionController extends Controller
 {
 
@@ -107,7 +108,7 @@ class DocenteAsignacionController extends Controller
                 if ($instructor->is_selected) {
                     $instructor->update([
                         'is_selected' => 0,
-                        'score' => $instructor->score + 150
+                        'score' => $instructor->score + $this->settings->horas_sociales_a_asignar
                     ]);
                 }
 
@@ -129,9 +130,10 @@ class DocenteAsignacionController extends Controller
                     ])
                 ]);
 
+                $host = HttpUtils::getServerUri($request);
                 $emails = [$instructor->user->email];
                 Mail::to($emails)
-                    ->send( new EvaluationMailable($asignacion->nombre, 'Auto evaluacion para instructores'));
+                    ->send( new EvaluationMailable($asignacion->nombre, 'Auto evaluacion para instructores', $host));
 
                 $this->response = $this->successResponse([
                     'instructor' => $instructor,

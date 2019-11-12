@@ -16,6 +16,7 @@ use App\Instructor;
 use App\Utils\DataManipulation;
 use App\User;
 use App\Nota;
+use App\Utils\HttpUtils;
 
 class InstructorController extends Controller
 {
@@ -129,9 +130,9 @@ class InstructorController extends Controller
             ]);
 
             if ($id = $created->id) {
-
+                $host = HttpUtils::getServerUri($request);
                 $data = [
-                    'url'           => env('APP_URL') . '/#/login',
+                    'url'           => $host . '/admin/#/login',
                     'email'         => $email,
                     'password'      => $secret,
                     'headerMessage' => Constants::EMAIL_USER_CREATION_HEADER_MESSAGE,

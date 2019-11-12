@@ -14,17 +14,19 @@ class InstructorQuerieMailable extends Mailable
     public $subject;
     public $email;
     public $secret;
+    public $host;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($subject, $email, $secret)
+    public function __construct($subject, $email, $secret, $host)
     {
         $this->subject = $subject;
         $this->email = $email;
         $this->secret = $secret;
+        $this->host = $host;
     }
 
     /**
@@ -35,7 +37,7 @@ class InstructorQuerieMailable extends Mailable
     public function build()
     {
         $data = [
-            'url'           => env('APP_URL') . '/#/login',
+            'url'           => $this->host . '/#/login',
             'email'         => $this->email,
             'password'      => $this->secret,
             'headerMessage' => Constants::EMAIL_INSTRUCTOR_QUERIE_HEADER_MESSAGE,

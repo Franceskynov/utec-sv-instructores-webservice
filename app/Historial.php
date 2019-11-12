@@ -47,6 +47,15 @@ class Historial extends Model
      * @param $value
      * @return string
      */
+    public function getautoevaluacionAttribute($value)
+    {
+        return number_format((float)$value, 2, '.', '');
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
     public function getevaluacionRrhhAttribute($value)
     {
         return number_format((float)$value, 2, '.', '');

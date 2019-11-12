@@ -16,6 +16,7 @@ use App\Utils\DataManipulation;
 use App\Utils\Constants;
 use App\Docente;
 use App\User;
+use App\Utils\HttpUtils;
 
 class DocenteController extends Controller
 {
@@ -93,9 +94,9 @@ class DocenteController extends Controller
 
             if ($id = $created->id)
             {
-
+                $host = HttpUtils::getServerUri($request);
                 $data = [
-                    'url'           => env('APP_URL') . '/#/login',
+                    'url'           => $host . '/admin/#/login',
                     'email'         => $email,
                     'password'      => $secret,
                     'headerMessage' => Constants::EMAIL_USER_CREATION_HEADER_MESSAGE,

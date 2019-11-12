@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InstructorQuerieMailable;
+use App\Utils\HttpUtils;
 class CredentialsController extends Controller
 {
 
@@ -167,8 +168,9 @@ class CredentialsController extends Controller
                 $user->update([
                     'password' => Hash::make($secret)
                 ]);
+                $host = HttpUtils::getServerUri($request);
                 $data = [
-                    'url'           => env('APP_URL') . '/#/login',
+                    'url'           => $host . '/#/login',
                     'email'         => $email,
                     'password'      => $secret,
                     'headerMessage' => Constants::EMAIL_ACCOUNT_RECOVER_HEADER_MESSAGE,
@@ -209,8 +211,9 @@ class CredentialsController extends Controller
         } else {
             $email = $request->email;
             $password = $request->password;
+            $host = HttpUtils::getServerUri($request);
             Mail::to($email)
-                ->send( new InstructorQuerieMailable('Credenciales temporales', $email, $password));
+                ->send( new InstructorQuerieMailable('Credenciales temporales', $email, $password, $host));
             $this->response = $this->successActivatedUser;
             $this->status = 200;
         }
