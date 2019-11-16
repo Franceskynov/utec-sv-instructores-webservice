@@ -103,7 +103,7 @@ class DocenteAsignacionController extends Controller
                 $cicloId = $data->ciclo_id;
                 $docenteId = $data->docente_id;
                 $materiaId = $data->materia_id;
-                $instructor = Instructor::find($instructorId);
+                $instructor = Instructor::where('id', $instructorId)->first();
 
                 if ($instructor->is_selected) {
                     $instructor->update([
@@ -130,8 +130,9 @@ class DocenteAsignacionController extends Controller
                     ])
                 ]);
 
+
                 $host = HttpUtils::getServerUri($request);
-                $emails = [$instructor->user->email];
+                $emails = [$instructor->instructor_email];
                 Mail::to($emails)
                     ->send( new EvaluationMailable($asignacion->nombre, 'Auto evaluacion para instructores', $host));
 

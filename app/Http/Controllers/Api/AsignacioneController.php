@@ -15,11 +15,14 @@ use App\Instructor;
 use App\Docente;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AsignacioneMailable;
+use App\Setting;
 
 class AsignacioneController extends Controller
 {
+    public $settings;
     public function __construct()
     {
+        $this->settings = Setting::find(1);
         if (env('JWT_LOGIN'))
         {
             $this->middleware('jwt.auth');
@@ -79,6 +82,7 @@ class AsignacioneController extends Controller
             ]);
 
             $id = $created->id;
+
             $instructorEmail = $instructor->carnet . '@mail.utec.edu.sv';
             $docenteEmail = $docente->email;
             $emails = [$docenteEmail, $instructorEmail];
@@ -158,7 +162,7 @@ class AsignacioneController extends Controller
 
                     $instructor = Instructor::find($request->instructor_id);
 
-                    $instructorEmail = $instructor->carnet . '@mail.utec.edu.sv';
+                    $instructorEmail = $instructor->carnet . $this->settings->instructor_email_prefix;
 
                     $emails[] = $instructorEmail;
                     Mail::to($emails)
