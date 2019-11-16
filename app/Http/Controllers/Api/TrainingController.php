@@ -119,7 +119,7 @@ class TrainingController extends Controller
     {
         if($row = Training::find($id))
         {
-            $validator = CustomValidators::requestValidator($request, CustomValidators::$materiaRules);
+            $validator = CustomValidators::requestValidator($request, CustomValidators::$trainingRules);
 
             if ($validator->fails())
             {

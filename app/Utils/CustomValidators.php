@@ -90,6 +90,21 @@ class CustomValidators
         'school_id' => 'required',
     ];
 
+    /**
+     * @var array
+     */
+    static $bulletinRules = [
+        'subject'       => 'required',
+        'headerMessage' => 'required',
+        'message'       => 'required',
+        'footerMessage' => 'required',
+        'withouthTrainings' => 'required',
+        'areScholarshipped' => 'required',
+    ];
+
+    /**
+     * @var array
+     */
     static $schoolRules = [
         'name'      => 'required',
         'description' => 'required',

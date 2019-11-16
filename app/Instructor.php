@@ -10,6 +10,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Nota;
+use App\Setting;
 
 /**
  * App\Instructor
@@ -27,6 +28,7 @@ use App\Nota;
  */
 class Instructor extends Model
 {
+    public $settings;
     protected $table = 'instructores';
     protected $fillable = [
         'nombre',
@@ -41,6 +43,11 @@ class Instructor extends Model
         'is_scholarshipped',
         'is_enabled'
     ];
+
+    public function __construct()
+    {
+        $this->settings = Setting::find(1);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
@@ -98,6 +105,15 @@ class Instructor extends Model
     {
         return $this
             ->hasMany('App\Asignacion');
+    }
+
+    /**
+     * @return string
+     */
+    public function getInstructorEmailAttribute()
+    {
+
+        return $this->carnet . $this->settings->instructor_email_prefix;
     }
 
     /**
