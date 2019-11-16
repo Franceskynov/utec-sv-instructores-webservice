@@ -14,13 +14,13 @@ use Illuminate\Support\Facades\Mail;
 
 class BulletinController extends Controller
 {
-//    public function __construct()
-//    {
-//        if (env('JWT_LOGIN'))
-//        {
-//            $this->middleware('jwt.auth');
-//        }
-//    }
+    public function __construct()
+    {
+        if (env('JWT_LOGIN'))
+        {
+            $this->middleware('jwt.auth');
+        }
+    }
 
     /**
      * Display a listing of the resource.

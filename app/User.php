@@ -25,6 +25,12 @@ use App\Setting;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    public $settings;
+
+    public function __construct()
+    {
+        $this->settings = Setting::find(1);
+    }
 
     /**
      * The attributes that are mass assignable.

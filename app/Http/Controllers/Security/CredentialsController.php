@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InstructorQuerieMailable;
+use App\Mail\ChangeCredentialsMailable;
 use App\Utils\HttpUtils;
 class CredentialsController extends Controller
 {
@@ -56,9 +57,15 @@ class CredentialsController extends Controller
             $hashedPassword = $user->password;
             if (Hash::check($request->oldPassword, $hashedPassword))
             {
+                $email = $request->email;
                 $user->update([
-                    'password' => Hash::make($request->password)
+                    'password' => Hash::make($request->password),
                 ]);
+
+                $host = HttpUtils::getServerUri($request);
+                Mail::to($email)
+                    ->send( new ChangeCredentialsMailable('Cambio de credenciales', $email, $host));
+
                 $this->response = $this->successChanged;
             } else {
                 $this->response = $this->invalidChanged;
