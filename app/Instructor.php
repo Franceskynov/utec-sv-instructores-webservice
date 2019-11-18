@@ -11,6 +11,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Nota;
 use App\Setting;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\belongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * App\Instructor
@@ -44,13 +47,14 @@ class Instructor extends Model
         'is_enabled'
     ];
 
-    public function __construct()
+    public function __construct($attributes = array())
     {
+        parent::__construct($attributes);
         $this->settings = Setting::find(1);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     * @return belongsToMany
      */
     public function notas()
     {
@@ -59,7 +63,7 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function user()
     {
@@ -68,7 +72,7 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     * @return belongsToMany
      */
     public function historial()
     {
@@ -77,7 +81,7 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     * @return belongsToMany
      */
     public function capacitaciones()
     {
@@ -90,7 +94,7 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function instructoria()
     {
@@ -99,7 +103,7 @@ class Instructor extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function asignaciones()
     {

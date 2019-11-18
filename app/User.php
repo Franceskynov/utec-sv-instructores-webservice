@@ -27,8 +27,9 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
     public $settings;
 
-    public function __construct()
+    public function __construct($attributes = array())
     {
+        parent::__construct($attributes);
         $this->settings = Setting::find(1);
     }
 

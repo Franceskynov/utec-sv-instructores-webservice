@@ -22,9 +22,16 @@ Route::get('/admin', function () {
 });
 
 Route::fallback(function(){
-    return \Response::json([
-        Constants::ERROR    => true,
-        Constants::MESSAGE  => Constants::MESSAGE_RESOURCE_NOT_FOUND,
-        Constants::DATA     => []
-    ], 404)->header('access-control-expose-headers', '*');
+    if (env('APP_ENV') == 'production')
+    {
+        return redirect('app/website/#/404');
+
+    } else {
+
+        return \Response::json([
+            Constants::ERROR    => true,
+            Constants::MESSAGE  => Constants::MESSAGE_RESOURCE_NOT_FOUND,
+            Constants::DATA     => []
+        ], 404)->header('access-control-expose-headers', '*');
+    }
 });

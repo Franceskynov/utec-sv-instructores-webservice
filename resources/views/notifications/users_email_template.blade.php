@@ -71,7 +71,7 @@
                             <tr>
                                 <td align="center" valign="top">
                                     <font class="mob_title1" face="'Source Sans Pro', sans-serif" color="#1a1a1a" style="font-size: 30px; line-height: 30px; font-weight: 300; letter-spacing: -1.5px;">
-                                        <span class="mob_title1" style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 30px; line-height: 55px; font-weight: 300; letter-spacing: -1.5px;"> {{ $headerMessage }} </span>
+                                        <span class="mob_title1" style="font-family: 'Source Sans Pro', Arial, Tahoma, Geneva, sans-serif; color: #1a1a1a; font-size: 30px; line-height: 55px; font-weight: 300; letter-spacing: -1.5px;"> {!! $headerMessage !!} </span>
                                     </font>
                                     <div class="top_pad3" style="height: 30px; line-height: 30px; font-size: 28px;">&nbsp;</div>
                                 </td>
