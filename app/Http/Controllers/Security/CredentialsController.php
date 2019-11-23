@@ -208,22 +208,28 @@ class CredentialsController extends Controller
      */
     public function temporalUserActivation(Request $request)
     {
-        $validator = CustomValidators::requestValidator($request, CustomValidators::$activateCreadentialsRule);
 
-        if ($validator->fails())
-        {
+        if (HttpUtils::checkClient($request)) {
+            $validator = CustomValidators::requestValidator($request, CustomValidators::$activateCreadentialsRule);
+            if ($validator->fails())
+            {
+                $this->response = $this->invalidChecking;
+                $this->status = 406;
+
+            } else {
+                $email = $request->email;
+                $password = $request->password;
+                $host = HttpUtils::getServerUri($request);
+                Mail::to($email)
+                    ->send( new InstructorQuerieMailable('Credenciales temporales', $email, $password, $host));
+                $this->response = $this->successActivatedUser;
+                $this->status = 200;
+            }
+        } else {
             $this->response = $this->invalidChecking;
             $this->status = 406;
-
-        } else {
-            $email = $request->email;
-            $password = $request->password;
-            $host = HttpUtils::getServerUri($request);
-            Mail::to($email)
-                ->send( new InstructorQuerieMailable('Credenciales temporales', $email, $password, $host));
-            $this->response = $this->successActivatedUser;
-            $this->status = 200;
         }
+
 
         return \Response::json($this->response, $this->status);
     }
