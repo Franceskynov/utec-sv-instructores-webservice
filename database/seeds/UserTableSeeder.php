@@ -14,10 +14,20 @@ class UserTableSeeder extends Seeder
     {
         // 1
         User::create([
+            'username'   => 'edwin.alberto',
+            'email'      => 'edwin.alberto@mail.utec.edu.sv',
+            'password'   => bcrypt('secret'),
+            'rol_id'     => 1,
+            'is_admin'   => true,
+            'is_enabled' => true,
+            'is_activated' => true
+        ]);
+
+        User::create([
             'username'   => 'claudia.dimas',
             'email'      => 'claudia.dimas@mail.utec.edu.sv',
             'password'   => bcrypt('secret'),
-            'rol_id'     => 1,
+            'rol_id'     => 5,
             'is_admin'   => true,
             'is_enabled' => true,
             'is_activated' => true

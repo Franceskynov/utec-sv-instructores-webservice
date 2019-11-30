@@ -27,6 +27,7 @@ Route::get('/expediente', 'Soap\ServicioAlumnos@expediente');
 Route::resource('/edificio', 'Api\EdificioController');
 Route::resource('/horario', 'Api\HorarioController');
 Route::resource('/aula', 'Api\AulaController');
+Route::resource('/role', 'Api\RoleController');
 Route::resource('/user', 'Api\UserController');
 Route::resource('/docente', 'Api\DocenteController');
 Route::resource('/instructor', 'Api\InstructorController');
@@ -44,6 +45,8 @@ Route::resource('/docente/materia', 'Api\DocenteMateriaController');
 Route::resource('/asignacion/docente', 'Api\DocenteAsignacionController');
 Route::resource('/sistema/preferencia', 'Api\SettingController');
 Route::resource('/bulletin', 'Api\BulletinController');
+Route::resource('/coordinator', 'Api\CoordinatorController');
+Route::resource('/administrator', 'Api\AdministratorController');
 
 Route::get('/dashboard', 'Api\DashboardController@index');
 
@@ -53,6 +56,7 @@ Route::get('/refresh', 'Security\AuthController@refresh');
 Route::get('/checkInstructorByCarnet', 'Api\InstructorController@checkInstructorByCarnet');
 Route::post('/credentials/checkUserByEmail', 'Security\CredentialsController@checkUserByEmail');
 Route::post('/credentials/activateUser', 'Security\CredentialsController@activateUser');
+Route::put('/credentials/updateEmailOrUserName', 'Security\CredentialsController@updateEmailOrUserName');
 Route::post('/credentials/accountRecover', 'Security\CredentialsController@accountRecover');
 Route::post('/credentials/temporalUserActivation', 'Security\CredentialsController@temporalUserActivation');
 Route::put('/credentials', 'Security\CredentialsController@update');

@@ -10,6 +10,7 @@ use App\Instructor;
 use App\Docente;
 use App\Coordinator;
 use App\Setting;
+use App\Administrator;
 
 /**
  * App\User
@@ -104,6 +105,15 @@ class User extends Authenticatable implements JWTSubject
             case 'Administrador':
                 $result = [
                     'settings' => Setting::with('ciclo')->find(1),
+                    'userData' => Administrator::where('user_id', $id)->first(),
+                    'other'    => [
+
+                    ]
+                ];
+                break;
+            case 'Coordinador':
+                $result = [
+                    'settings' => Setting::with('ciclo')->find(1),
                     'userData' => Coordinator::where('user_id', $id)->first()
                 ];
                 break;
@@ -129,7 +139,8 @@ class User extends Authenticatable implements JWTSubject
             'descrpcn'  => $this->rol->descripcion,
             'username'  => $this->username,
             'email'     => $this->email,
-            'people'    => self::getPeopleData($this->rol->nombre, $this->id)
+            'people'    => self::getPeopleData($this->rol->nombre, $this->id),
+            'userId'    => $this->id
         ];
     }
 

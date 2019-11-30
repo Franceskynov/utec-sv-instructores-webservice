@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
              EspecialidadesTableSeeder::class,
              RolesTableSeeder::class,
              UserTableSeeder::class,
+             AdministratorTableSeeder::class,
              CoordinadorTableSeeder::class,
              // DocentesTableSeeder::class,
 //             TrainingsTableSeeder::class,

@@ -15,6 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Historial newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Historial query()
  * @mixin \Eloquent
+ * @property-read string $autoevaluacion
+ * @property-read string $autoevaluacion_rrhh
+ * @property-read string $evaluacion_docente
+ * @property-read string $evaluacion_rrhh
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Instructor[] $instructor
  */
 class Historial extends Model
 {

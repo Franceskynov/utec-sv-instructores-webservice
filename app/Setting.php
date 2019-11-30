@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @mixin \Eloquent
  * @property-read float $minimum_score
  * @property-read float $minimun_cum
+ * @property-read float $autoevaluacion_percentage
+ * @property-read float $evaluacion_docente_percentage
+ * @property-read float $evaluacion_rrhh_percentage
  */
 class Setting extends Model
 {

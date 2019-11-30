@@ -31,7 +31,7 @@ class AulaController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrador']);
+        $request->user()->authorizeRoles(['Administrador', 'Coordinador']);
         if ( $aulas =  Aula::with('edificio', 'horarios', 'horarios.ciclo')->get()) {
 
             $this->response = $this->successResponse($aulas);
@@ -62,7 +62,7 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->user()->authorizeRoles(['Administrador']);
+        $request->user()->authorizeRoles(['Administrador', 'Coordinador']);
         $validator = CustomValidators::requestValidator($request, CustomValidators::$aulaRules);
 
         if ($validator->fails())

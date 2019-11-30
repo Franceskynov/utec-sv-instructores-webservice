@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Materia;
-use App\Utils\CustomValidators;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rol;
 use App\Setting;
-class SettingController extends Controller
+
+class RoleController extends Controller
 {
+    public $settings;
     public function __construct()
     {
-        if (env('JWT_LOGIN'))
-        {
-            $this->middleware('jwt.auth', [
-                'except' => 'index'
-            ]);
-        }
+        $this->settings = Setting::find(1);
+//        if (env('JWT_LOGIN'))
+//        {
+//            $this->middleware('jwt.auth');
+//        }
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +25,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        if ( $row =  Setting::with('ciclo')->first()) {
+        if ($row = Rol::get()) {
 
             $this->response = $this->successResponse($row);
 
@@ -52,7 +51,7 @@ class SettingController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -86,37 +85,11 @@ class SettingController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $request->user()->authorizeRoles(['Administrador']);
-        if ($row = Setting::find($id))
-        {
-            $validator = CustomValidators::requestValidator($request, CustomValidators::$settingRules);
-
-            if ($validator->fails())
-            {
-                $this->response = $this->invalidChecking;
-
-            } else {
-
-                if($row->update($request->all()))
-                {
-                    $this->response = $this->successResponse($row);
-
-                } else {
-
-                    $this->response = $this->invalidUpdate;
-                }
-            }
-
-        }  else {
-
-            $this->response = $this->notFoundResponse;
-        }
-
-        return \Response::json($this->response);
+        //
     }
 
     /**

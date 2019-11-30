@@ -197,6 +197,28 @@ class CustomValidators
     /**
      * @var array
      */
+    static $coordinadorRules = [
+        'nombre'     => 'required',
+        'apellido'   => 'required',
+        'email'      => 'required',
+        'telefono'   => 'required',
+        'oficina'    => 'required',
+    ];
+
+    /**
+     * @var array
+     */
+    static $administratorRules = [
+        'nombre'     => 'required',
+        'apellido'   => 'required',
+        'email'      => 'required',
+        'telefono'   => 'required',
+        'oficina'    => 'required',
+    ];
+
+    /**
+     * @var array
+     */
     static $instructorRules = [
         'nombre'         => 'required',
         'carnet'         => 'required|unique:instructores',

@@ -4,6 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Bulletin
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bulletin newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bulletin newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Bulletin query()
+ * @mixin \Eloquent
+ */
 class Bulletin extends Model
 {
     protected $fillable = [

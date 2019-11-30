@@ -233,4 +233,39 @@ class CredentialsController extends Controller
 
         return \Response::json($this->response, $this->status);
     }
+
+    public function updateEmailOrUserName(Request $request)
+    {
+        $authtorizedUser = \JWTAuth::user();
+
+        if ($authtorizedUser->email == $request->email) {
+            $user = User::where('email', $request->email)
+                ->where('id', $request->userId)
+                ->first();
+            if ($user) {
+                if ($request->newEmail) {
+                    $user->update([
+                        'email' => $request->newEmail,
+                        'username' => $request->username
+                    ]);
+                    $this->status = 200;
+                    $this->response = $this->successChanged;
+                } else {
+                    $user->update([
+                        'username' => $request->username
+                    ]);
+                    $this->status = 200;
+                    $this->response = $this->successChanged;
+                }
+            } else {
+                $this->status = 401;
+                $this->response = $this->invalidChecking;
+            }
+        } else {
+            $this->status = 401;
+            $this->response = $this->invalidChecking;
+        }
+
+        return \Response::json($this->response, $this->status);
+    }
 }

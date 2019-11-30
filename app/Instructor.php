@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Instructor newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Instructor query()
  * @mixin \Eloquent
+ * @property-read string $instructor_email
  */
 class Instructor extends Model
 {

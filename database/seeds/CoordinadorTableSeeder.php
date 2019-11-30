@@ -17,7 +17,7 @@ class CoordinadorTableSeeder extends Seeder
             'telefono'       => '5030000000',
             'email_personal' => 'claudia.dimas@mail.utec.edu.sv',
             'oficina'        => 'Tercera planta, Gbriela mistral',
-            'user_id'        => 1,
+            'user_id'        => 2,
             'is_enabled'     => true,
         ]);
     }
